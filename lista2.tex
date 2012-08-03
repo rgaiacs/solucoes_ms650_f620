@@ -5,7 +5,7 @@
 % Description: This file corresponds to the solutions of homework sheet 2.
 % 
 % Created: 14.07.12 11:13:03 AM
-% Last Change: 14.07.12 11:23:47 AM
+% Last Change: 19.07.12 08:57:01 AM
 % 
 % Authors:
 % - Raniere Silva (2012): initial version
@@ -40,8 +40,103 @@
 \newpage
 \setcounter{page}{1}
 \begin{questions}
-    % TODO Escrever quest\~{o}es e respostas.
+    \question Desenvolva a fun\c{c}\~{a}o
+    \begin{align*}
+        f(x) &= \begin{cases}
+            1, & 0 < x < 1, \\
+            0, & -1 < x < 0,
+        \end{cases}
+    \end{align*}
+    em uma s\'{e}rie de Fourier-Legendre.
+    \begin{solution}
+        % TODO Escrever solu\c{c}\~{a}o.
+    \end{solution}
+
+    \question Mostre que os coeficientes das expans\~{a}o da fun\c{c}\~{a}o
+    \begin{align*}
+        f(x) &= x^4 - 3 x^2 + x
+    \end{align*}
+    em uma s\'{e}rie de Fourier-Legendre s\~{a}o dadas por
+    \begin{align*}
+        a_0 &= -4/5, \\
+        a_1 &= 1, \\
+        a_2 &= -10/7, \\
+        a_3 &= 0, \\
+        a_4 &= 8/35, \\
+        a_n &= 0 && n = 5, 6, 7 \ldots
+    \end{align*}
+    \begin{solution}
+        % TODO Escrever solu\c{c}\~{a}o.
+    \end{solution}
+
+    \question Seja a s\'{e}rie de Fourier-Legendre de $f(x)$,
+    \begin{align*}
+        f(x) &= \sum_{n = 0}^\infty a_n P_n(x).
+    \end{align*}
+    Supondo que essa s\'{e}rie converge uniformemente, mostre que
+    \begin{align*}
+        \int_{-1}^1 \left[ f(x) \right]^ 2 \,\mathrm{d}x &= \sum_{n = 0}^\infty \frac{2 a_n^2}{2 n + 1}.
+    \end{align*}
+    \begin{solution}
+        % TODO Escrever solu\c{c}\~{a}o.
+    \end{solution}
+
+    \question Os polin\^{o}mios de Hermite $H_n(x)$ podem ser definidos pela f\'{o}rmula de Rodrigues,
+    \begin{align*}
+        H_n(x) &= (-1)^n \exp(x^2) \left[ \frac{\mathrm{d}^n}{\mathrm{d}x^n} \exp(-x^2) \right],
+    \end{align*}
+    onde $n = 0, 1, 2, \ldots$ e satisfazem a rela\c{c}\~{a}o de ortogonalidade
+    \begin{align*}
+        \int_{-\infty}^{+\infty} \exp(-x^2) H_n(x) H_m(x) \,\mathrm{d}x &= 2^n n! \sqrt{\pi} \delta_{mn}.
+    \end{align*}
+    Mostre que os coeficientes do desenvolvimento da fun\c{c}\~{a}o $f(x) = x^3$ em uma s\'{e}rie de Fourier-Hermite s\~{a}o dadas por
+    \begin{align*}
+        a_0 &= 0, \\
+        a_1 &= 3/4, \\
+        a_2 &= 0, \\
+        a_3 &= 1/8, \\
+        a_n &= 0 && n = 4, 5, 6, \ldots
+    \end{align*}
+    \begin{solution}
+        % TODO Escrever solu\c{c}\~{a}o.
+    \end{solution}
+
+    \question Mostre que os coeficientes da expans\~{a}o da fun\c{c}\~{a}o $f(x) = x^2$ em uma s\'{e}rie de Fourier-Bessel de ordem zero s\~{a}o dados por
+    \begin{align*}
+        c_n &= \frac{2 \left( \alpha_n^2 - 4 \right)}{\alpha_n^3 J_1(\alpha_n)}, && n = 1, 2, 3, \ldots
+    \end{align*}
+    onde $\alpha_n$ \'{e} o $n$-\'{e}simo zero de $J_0(x)$.
+    \begin{solution}
+        % TODO Escrever solu\c{c}\~{a}o.
+    \end{solution}
+
     \question
+    \begin{parts}
+        \part Mostre que o problema de Sturm-Liouville singular
+        \begin{align*}
+            \begin{cases}
+                \frac{1}{x} y'' + \frac{1}{x^2} y' = -\lambda y, & 0 < x < 4, \\
+                \lim_{x \to 0^+} | y(x) | < \infty, \\
+                y(4) = 0,
+            \end{cases}
+        \end{align*}
+        tem autovalores e autofun\c{c}\~{o}es
+        \begin{align*}
+            \lambda_n &= \left( \frac{3 \alpha_n}{16} \right)^2, & y_n(x) & J_0\left( \frac{\alpha_n x^{3/2}}{8} \right),
+        \end{align*}
+        onde $n = 1, 2, 3, \ldots$ e $\alpha_n$ \'{e} o $n$-\'{e}simo zero da fun\c{c}\~{a}o de Bessel de primeira esp\'{e}cie e ordem zero.
+        \begin{solution}
+            % TODO Escrever solu\c{c}\~{a}o.
+        \end{solution}
+
+        \part Mostre que a expans\~{a}o da fun\c{c}\~{a}o $f(x) = 1$ em termo dessa autofun\c{c}\~{a}o \'{e} dada por
+        \begin{align*}
+            1 &= \sum_{n = 1}^\infty \frac{2}{\alpha_n J_1(\alpha_n)} y_n(x).
+        \end{align*}
+        \begin{solution}
+            % TODO EScrever solu\c{c}\~{a}o.
+        \end{solution}
+    \end{parts}
 \end{questions}
 % \bibliographystyle{plain}
 % \bibliography{bibliography}

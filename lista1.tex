@@ -5,7 +5,7 @@
 % Description: This file corresponds to the solutions of homework sheet 1.
 % 
 % Created: 14.07.12 11:13:03 AM
-% Last Change: 14.07.12 11:13:03 AM
+% Last Change: 19.07.12 08:36:46 AM
 % 
 % Authors:
 % - Raniere Silva (2012): initial version
@@ -40,8 +40,113 @@
 \newpage
 \setcounter{page}{1}
 \begin{questions}
-    % TODO Escrever quest\~{o}es e respostas.
-    \question
+    \question Escreva a s\'{e}rie de Fourier no intervalor $(-\pi, \pi)$ das seguintes fun\c{c}\~{o}es e esboce os gr\'{a}fico das fun\c{c}\~{o}es representadas por essas s\'{e}ries para todo $x$:
+    \begin{parts}
+        \part $f(x) = \begin{cases}
+            -\pi, & - \pi < x < 0, \\
+            x, & 0 < x < \pi.
+        \end{cases}$
+        \begin{solution}
+            % TODO Escrever solu\c{c}\~{a}o.
+        \end{solution}
+
+        \part $f(x) = | \sin x |$.
+        \begin{solution}
+            % TODO Escrever solu\c{c}\~{a}o.
+        \end{solution}
+
+        \part $f(x) = \begin{cases}
+            -x, & -\pi < x < 0, \\
+            x, & 0 < x < \pi.
+        \end{cases}$
+        \begin{solution}
+            % TODO Escrever solu\c{c}\~{a}o.
+        \end{solution}
+
+        \part $f(x) = \cosh x$.
+        \begin{solution}
+            % TODO Escrever solu\c{c}\~{a}o.
+        \end{solution}
+
+        \part $f(x) = \begin{cases}
+            0, & -\pi < x < 0, \\
+            x, & 0 < x < \pi/2, \\
+            \pi - x, & \pi/2 < x < \pi.
+        \end{cases}$
+        \begin{solution}
+            % TODO Escrever solu\c{c}\~{a}o.
+        \end{solution}
+    \end{parts}
+
+    \question Escreva a fun\c{c}\~{a}o $f(x) = x^2 / 4$ em s\'{e}rie de Fourier no intervalo $(-\pi, \pi)$ e use o resultado para mostrar que 
+    \begin{align*}
+        1 + \frac{1}{4} + \frac{1}{9} + \frac{1}{16} + \ldots &= \frac{\pi^2}{6}, \\
+        1 - \frac{1}{4} + \frac{1}{9} - \frac{1}{16} + \ldots &= \frac{\pi^2}{12}, \\
+        1 + \frac{1}{9} + \frac{1}{25} + \frac{1}{49} + \ldots &= \frac{\pi^2}{8}.
+    \end{align*}
+    \begin{solution}
+        % TODO Escrever solu\c{c}\~{a}o.
+    \end{solution}
+
+    \question Escreva as s\'{e}ries de Fourier sobre o intervalo $(-\pi, \pi)$ para as fun\c{c}\~{o}es abaixo:
+    \begin{parts}
+        \part $f(x) = \begin{cases}
+            0, & -\pi < x < 0, \\
+            \sin x, & 0 < x < \pi.
+        \end{cases}$
+        \begin{solution}
+            % TODO Escrever solu\c{c}\~{a}o.
+        \end{solution}
+
+        \part $f(x) = \exp(x)$.
+        \begin{solution}
+            % TODO Escrever solu\c{c}\~{a}o.
+        \end{solution}
+    \end{parts}
+
+    \question Use a representa\c{c}\~{a}o na forma complexa da s\'{e}rie de Fourier para escrever a s\'{e}rie correspondente \`{a} fun\c{c}\~{a}o $f(x) = \exp x$, $-\pi < x < \pi$ e compare esse resultado com o exerc\'{i}cio anterior.
+    \begin{solution}
+        % TODO Escrever solu\c{c}\~{a}o.
+    \end{solution}
+
+    \question Escreva a fun\c{c}ao $f(x) = \left( \pi - x \right) / 2$ em uma s\'{e}rie de Fourier no intervalo $(-\pi, \pi)$ e use o resultado para mostrar que 
+    \begin{align*}
+        \sum_{n = 1}^\infty \frac{1}{n^2} &= \frac{\pi^2}{6}.
+    \end{align*}
+    \begin{solution}
+        % TODO Escrever solu\c{c}\~{a}o.
+    \end{solution}
+
+    \question Escreva a s\'{e}rie de cossenos e a s\'{e}rie de senos de Fourier correspondente \`{a}s fun\c{c}\~{o}es abaixo e esboce o gr\'{a}fico da fun\c{c}\~{a}o representada por essas s\'{e}ries para todo $x$.
+    \begin{parts}
+        \part $f(x) = 1, 0 < x < \pi$.
+        \begin{solution}
+            % TODO Escrever solu\c{c}\~{a}o.
+        \end{solution}
+
+        \part $f(x) = \pi - x, 0 < x < \pi$.
+        \begin{solution}
+            % TODO Escrever solu\c{c}\~{a}o.
+        \end{solution}
+
+        \part $f(x) = \begin{cases}
+            1, & 0 < x < \pi/2, \\
+            0, & \pi/2 < x < \pi.
+        \end{cases}$
+        \begin{solution}
+            % TODO Escrver solu\c{c}\~{a}o.
+        \end{solution}
+    \end{parts}
+
+    \question Escreva a s\'{e}rie de Fourier sobre o intervalo $(0, 2\pi)$ para a fun\c{c}\~{a}o $f(x) = x^2$ e esboce o gr\'{a}fico da fun\c{c}\~{a}o representada por essa s\'{e}rie para todo $x$.
+    \begin{solution}
+        % TODO Escrver solu\c{c}\~{a}o.
+    \end{solution}
+
+    \question Escreva a s\'{e}rie em senos de Fourier sobre o intervalo $(0, 1)$ para a fun\c{c}\~{a}o $f(x) = \cos(\pi x)$.
+    \begin{solution}
+        % TODO Escrver solu\c{c}\~{a}o.
+    \end{solution}
 \end{questions}
 % \bibliographystyle{plain}
 % \bibliography{bibliography}

@@ -1,0 +1,51 @@
+% Filename: notas_de_aula.tex
+% This code is part of 'Notas de aula n\~{a}o oficiais de MS650 e F620'
+% 
+% Description: This file correspond to the textbook using in the course.
+% 
+% Created: 02.08.12 10:36:23 PM
+% Last Change: 02.08.12 10:36:23 PM
+% 
+% Authors:
+% - Raniere Silva, r.gaia.cs@gmail.com
+% 
+% Copyright (c) 2012, Raniere Silva. All rights reserved.
+% 
+% This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/.
+%
+% This work is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+%
+\documentclass[12pt,a4paper,openright,twoside]{book}
+\usepackage[top=3cm,left=2cm,right=2cm,bottom=3cm]{geometry}
+\usepackage[brazil]{babel}
+\usepackage{indentfirst}
+\input{package.tex}
+\begin{document}
+\title{Notas de aula n\~{a}o oficiais de MS650 e F620}
+\author{Raniere Silva}
+\maketitle
+
+% Frontmatter
+\frontmatter 
+
+% TODO Arrumar arquivos
+\input{licenca@notas_de_aula.tex}
+
+\tableofcontents 
+
+% Mainmatter
+\mainmatter 
+
+\input{cap01@notas_de_aula.tex}
+
+\backmatter 
+
+% References
+\nocite*
+\bibliographystyle{alpha}
+\bibliography{../bibliography}
+
+% Show index.
+\addcontentsline{toc}{chapter}{Index}
+\printindex
+\end{document}

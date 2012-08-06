@@ -73,9 +73,220 @@ Um fato not\'{a}vel \'{e} que as condi\c{c}\~{o}es para representar uma fun\c{c}
         x^2 = \frac{\pi^2}{3} + \sum_{n = 1}^\infty \frac{4 (-1)^n}{n^2} \cos\left( n x \right).
     \end{align*}
 \end{exem}
-% TODO Terminar de incluir arquivo M2S12-1.pdf. Interrompido na p\'{a}gina 3.
 
-% TODO Incluir arquivo M2S12-2.pdf
+\begin{obs}
+    Essa s\'{e}rie representa $f(x) = x^2$ para $-\pi \leq x \leq \pi$. Para os demais pontos trata-se da extens\~{a}o peri\'{o}dica de $f(x) = x^2$, $-\pi \leq x \leq \pi$.
+\end{obs}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figuras/serie_fourier_grafico01.jpg}
+    \caption{Gr\'{a}fico da s\'{e}rie de Fourier para $f(x) = x^2$.}
+    \label{fig:serie_fourier_grafico01}
+\end{figure}
+
+\begin{exem}
+    Para
+    \begin{align*}
+        f(x) &= \begin{cases}
+            -1, & x < 0, \\
+            +1, & x \geq 0.
+        \end{cases}
+    \end{align*}
+    temos que
+    \begin{align*}
+        a_0 &= \frac{1}{\pi} \int_{-\pi}^\pi f(x) \id{x} \\
+        &= \frac{1}{\pi} \left[ -\int_\pi^0 \id{x} + \int_0^\pi \id{x} \right] \\
+        &= 0, \\
+        a_n &= \frac{1}{\pi} \int_{-\pi}^\pi f(x) \cos\left( n x \right) \id{x} \\
+        &= \frac{1}{n} \left[ -\int_{-\pi}^0 \cos\left( n x \right) \id{x} + \int_0^\pi \cos\left( n x \right) \id{x} \right] \\
+        &= 0, \\
+        b_n &= \frac{1}{\pi} \int_{-\pi}^\pi f(x) \sin\left( n x \right) \id{x} \\
+        &= \frac{1}{\pi} \left[ -\int_{-\pi}^0 \sin\left( n x \right) \id{x} + \int_0^\pi \sin\left( n x \right) \id{x} \right] \\
+        &= \frac{2}{\pi} \int_0^\pi \sin\left( n x \right) \id{x} \\
+        &= \left. \frac{-2 \cos\left( n x \right)}{n \pi} \right|_0^\pi \\
+        &= \frac{-2}{n \pi} \left[ (-1)^n - 1 \right] \\
+        &= \begin{cases}
+            0, & n \text{ \'{e} par}, \\
+            4 / \left( n \pi \right), & n \text{ \'{e} \'{i}mpar}.
+        \end{cases}
+    \end{align*}
+
+    Logo,
+    \begin{align*}
+        f(x) &= \sum_{n = 1}^\infty b_n \sin\left( n x \right) \\
+        &= \sum_{k = 1}^\infty b_{k + 1} \sin\left( (2k + 1) x \right) \\
+        &= \sum_{k = 0}^\infty \frac{4}{\left( 2k + 1 \right) \pi} \sin\left( (2k + 1) x \right).
+    \end{align*}
+\end{exem}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figuras/serie_fourier_grafico02.jpg}
+    % TODO Arrumar o comando \caption abaixo.
+    \caption{Gr\'{a}fico da s\'{e}rie de Fourier para }
+    \label{fig:serie_fourier_grafico02}
+\end{figure}
+
+Pela Figura~\ref{fig:serie_fourier_grafico02} que
+\begin{align*}
+    \bar{f}(x) &= \begin{cases}
+        1, & 0 < x < \pi, \\
+        0, & x = 0, \pi, -\pi, \\
+        -1, & -\pi < x < 0.
+    \end{cases}
+\end{align*}
+e
+\begin{align*}
+    \bar{f}(x + 2 \pi) &= \bar{f}(x).
+\end{align*}
+
+\begin{obs}
+    $\bar{f}(0) \neq f(0)$, o que \'{e} caractyeristico do comportamento da s\'{e}rie de Fourier em uma descontinuidade. Note que
+    \begin{align*}
+        \bar{f}(0) &= \frac{1}{2} \left[ \lim_{x \to 0^+} f(x) + \lim_{x \to 0^-} f(x) \right]
+    \end{align*}
+    nesse caso (que se mostrar\'{a} verdade no caso geral!).
+\end{obs}
+
+\begin{defi}
+    Seja $\mathcal{L}^2[a, b]$ o conjunto das fun\c{c}\~{o}es de quadrado integr\'{a}vel em $a \leq x \leq b$. Dizemos que $f(x)$ e $g(x)$ s\~{a}o ortogonais nesse intervalo se
+    \begin{align*}
+        \int_a^b f(x) g(x) \id{x} &= 0.
+    \end{align*}
+\end{defi}
+
+\begin{obs}
+    Lembrando que
+    \begin{align*}
+        0 \leq \left( f - g \right)^2 = f^2 + g^2 - 2 f g,
+    \end{align*}
+    ou seja,
+    \begin{align*}
+        2 f g \leq f^2 + g^2,
+    \end{align*}
+    conclu\'{i}mos que se $f, g \in \mathcal{L}^2[a, b]$, ent\~{a}o existe $\int_a^b f(x) g(x) \id{x}$. Al\'{e}m disso,
+    \begin{align*}
+        \left( f + g \right)^2 &= f^2 + g^2 + 2 f g \leq 2 \left( f^2 + g^2 \right),
+    \end{align*}
+    o que garante que $f + g \in \mathcal{L}^2[a, b]$. Como $\mathcal{L}^2[a, b]$ \'{e} um espa\c{c}o vetorial, podemos pesnar nessa integral como o produto escalar $<f, g>$ de $f, g \in \mathcal{L}^2[a, b]$:
+    \begin{align*}
+        <f, g> = \int_a^b f(x) g(x) \id{x}.
+    \end{align*}
+\end{obs}
+
+\begin{prop}
+    O conjunto $\left\{ 1, \cos\left( n x \right), \sin\left( n x \right) \right\}$ ($n = 1, 2, \ldots$) \'{e} ortogonal em $[-\pi, \pi]$.
+\end{prop}
+\begin{proof}
+    Devemos mostrar que
+    \begin{align}
+        & \int_{-\pi}^\pi 1 \cos\left( n x \right) \id{x} = \int_{-\pi}^\pi 1 \sin \left( n x \right) \id{x} = 0, \tag{i} \label{eq:serie_fourier_ort01} \\
+        & \int_{-\pi}^\pi \cos\left( n x \right) \cos\left( m x \right) \id{x} = \int_{-\pi}^\pi \sin\left( n x \right) \sin\left( m x \right) \id{x} = 0, n \neq m, \tag{ii} \label{eq:serie_fourier_ort02} \\
+        & \int_{-\pi}^\pi \cos\left( n x \right) \sin\left( m x \right) \id{x} = 0. \tag{iii} \label{eq:serie_fourier_ort03}
+    \end{align}
+    As integrais \eqref{eq:serie_fourier_ort01} s\~{a}o triviais. Quanto a \eqref{eq:serie_fourier_ort02} e \eqref{eq:serie_fourier_ort03}, elas s\~{a}o calculadas de forma an\'{a}loga, de modo que faremos explicitamente apenas uma delas. Usando a identidade
+    \begin{align*}
+        \cos\left( n x \right) \cos\left( m x \right) &= \frac{1}{2} \cos\left( (n - m) x \right) + \frac{1}{2} \cos\left( (n + m) x \right)
+    \end{align*}
+    segue, para $n \neq m$, que
+    \begin{align*}
+        \int_{-\pi}^\pi \cos\left( n x \right) \cos\left( m x \right) \id{x} = \frac{1}{2} \left. \frac{\sin\left( (n - m) x \right)}{n - m} \right|_{-\pi}^\pi + \frac{1}{2} \left. \frac{\sin\left( (n + m) x \right)}{n - m} \right|_{-\pi}^\pi = 0
+    \end{align*}
+    pois $\sin\left( k \pi \right) = 0$ para $k$ inteiro.
+
+    N\~{a}o custa chamar a aten\c{c}\~{a}o para o fato que \eqref{eq:serie_fourier_ort03} vale para quaisquer $n$ e $m$, enquanto \eqref{eq:serie_fourier_ort02} vale para $n \neq m$. Quando $n = m$, para \eqref{eq:serie_fourier_ort02} temos
+    \begin{align*}
+        \int_{-\pi}^\pi \cos^2\left( n x \right) \id{x} = \int_{-\pi}^\pi \sin^2\left( n x \right) \id{x} = \pi.
+    \end{align*}
+\end{proof}
+
+\begin{teo}
+    Se uma s\'{e}rie trigonom\'{e}trica converge uniformemente para a fun\c{c}\~{a}o $f(x)$ em $-\pi \leq x \leq \pi$, ent\~{a}o ela \'{e} a s\'{e}rie de Fourier de $f(x)$.
+\end{teo}
+\begin{proof}
+    Se
+    \begin{align*}
+        f(x) = \frac{A_0}{2} + \sum_{n = 1}^\infty \left( A_n \cos\left( n x \right) + B_n \sin\left( n x \right) \right)
+    \end{align*}
+    converge uniformentente, o mesmo acontecer\'{a} com a s\'{e}rie multiplicada por $\cos\left( m x \right)$ ou $\sin\left( m x \right)$. Como uma s\'{e}rie uniformemente convergente pode ser integrada termo a termo, temos, por exemplo
+    \begin{align*}
+        \begin{split}
+            \int_{-\pi}^\pi f(x) \cos\left( m x \right) \id{x} &= \frac{A_0}{2} \underbrace{\int_{-\pi}^\pi \cos\left( m x \right) \id{x}}_{= 0} \\
+            &\quad {}+ \sum_{n = 1}^\infty \left( A_n \underbrace{\int_{-\pi}^\pi \cos\left( n x \right) \cos\left( m x \right) \id{x}}_{= 0 (n \neq m)} + B_n \underbrace{\int_{-\pi}^\pi \sin\left( n x \right) \cos\left( m x \right) \id{x}}_{= 0} \right)
+        \end{split}
+    \end{align*}
+    onde usamos a proposi\c{c}\~{a}o anterior, de modo que
+    \begin{align*}
+        \int_{-\pi}^\pi f(x) \cos\left( m x \right) \id{x} &= A_m \int_{-\pi}^\pi \cos^2\left( m x \right) \id{x} = \pi A_m,
+    \end{align*}
+    ou seja, $A_m$ \'{e} um coeficiente de Fourier. Procedendo de forma an\'{a}logo, veremos que o mesmo acontece com $A_0$ e $B_m$, de modo que se trat a de uma s\'{e}rie de Fourier.
+\end{proof}
+
+\section{Mudan\c{c}a de intervalo}
+Vamos agora, ao inv\'{e}s de $T = 2 \pi$, considerar um per\'{i}odo $T = 2 L$. Para isso, na s\'{e}rie de Fourier
+\begin{align*}
+    f(x') = \frac{a_0}{2} + \sum_{n = 1}^\infty \left( a_n \cos\left( n x' \right) + b_n \sin\left( n x' \right) \right),
+\end{align*}
+vamos fazer a mudan\c{c}a de vari\'{a}vel
+\begin{align*}
+    x' = \frac{\pi}{L} x.
+\end{align*}
+Assim, para $f(x') = f(\pi x / L) = f(x)$, temos
+\begin{align*}
+    F(x) &= \frac{a_0}{2} + \sum_{n = 1}^\infty \left( a_n \cos\left( \frac{n \pi x}{L} \right) + b_n \sin\left( \frac{n \pi x}{L} \right) \right),
+\end{align*}
+com
+\begin{align*}
+    a_n &= \frac{1}{\pi} \int_{-\pi}^\pi f(x') \cos\left( n x' \right) \id{x'} = \frac{1}{\pi} \int_{-L}^L \frac{\pi}{L} f\left( \frac{\pi}{L} x \right) \cos\left( \frac{n \pi x}{L} \right) \id{x},
+\end{align*}
+ou seja,
+\begin{align*}
+    a_n &= \frac{1}{L} \int_{-L}^L F(x) \cos\left( \frac{n \pi x}{L} \right) \id{x}, & n = 1, 2, \ldots
+\end{align*}
+e da mesma forma
+\begin{align*}
+    b)n &= \frac{1}{L} \int_{-L}^L F(x) \sin\left( \frac{n \pi x}{L} \right) \id{x} & n = 1, 2, \ldots
+\end{align*}
+
+\begin{exem}
+    Para $f(x) = x^2, - 2 \pi \leq x \leq 2 \pi$ temos, usando $L = 2 \pi$ (portanto per\'{i}odo $T = 4\pi$), encontramos que
+    \begin{align*}
+        x^2 = \frac{4 \pi^2}{3} + \sum_{n = 1}^\infty \frac{16 (-1)^n}{n^2} \cos\left( \frac{n x}{2} \right).
+    \end{align*}
+\end{exem}
+
+\section{Forma complexa}
+Temos que $\exp(i x) = \cos(x) + i \sin(x)$ e portanto
+\begin{align*}
+    \cos\left( \frac{n \pi x}{L} \right) &= \frac{1}{2} \left( \exp\left( i \frac{n \pi x}{L} \right) + \exp\left( -i \frac{n \pi x}{L} \right) \right), \\
+    \sin\left( \frac{n \pi x}{L} \right) &= \frac{1}{2 i} \left( \exp\left( i \frac{n \pi x}{L} \right) - \exp\left( -i \frac{n \pi x}{L} \right) \right).
+\end{align*}
+Logo,
+\begin{align*}
+    \begin{split}
+        f(x) &= \frac{a_0}{2} + \sum_{n = 1}^\infty \left[ \frac{a_n}{2} \exp\left( i \frac{n \pi x}{L} \right) + \frac{a_n}{2} \exp\left( -i \frac{n \pi x}{L} \right) \right.\\ &\quad \left. {}- \frac{b_n i}{2} \exp\left( i \frac{n \pi x}{L} \right) + \frac{b_n i}{2} \exp\left( -i \frac{n \pi x}{L} \right) \right]
+    \end{split} \\
+    &= \frac{a_0}{2} + \sum_{n = 1}^\infty \underbrace{\left( \frac{a_n - i b_n}{2} \right)}_{c_n} \exp\left( i \frac{n \pi x}{L} \right) + \sum_{n = 1}^\infty \underbrace{\left( \frac{a_n + i b_n}{2} \right)}_{c_n^*} \exp\left( -i \frac{n \pi x}{L} \right)
+\end{align*}
+
+\begin{defi}
+    Temos que $c_{- n} = c_n^*$, portanto
+    \begin{align*}
+        c_n &= \begin{cases}
+            \left( 1/2 \right) \left( a_n - i b_n \right), & n = 1, 2, \ldots \\
+            \left( 1/2 \right) \left( a_n + i b_n \right), & n = -1, -2, \ldots \\
+            \left( 1/2 \right) a_0, & n = 0.
+        \end{cases}
+    \end{align*}
+    Logo,
+    \begin{align*}
+        f(x) &= c_0 + \sum_{n = 1}^\infty c_n \exp\left( i (n \pi x) / L \right) + \sum_{n = -1}^{-\infty} \underbrace{\left( 1/2) \right) \left( a_{-n} + i b_{-n} \right)}_{c_n} \exp\left( i (n \pi x) / L \right) \\
+        &= \sum_{n = -\infty}^\infty c_n \exp\left( i (n \pi x) / L \right).
+    \end{align*}
+\end{defi}
+% TODO Terminar de incluir arquivo M2S12-2.pdf. Interrompido na p\'{a}gina 2.
+
 % TODO Incluir arquivo M2S12-3.pdf
 % TODO Incluir arquivo M2S12-4.pdf
 % TODO Incluir arquivo M2S12-5.pdf

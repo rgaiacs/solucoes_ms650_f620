@@ -147,6 +147,94 @@
     \begin{solution}
         % TODO Escrver solu\c{c}\~{a}o.
     \end{solution}
+
+    \question[T1 de 2011] Encontre a s\'{e}rie em cossenos de Fourier sobre o intervalo $(0, \pi)$ para a fun\c{c}\~{a}o $f(x) = \sin\left( \kappa x \right)$, onde $\kappa$ \'{e} um n\'{u}mero inteiro positivo.
+    \begin{solution}
+        Temos para $f(x) = \sin\left( \kappa x \right)$, $\kappa = 1, 2, 3 \ldots$ que
+        \begin{align*}
+            a_0 &= 2 \frac{1}{\pi} \int_0^\pi \sin\left( \kappa x \right) \id{x} \\
+            &= \frac{2}{\pi} \left. \left[ \frac{-\cos\left( \kappa x \right)}{\kappa} \right] \right|_0^\pi \\
+            &= \frac{2}{\pi \kappa} \left[ 1 - (-1)^\kappa \right] \\
+            &= \begin{cases}
+                0, & \kappa \text{ \'{e} par}, \\
+                4 / \left( \pi \kappa \right), \kappa \text{ \'{e} \'{i}mpar},
+            \end{cases} \\
+            a_n &= 2 \frac{1}{\pi} \int_0^\pi \sin\left( \kappa x \right) \cos\left( n x \right) \id{x}, \\
+            \intertext{para $n = \kappa$}
+            a_k &= \frac{2}{\pi} \int_0^\pi \sin\left( \kappa x \right) \cos\left( \kappa x \right) \id{x} \\
+            &= \frac{2}{\pi \kappa} \left. \frac{\sin^2\left( \kappa x \right)}{2} \right|_0^\pi \\
+            &= 0, \\
+            \intertext{e para $n \neq \kappa$}
+            a_n &= \frac{2}{n} \int_0^\pi \frac{1}{2} \left[ \sin\left( \kappa x + n x \right) + \sin\left( \kappa x - n x \right) \right] \id{x} \\
+            &= \frac{1}{\pi} \left. \left[ \frac{- \cos\left( (\kappa + n) x \right)}{\kappa + n} - \frac{\cos\left( (k - n) x \right)}{\kappa - n} \right] \right|_0^\pi \\
+            &= \frac{1}{\pi} \left[ \frac{1 - (-1)^{n + \kappa}}{\kappa + n} + \frac{1 - (-1)^{n - \kappa}}{\kappa + n} \right] \\
+            &= \frac{\left[ 1 - (-1)^{n + \kappa} \right]}{\pi} \frac{2 k}{k^2 - n^2} \\
+            &= \begin{cases}
+                \frac{\left[ 1 - (-1)^n \right]}{\pi} \frac{2 \kappa}{\kappa^2 - n^2}, & \kappa \text{ \'{e} par}, \\
+                \frac{\left[ 1 + (-1)^n \right]}{\pi} \frac{2 \kappa}{\kappa^2 - n^2}, & \kappa \text{ \'{e} \'{i}mpar}.
+            \end{cases}
+        \end{align*}
+
+        Logo,
+        \begin{align*}
+            f(x) &= \sum_{m = 0}^\infty \frac{4 \kappa}{\pi} \frac{\cos\left( (2m + 1) x \right)}{\left[ \kappa^2 - (2m + 1)^2 \right]},
+        \end{align*}
+        quando $k$ \'{e} par e
+        \begin{align*}
+            f(x) &= \frac{2}{\pi \kappa} + \sum_{m = 1}^\infty \frac{4 \kappa}{\pi} \frac{\cos\left( 2 m x \right)}{\left[ \kappa^2 - 4 m^2 \right]},
+        \end{align*}
+        quando $\kappa$ \'{e} \'{i}mpar.
+    \end{solution}
+
+    \question[P1 de 2011]
+    \begin{parts}
+        \part Mostre que a s\'{e}rie de Fourier de $\exp(x)$ no intervalo $-\pi < x < \pi$ \'{e} dada por
+        \begin{align*}
+            S(x) &= \frac{2 \sinh\left( \pi \right)}{\pi} \left[ \frac{1}{2} + \sum_{n = 1}^\infty \frac{(-1)^n}{n^2 + 1} \left( \cos\left( n x \right) - n \sin\left( n x \right) \right) \right].
+        \end{align*}
+        \begin{solution}
+            Temos que
+            \begin{align*}
+                a_0 &= \frac{1}{\pi} \int_{-\pi}^\pi \exp(x) \id{x} \\
+                &= \frac{1}{\pi} \left. \exp(x) \right|_{-\pi}^\pi \\
+                &= \frac{2 \sinh\left( \pi \right)}{\pi} \\
+                a_n &= \frac{1}{\pi} \int_{-\pi}^\pi \exp(x) \cos\left( n x \right) \id{x} \\
+                &= \frac{1}{\pi} \left. \left( \frac{\exp(x) \cos\left( n x \right) + n \exp(x) \sin\left( n x \right)}{1 + n^2} \right) \right|_{-\pi}^\pi \\
+                &= \frac{2 \sinh(\pi)}{\pi} \frac{(-1)^n}{1 + n^2}, \\
+                b_n &= \frac{1}{\pi} \int_{-\pi}^\pi \exp(x) \sin\left( n x \right) \id{x} \\
+                &= \frac{1}{\pi} \left. \left( \frac{\exp(x) \sin\left( n x \right) - n \exp(x) \cos\left( n x \right)}{1 + n^2} \right) \right|_{-\pi}^{\pi} \\
+                &= \frac{-2 \sinh(\pi)}{\pi} \frac{(-1)^n}{1 + n^2} n.
+            \end{align*}
+            Portanto,
+            \begin{align*}
+                S(x) &= \frac{2 \sinh(\pi)}{\pi} \left[ \frac{1}{2} + \sum_{n = 1}^\infty \frac{(-1)^n}{1 + n^2} \left( \cos\left( n x \right) - n \sin\left( n x \right) \right) \right].
+            \end{align*}
+        \end{solution}
+
+        \part Fa\c{c}a um esbo\c{c}o do gr\'{a}fico da fun\c{c}\~{a}o representada por essa s\'{e}rie para todo $x \in \mathbb{R}$.
+        \begin{solution}
+            O esbo\c{c}o encontra-se representado na figura abaixo:
+            \begin{center}
+                \includegraphics[width=0.8\textwidth]{lista1_fig_p1.jpg}
+            \end{center}
+        \end{solution}
+
+        \part Use a s\'{e}rie de Fourier para mostrar que
+        \begin{align*}
+            \sum_{n = 1}^\infty \frac{1}{n^2 + 1} &= \frac{\pi}{2} \coth\left( \pi \right) - \frac{1}{2}.
+        \end{align*}
+        \begin{solution}
+            Tomando $x = \pi$ temos que
+            \begin{align*}
+                \frac{\exp(\pi) + \exp(-\pi)}{2} &= \cosh\left( \pi \right) \\
+                &= \frac{2 \sinh(\pi)}{\pi} \left[ \frac{1}{2} + \sum_{n = 1}^\infty \frac{(-1)^n}{1 + n^2} \left( (-1)^n - n \cdot 0 \right) \right]
+            \end{align*}
+            e portanto
+            \begin{align*}
+                \sum_{n = 1}^\infty \frac{1}{1 + n^2} &= \frac{\pi}{2} \coth(\pi) - \frac{1}{2}.
+            \end{align*}
+        \end{solution}
+    \end{parts}
 \end{questions}
 % \bibliographystyle{plain}
 % \bibliography{bibliography}

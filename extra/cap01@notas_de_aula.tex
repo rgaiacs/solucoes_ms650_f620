@@ -285,7 +285,222 @@ Logo,
         &= \sum_{n = -\infty}^\infty c_n \exp\left( i (n \pi x) / L \right).
     \end{align*}
 \end{defi}
-% TODO Terminar de incluir arquivo M2S12-2.pdf. Interrompido na p\'{a}gina 2.
+
+\begin{obs}
+    Note que
+    \begin{align*}
+        f^*(x) &= \sum_{n = -\infty}^\infty c_n^* \exp\left( -i n \pi x / L \right) \\
+        &= \sum_{n = -\infty}^`9 c_{-n}^* \exp\left( i n \pi x / L \right) \\
+        &= \sum_{n = -\infty}^\infty c_n \exp\left( i n \pi x / L \right) \\
+        &= f(x).
+    \end{align*}
+\end{obs}
+
+E $c_n$ \'{e} obtido por
+\begin{align*}
+    \int_{-L}^L \exp\left( -i m \pi x / L \right) \exp\left( i n \pi x / L \right) \id{x} &= \int_{-L}^L \exp\left( i (n - m) \pi x / L \right) \id{x} \\
+    &= \begin{cases}
+        \int_{-L}^L \id{x} = 2 L, & n = m, \\
+        \left. \exp\left( i (n - m) \pi x / L \right) \left( i (n - m) \pi / L \right)^{-1} \right|_{-L}^L = 0
+    \end{cases} \\
+    &= 2 L \delta_{mn}.
+\end{align*}
+Com isso
+\begin{align*}
+    \int_{-L}^L f(x) \exp\left( -i m \pi x / L \right) \id{x} &= \sum_{n = -\infty}^\infty c_n \int_{-L}^L \exp\left( i n \pi x / L \right) \exp\left( -i m \pi x / L \right) \id{x} \\
+    &= 2 L \sum_{n = \infty}^\infty c_n \delta_{mn} \\
+    &= 2 L c_m.
+\end{align*}
+Logo,
+\begin{align*}
+    c_n &= \frac{1}{2L} \int_{-L}^L f(x) \exp\left( -i n \pi x / L \right) \id{x}.
+\end{align*}
+
+\begin{exem}
+    Seja $f(x)$ dado por
+    \begin{align*}
+        f(x) &= \begin{cases}
+            1 / 2a, & |x| \leq a, \\
+            0, & |x| > a,
+        \end{cases}
+    \end{align*}
+    onde $a < L$. Logo, temos
+    \begin{align*}
+        c_n &= \frac{1}{2L} \int_{-L}^L f(x) \exp\left( -i n \pi x / L \right) \id{x} \\
+        &= \frac{1}{2L} \int_{-a}^a \frac{1}{2a} \exp\left( -i n \pi x / L \right) \\
+        &= \frac{1}{2L} \frac{1}{2a} \left. \frac{\exp\left( -i n \pi x / L \right)}{- i n \pi / L} \right|_{-a}^a \\
+        &= \frac{1}{2 (2a) (-i n \pi)} \left( \exp\left( -i n \pi a / L \right) - \exp\left( i n \pi a / L \right) \right) \\
+        &= \frac{1}{2 a n \pi} \left( \frac{\exp\left( i n \pi a / L \right) - \exp\left( -i n \pi a / L \right)}{2 i} \right) \\
+        &= \sin\left( n \pi a / L \right) \left( 2 n \pi a \right)^{-1}.
+    \end{align*}
+    E portanto,
+    \begin{align*}
+        f(x) = \sum_{n = -\infty}^\infty \frac{\sin\left( n \pi a / L \right)}{2 n \pi a} \exp\left( i n \pi a / L \right).
+    \end{align*}
+    Tamb\'{e}m \'{e} poss\'{i}vel
+    \begin{align*}
+        f(x) &= \frac{1}{2 L} + \sum_{n = 1}^\infty \frac{\sin\left( n \pi a / L \right)}{2 n \pi a} \exp\left( i n \pi a / L \right) + \sum_{n = 1}^\infty \frac{\sin\left( (-n) \pi a / L \right)}{2 (-n) \pi a} \exp\left( i (-n) \pi a / L \right) \\
+        &= \frac{1}{2L} + \sum_{n = 1}^\infty \frac{\sin\left( n \pi a / L \right)}{2 n \pi a} \left( \exp\left( i n \pi a / L \right) + \exp\left( -i n \pi a / L \right) \right) \\
+        &= \frac{1}{2L} + \sum_{n = 1}^\infty \frac{\sin\left( n \pi a / L \right)}{n \pi a} \cos\left( n \pi a / L \right).
+    \end{align*}
+\end{exem}
+
+\section{Propriedades de Paridade: S\'{e}ries em Seno e Cosseno}
+Temos, por defini\c{c}\~{a}o que
+\begin{align*}
+    f(-x) &= \begin{cases}
+        f(x) \Rightarrow f \text{ \'{e} par}, \\
+        -f(x) \Rightarrow f \text{ \'{e} \'{i}mpar}.
+    \end{cases}
+\end{align*}
+Debotando uma fun\c{c}\~{a}o par por $f_+(x)$ e uma fun\c{c}\~{a}o \'{i}mpar por $f_-(x)$ temos
+\begin{align*}
+    f_\pm(-x) &= \pm f_\pm(x).
+\end{align*}
+
+\begin{prop}
+    Temos que
+    \begin{align*}
+        \int_{-L}^L f(x) \id{x} &= \begin{cases}
+            2 \int_0^L f(x) \id{x}, & f \text{ \'{e} par}, \\
+            0, & f \text{ \'{e} \'{i}mpar}.
+        \end{cases}
+    \end{align*}
+\end{prop}
+\begin{proof}
+    Temos que
+    \begin{align*}
+        \int_{-L}^L f_\pm(x) \id{x} &= \int_{-L}^0 f_\pm(x) \id{x} + \int_0^L f_\pm(x) \id{x} \\
+        &= -\int_{-L}^0 f_\pm(-x) \id{x} + \int_0^L f_\pm(x) \id{x} \\
+        &= \int_0^L f_\pm(-x) \id{x} + \int_0^L f_\pm(x) \id{x} \\
+        &= \pm \int_0^L f_\pm(x) \id{x} + \int_0^L f_\pm(x) \id{x} \\
+        &= \begin{cases}
+            2 \int_0^L f_\pm(x) \id{x}, & \text{para } f_+, \\
+            0, & \text{para } f_-.
+        \end{cases}
+    \end{align*}
+\end{proof}
+
+Por outro lado, \'{e} f\'{a}cil verificar as informa\c{c}\~{o}es da tabela abaixo.
+\begin{table}[htb]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        $f(x)$ & $g(x)$ & $f(x) g(x)$ \\ \hline
+        par & par & par \\ \hline
+        \'{i}mpar & par & \'{i}mpar \\ \hline
+        \'{i}mpar & \'{i}mpar & par \\ \hline
+    \end{tabular}
+\end{table}
+
+Logo, da proposi\c{c}\~{a}o:
+\begin{align*}
+    a_n &= \frac{1}{L} \int_{-L}^L f(x) \cos\left( n \pi x / L \right) \id{x} = 0 \\
+    \intertext{se $f(x)$ \'{e} \'{i}mpar e}
+    b_n &= \frac{1}{L} \int_{-L}^L f(x) \sin\left( n \pi x / L \right) \id{x} = 0
+\end{align*}
+se $f(x)$ \'{e} par.
+
+Logo:
+\begin{enumerate}
+    \item se $f(x) = f_+(x)$ \'{e} par:
+        \begin{align*}
+            f_+(x) &= \frac{a_0}{2} + \sum_{n = 1}^\infty a_n \cos\left( n \pi x / L \right), \\
+            a_n &= \frac{2}{L} \int_0^L f(x) \cos\left( n \pi x / L \right) \id{x}
+        \end{align*}
+        que \'{e} a S\'{e}rie de Fourier em cossenos.
+    \item Se $f(x) = f_-(x)$ \'{e} \'{i}mpar:
+        \begin{align*}
+            f_-(x) &= \sum_{n = 1}^\infty n_n \sin\left( n \pi x / L \right), \\
+            b_n &= \frac{2}{L} \int_0^L f(x) \sin\left( n \pi x / L \right) \id{x}
+        \end{align*}
+        que \'{e} a S\'{e}rie de Fourier em senos.
+\end{enumerate}
+
+\begin{exem}
+    Considere $f(x) = x / \left( 2 L \right) + 1 / 2$ cujo gr\'{a}fico \'{e} ilustrado abaixo.
+    % TODO Inserir gr\'{a}fico de $f(x)$.
+    \begin{enumerate}
+        \item S\'{e}rie de Fourier:
+            \begin{align*}
+                a_0 &= \frac{1}{L} \int_{-L}^L \left( \frac{x}{2 L} + \frac{1}{2} \right) \id{x} \\
+                &= \left. \frac{1}{L} \left( \frac{x^2}{4 L} + \frac{x}{2} \right) \right|_{-L}^L \\
+                &= 1, \\
+                a_n &= \frac{1}{L} \int_{-L}^L \cos\left( n \pi x / L \right) \left( \frac{x}{2 L} + \frac{1}{2} \right) \id{x} \\
+                &= \frac{1}{2 L^2} \int_{-L}^L x \cos\left( n \pi x / L \right) \id{x} + \frac{1}{2L} \int_{-L}^L \cos\left( n \pi x / L \right) \id{x} \\
+                &= 0,
+                b_n &= \frac{1}{L} \int_{-L}^L \sin\left( n \pi x / L \right) \left( \frac{x}{2L} + \frac{1}{2} \right) \id{x} \\
+                &= \frac{1}{2L^2} \int_{-L}^L x \sin\left( n \pi x / L \right) \id{x} + \frac{1}{2L} \int_{-L}^L \sin\left( n \pi x / L \right) \id{x} \\
+                &= \frac{1}{2L^2} \left[ \left. \frac{-x \cos\left( n \pi x / L \right)}{n \pi / L} \right|_{-L}^L + \frac{1}{n \pi / L} \int_{-L}^L \cos\left( n \pi x / L \right) \right] \\
+                &= \frac{1}{2L^2} \frac{\left( -2L^2 \right) \left( -1 \right)^n}{n \pi} \\
+                &= \frac{(-1)^{n + 1}}{n \pi}.
+            \end{align*}
+            Logo,
+            \begin{align*}
+                F(x) &= \frac{1}{2} + \sum_{n = 1}^\infty \frac{(-1)^{n + 1}}{n \pi} \sin\left( n \pi x / L \right).
+            \end{align*}
+            % TODO Incluir gr\'{a}fico.
+
+        \item S\'{e}rie de Fourier em senos:
+            \begin{align*}
+                b_n &= \frac{2}{L} \int_0^L \sin\left( n \pi x / L \right) \left( \frac{x}{2} + \frac{1}{2} \right) \id{x} \\
+                &= \frac{1}{L^2} \int_0^L x \sin\left( n \pi x / L \right) \id{x} + \frac{1}{L} \int_0^L \sin\left( n \pi x / L \right) \id{x} \\
+                &= \frac{1}{L^2} \left[ \left. \frac{- x \cos\left( n \pi x / L \right)}{n \pi / L} \right|_0^L + \frac{L}{n \pi} \int_0^L \cos\left( n \pi x / L \right) \id{x} \right] + \frac{1}{L} \left. \frac{- \cos\left( n \pi x / L \right)}{n \pi / L} \right|_0^L \\
+                &= \frac{-1}{n \pi} \cos\left( n \pi \right) - \frac{1}{n \pi} \cos\left( n \pi \right) + \frac{1}{n \pi} \\
+                &= \frac{1 - 2 (-1)^n}{n \pi}.
+            \end{align*}
+            Logo,
+            \begin{align*}
+                F_-(x) &= \sum_{n = 1}^\infty \left( \frac{1 - 2 (-1)^n}{n \pi} \right) \sin\left( n \pi x / L \right).
+            \end{align*}
+            % TODO Incluir gr\'{a}fico.
+
+        \item S\'{e}rie de Fourier em cossenos:
+            \begin{align*}
+                a_0 &= \frac{2}{L} \int_0^L \left( \frac{x}{2L} + \frac{1}{2} \right) \id{x} \\
+                &= \frac{2}{L} \left. \left( \frac{x^2}{4 L} + \frac{x}{2} \right) \right|_0^L \\
+                &= \frac{3}{2}. \\
+                a_n &= \frac{2}{L} \int_0^L \left( \frac{x}{2L} + \frac{1}{2} \right) \cos\left( n \pi x / L \right) \\
+                &= \frac{1}{L^2} \int_0^L x \cos\left( n \pi x / L \right) \id{x} + \frac{1}{L} \int_0^L \cos\left( n \pi x / L \right) \id{x} \\
+                &= \frac{1}{L^2} \left[ \left. \frac{x \sin\left( n \pi x / L \right)}{n \pi / L} \right|_0^L - \frac{L}{n \pi} \int_0^L \sin\left( n \pi x / L \right) \id{x} \right] + \frac{1}{L} \frac{1}{n \pi / L} \left. \sin\left( n \pi x / L \right) \right|_0^L \\
+                &= \frac{1}{L n \pi} \left. \frac{\cos\left( n \pi x / L \right)}{n \pi / L} \right|_0^L \\
+                &= \frac{1}{n^2 \pi^2} \left[ (-1)^n - 1 \right].
+            \end{align*}
+            Logo,
+            \begin{align*}
+                F_+(x) &= \frac{3}{4} + \sum_{n = 1}^\infty \frac{\left[ (-1)^n - 1 \right]}{n^2 \pi^2} \cos\left( n \pi x / L \right).
+            \end{align*}
+            % TODO Incluir gr\'{a}fico.
+    \end{enumerate}
+\end{exem}
+
+\section{Teorema de Fourier}
+Para facilitar a nota\c{c}\~{a}o, vamos tomar $L = \pi$. Ent\~{a}o
+\begin{align*}
+    f(x) &= \frac{a_0}{2} + \sum_{n = 1}^\infty \left( a_n \cos\left( n x \right) + b_n \sin\left( n x \right) \right) \\
+    \begin{split}
+        &= \frac{1}{2} \left[ \frac{1}{\pi} \int_{-\pi}^\pi f(\xi) \id{\xi} \right] \\ &\quad {}+ \sum_{n = 1}^\infty \left[ \left( \frac{1}{\pi} \int_{-\pi}^\pi f(\xi) \cos\left( n \xi \right) \id{\xi} \right) \cos\left( n x \right) + \left( \frac{1}{\pi} \int_{-\pi}^\pi f(\xi) \sin\left( n \xi \right) \id{\xi} \right) \sin\left( n x \right) \right]
+    \end{split} \\
+    &= \frac{1}{2\pi} \int_{-\pi}^\pi f(\xi) \id{\xi} + \frac{1}{\pi} \sum_{n = 1}^\infty \int_{-\pi}^\pi f(\xi) \left[ \cos\left( n \xi \right) \cos\left( n x \right) + \sin\left( n \xi \right) \sin\left( n x \right) \right] \id{\xi}.
+\end{align*}
+Portanto,
+\begin{align}
+    f(x) &= \frac{1}{2\pi} \int_{-\pi}^\pi f(\xi) \id{\xi} + \frac{1}{\pi} \sum_{n = 1}^\infty \int_{-\pi}^\pi f(\xi) \cos\left( n (\xi - x) \right) \id{\xi}.
+    \label{eq:serie_fourier}
+\end{align}
+
+\begin{teo}[Fourier]
+    Seja $f(x)$ uma fun\c{c}\~{a}o cont\'{i}nua por partes e com derivadas laterais no intervalo $(-\pi, \pi)$ e peri\'{o}dica com per\'{i}odo $2\pi$. Ent\~{a}o sua s\'{e}rie de Fourier, \eqref{eq:serie_fourier}, converge para o valor
+    \begin{align*}
+        \frac{1}{2} \left[ f(x + 0) + f(x - 0) \right]
+    \end{align*}
+    em $-\infty < x < \infty$.
+\end{teo}
+
+Antes de provarmos o teorema de Fourier precisamos explicitar o que entendemos por derivadas laterais e provar alguns lemas auxiliares.
+
+\subsection{Derivadas Laterais}
+% TODO Terminar de incluir arquivo M2S12-2.pdf. Interrompido na p\'{a}gina 10.
 
 % TODO Incluir arquivo M2S12-3.pdf
 % TODO Incluir arquivo M2S12-4.pdf

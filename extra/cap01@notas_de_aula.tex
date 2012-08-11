@@ -419,7 +419,14 @@ Logo:
 
 \begin{exem}
     Considere $f(x) = x / \left( 2 L \right) + 1 / 2$ cujo gr\'{a}fico \'{e} ilustrado abaixo.
-    % TODO Inserir gr\'{a}fico de $f(x)$.
+    \begin{center}
+        \begin{tikzpicture}[scale=2]
+            \draw[->] (-1.6,0) -- (-1,0) node[below]{$-L$} -- (1,0) node[below]{$L$} -- (1.6,0);
+            \draw[->] (0,-.5) -- (0,.5) node[left]{$1/2$} -- (0,1) node[left]{$1$} -- (0,1.5);
+            \draw (-1.5,-.25) -- (-1,0) -- (0,.5) -- (1,1) -- (1.5,1.25) node[right]{$f(x)$};
+            \draw[dotted] (0,1) rectangle (1,0);
+        \end{tikzpicture}
+    \end{center}
     \begin{enumerate}
         \item S\'{e}rie de Fourier:
             \begin{align*}
@@ -428,7 +435,7 @@ Logo:
                 &= 1, \\
                 a_n &= \frac{1}{L} \int_{-L}^L \cos\left( n \pi x / L \right) \left( \frac{x}{2 L} + \frac{1}{2} \right) \id{x} \\
                 &= \frac{1}{2 L^2} \int_{-L}^L x \cos\left( n \pi x / L \right) \id{x} + \frac{1}{2L} \int_{-L}^L \cos\left( n \pi x / L \right) \id{x} \\
-                &= 0,
+                &= 0, \\
                 b_n &= \frac{1}{L} \int_{-L}^L \sin\left( n \pi x / L \right) \left( \frac{x}{2L} + \frac{1}{2} \right) \id{x} \\
                 &= \frac{1}{2L^2} \int_{-L}^L x \sin\left( n \pi x / L \right) \id{x} + \frac{1}{2L} \int_{-L}^L \sin\left( n \pi x / L \right) \id{x} \\
                 &= \frac{1}{2L^2} \left[ \left. \frac{-x \cos\left( n \pi x / L \right)}{n \pi / L} \right|_{-L}^L + \frac{1}{n \pi / L} \int_{-L}^L \cos\left( n \pi x / L \right) \right] \\
@@ -439,7 +446,18 @@ Logo:
             \begin{align*}
                 F(x) &= \frac{1}{2} + \sum_{n = 1}^\infty \frac{(-1)^{n + 1}}{n \pi} \sin\left( n \pi x / L \right).
             \end{align*}
-            % TODO Incluir gr\'{a}fico.
+            \begin{center}
+                \begin{tikzpicture}[scale=2]
+                    \draw[->] (-3.2,0) -- (3.2,0);
+                    \draw[->] (0,-.5) -- (0,.5) node[left]{$1/2$} -- (0,1) node[left]{$1$} -- (0,1.5);
+                    \foreach \x in {-3,-1,1}{
+                        \draw (\x,0) -- ++(1,.5) -- ++(1,.5);
+                    }
+                    \foreach \x in {-3,-2,...,3}{
+                        \draw (\x,0) node[below]{$\x L$};
+                    }
+                \end{tikzpicture}
+            \end{center}
 
         \item S\'{e}rie de Fourier em senos:
             \begin{align*}
@@ -500,7 +518,94 @@ Portanto,
 Antes de provarmos o teorema de Fourier precisamos explicitar o que entendemos por derivadas laterais e provar alguns lemas auxiliares.
 
 \subsection{Derivadas Laterais}
-% TODO Terminar de incluir arquivo M2S12-2.pdf. Interrompido na p\'{a}gina 10.
+Seja
+\begin{align*}
+    & f(x_0 + 0) = \lim_{x \to x_0^+} f(x), \\
+    & f(x_0 - 0) = \lim_{x \to x_0^-} f(x).
+\end{align*}
+
+\begin{defi}
+    Derivada \`{a} direita, $f_+'(x_0)$:
+    \begin{align*}
+        f_+'(x_0) &= \lim_{h \to 0} \frac{f(x_0 + h) - f(x_0 + 0)}{h} && h > 0.
+    \end{align*}
+    Derivada \`{a} esquerda, $f_-'(x_0)$:
+    \begin{align*}
+        f_-'(x_0) &= \lim_{h \to 0} \frac{f(x_0 - 0) - f(x_0 - h)}{h} && h > 0.
+    \end{align*}
+\end{defi}
+\begin{obs}
+    N\~{a}o confundir as nota\c{c}\~{o}es: $f_+'$ ($f_-'$) n\~{a}o \'{e} a derivada de uma fun\c{c}\~{a}o par (\'{i}mpar).
+\end{obs}
+\begin{obs}
+    Note o uso de $f(x_0 + 0)$ e $f(x_0 - 0)$ e n\~{a}o $f(x_0)$.
+\end{obs}
+
+Sejam $f, f'$ cont\'{i}nuas por partes e $[a,b]$ um intervalo onde $f$ e $f'$ s\~{a}o cont\'{i}nuas e tem limites laterais. Portanto, em $[a,b]$ vale o teorema do valor m\'{e}dio, i.e., $\exists \theta (0 < \theta < 1)$ tal que para $0 < \lambda < b - 1$ verifica-se que
+\begin{align*}
+    \frac{f(a + \lambda) - f(a + 0)}{\lambda} = f'(a + \theta \lambda).
+\end{align*}
+Ent\~{a}o
+\begin{align*}
+    \lim_{\lambda \to 0} \frac{f(a + \lambda) - f(a + 0)}{\lambda} = f_+'(a) = \lim_{\lambda \to 0} f'(a + \theta \lambda) = f'(a + 0).
+\end{align*}
+Analogamente: $f_-'(b) = f'(b - 0)$.
+
+Portanto, em cada ponto de um intervalo fechado no qual $f$ e $f'$ s\~{a}o cont\'{i}nuas por partes, as derivadas laterais de $f$ (do interior do intervalo) existem e s\~{a}o as mesmas que os correspondentes limites laterais de $f'$.
+\begin{exem}
+    Considere a fun\c{c}\~{a}o dada por
+    \begin{align*}
+        f(x) &= \begin{cases}
+            \sin(x), & x \geq 0, \\
+            x^2, & x < 0.
+        \end{cases}
+    \end{align*}
+    Ent\~{a}o,
+    \begin{align*}
+        f_+'(0) &= \lim_{h \to 0} \frac{\sin\left( h \right) - 0}{h} = 1, \\
+        f_-'(0) &= \lim_{h \to 0} \frac{0 - \left( -h \right)^2}{h} = 0.
+    \end{align*}
+    Portanto, $f'(x)$ \'{e} cont\'{i}nua por partes e $f_+'(0) = f'(0 + 0)$ e $f_-'(0) = f'(0 - 0)$.
+\end{exem}
+\begin{exem}
+    Considere a fun\c{c}\~{a}o dada por
+    \begin{align*}
+        f(x) &= \begin{cases}
+            1, & x \geq 0, \\
+            0, & x < 0.
+        \end{cases}
+    \end{align*}
+    Ent\~{a}o,
+    \begin{align*}
+        & \lim_{\delta x \to 0^+} \frac{1 - 1}{\delta x} = 0, \\
+        & \lim_{\delta x \to 0^-} \frac{0 - 1}{\delta x} = +\infty
+    \end{align*}
+    de maneira que n\~{a}o existe $f'(0)$. Mas
+    \begin{align*}
+        f_+'(0) &= \lim_{h \to 0} \frac{1 - 1}{h} = 0, \\
+        f_-'(0) &= \lim_{h \to 0} \frac{0 - 0}{h} = 0.
+    \end{align*}
+    Portanto, $f_+'(0) = f_-'(0) = 0$ mas n\~{a}o existe $f'(0)$.
+\end{exem}
+\begin{exem}
+    Considere a fun\c{c}\~{a}o dada por
+    \begin{align*}
+        f(x) &= \begin{cases}
+            x^2 \sin\left( 1 / x \right), & x \neq 0, \\
+            0, & x = 0.
+        \end{cases}
+    \end{align*}
+    Ent\~{a}o,
+    \begin{align*}
+        \lim_{x \to 0} x^2 \sin\left( 1 / x \right) = \lim_{x \to 0} x \sin\left( 1 / x \right) \left( 1 / x \right)^{-1} = 0
+    \end{align*}
+    e
+    \begin{align*}
+        f_+'(0) &= \lim_{h \to 0} \frac{h^2 \sin\left( 1 / h \right) - 0}{h} = 0, \\
+        f_-'(0) &= \lim_{h \to 0} \frac{0 - (-h)^2 \sin\left( 1 / (-h) \right)}{h} = 0.
+    \end{align*}
+    Portanto, $f'(x) = 2 x \sin\left( 1 / x \right) - \cos\left( 1 / x \right)$ que implica n\~{a}o existir $f'(0+)$ e nem $f'(0-)$ de maneira que n\~{a}o existe $f'(0)$. Neste caso, $f_+'(0) \neq f'(0+)$ e $f_-'(0) \neq f'(0-)$.
+\end{exem}
 
 % TODO Incluir arquivo M2S12-3.pdf
 
@@ -515,7 +620,7 @@ Com isso, dados as fun\c{c}\~{o}es $f, g \in \mathcal{L}^2(a, b)$, definimos o d
     \Delta &= \| f - g \|^2 = \int_a^b \left[ f(x) - g(x) \right]^2 \id{x}.
 \end{align*}
 
-\begin{teo}
+\begin{teo} \label{teo:min_desvio_total_quad}
     Seja o polin\^{o}mio trigonom\'{e}trico
     \begin{align*}
         \phi_N(x) &= \frac{A_0}{2} + \sum_{n = 1}^N \left( A_n \cos\left( n x \right) + B_n \sin\left( n x \right) \right),
@@ -589,7 +694,268 @@ Al\'{e}m disso, como $\Delta_N \geq 0$, temos que
     \end{align*}
     Como consequ\^{e}ncia de $\Delta_n \geq 0$, temos acima que essa sequ\^{e}ncia \'{e} limitada. Al\'{e}m disso, ela \'{e} evidentemente mon\'{o}tona. Como uma sequencia mon\'{o}tona e limitada \'{e} convergente, segue que existe $\lim_{N \to \infty} \Delta_N$ satisfazendo essa desigualdade.
 \end{proof}
-% TODO Terminar de incluir arquivo M2S12-4.pdf. Interrompido na p\'{a}gina 5.
+
+Antes de prosseguir, podemos notar, dado a $N$-\'{e}sima soma parcial $S_N(x)$ da s\'{e}rie de Fourier
+\begin{align*}
+    S_N(x) &= \frac{a_0}{2} + \sum_{n = 1}^N \left( a_n \cos\left( n x \right) + b_n \sin\left( n x \right) \right),
+\end{align*}
+que
+\begin{align*}
+    \| S_N \|^2 &= \int_{-\pi}^\pi \left[ S_N(x) \right]^2 \id{x} \\
+    \begin{split}
+        &= \int_{-\pi}^\pi \frac{a_0^2}{4} \id{x} + \sum_{n = 1}^N \sum_{m = 1}^N an a_m \underbrace{\int_{-\pi}^\pi \cos\left( n x \right) \cos\left( m x \right) \id{x}}_{\pi \delta_{mn}} \\
+        &\quad {}+ \sum_{n = 1}^N \sum_{m = 1}^N b_n b_m \underbrace{\int_{-\pi}^\pi \sin\left( n x \right) \sin\left( m x \right) \id{x}}_{\pi \delta_{nm}} + 2 \frac{a_0}{2} \sum_{n = 1}^N a_n \underbrace{\int_{-\pi}^\pi \cos\left( n x \right) \id{x}}_{= 0} \\
+        &\quad {}+ 2 \frac{a_0}{2} \sum_{n = 1}^N b_n \underbrace{\int_{-\pi}^\pi \sin\left( n x \right) \id{x}}_{= 0} + 2 \sum_{n = 1}^N \sum_{m = 1}^N a_n b_m \underbrace{\int_{-\pi}^\pi \cos\left( n x \right) \sin\left( m x \right) \id{x}}_{= 0},
+    \end{split}
+\end{align*}
+ou seja,
+\begin{align*}
+    \| S_N \|^2 &= \pi \left[ \frac{a_0^2}{2} + \sum_{n = 1}^N \left( a_n^2 + b_n^2 \right) \right].
+\end{align*}
+
+Portanto, a desigualdade de Bessel pode ser escrita como
+\begin{align*}
+    \lim_{N \to \infty} \| S_N \|^2 \leq \| f \|^2.
+\end{align*}
+
+\'{E} chegada a hora de uma importante defini\c{c}\~{a}o!
+
+\begin{defi}
+    Dizemos que $\phi_N(x)$ converge na m\'{e}dia para $f(x)$ se
+    \begin{align*}
+        \lim_{N \to \infty} \| f - \phi_N \| = 0.
+    \end{align*}
+\end{defi}
+
+Para explorarmos essa defini\c{c}\~{a}o necessitamos de um resultado auxiliar:
+\begin{lem}
+    Seja $S_N(x)$ a $N$-\'{e}sima soma parcial da s\'{e}rie de Fourier de $f(x)$. Ent\~{a}o
+    \begin{align*}
+        <f, \phi_N> = <S_N, \phi_N>.
+    \end{align*}
+\end{lem}
+\begin{proof}
+    Temos que
+    \begin{align*}
+        <f, \phi_N> &= \int_{-\pi}^\pi f(x) \left[ \frac{A_0}{2} + \sum_{n = 1}^N \left( A_n \cos\left( n x \right) + B_n \sin\left( n x \right) \right) \right] \id{x} \\
+        &= \frac{A_0}{2} \int_{-\pi}^\pi f(x) \id{x} + \sum_{n = 1}^N A_n \int_{-\pi}^\pi f(x) \cos\left( n x \right) \id{x} + \sum_{n = 1}^N B_n \int_{-\pi}^\pi f(x) \sin\left( n x \right) \id{x} \\
+        &= \frac{\pi}{2} A_0 a_0 + \pi \sum_{n = 1}^N \left( a_n A_n + b_n B_n \right) \\
+        \intertext{e}
+        <S_N, \phi_N> &= \int_{-\pi}^\pi \left[ \frac{a_0}{2} + \sum_{n = 1}^N \left( a_n \cos\left( n x \right) + b_n \sin\left( n x \right) \right) \right] \left[ \frac{A_0}{2} + \sum_{m = 1}^N \left( A_m \cos\left( m x \right) + B_m \sin\left( m x \right) \right) \right] \id{x} \\
+        &= \frac{\pi}{2} A_0 a_0 + \pi \sum_{n =1}^N\left( a_n A_n + b_n B_n \right) \qedhere
+    \end{align*}
+\end{proof}
+
+Podemos agora notar que o desvio total quadr\'{a}tico $\delta_N$ \'{e} dado por
+\begin{align*}
+    \| f - \phi_N \|^2 &= \| f \|^2 + \| \phi_N \|^2 - 2 <f, \phi_N> \\
+    &= \| f \|^2 - \| S_N \|^2 + \| S_N \|^2 + \| \phi_N \|^2 - 2 <S_N, \phi_N> \\
+    &= \underbrace{\| f \|^2 - \| S_N \|^2}_{\geq 0} + \underbrace{\| S_N - \phi_N \|^2}_{\geq 0}.
+\end{align*}
+
+Sendo $\| f - \phi_N \|^2 \geq 0$ e sendo essa quantidade minimizada quando $S_N(x) = \phi_N(x)$ (Teorema~\ref{teo:min_desvio_total_quad}), ent\~{a}o para que $\lim_{N \to \infty} \| f - \phi_N \| = 0$ devemos ter, al\'{e}m de $S_N(x) = \phi_N(x)$, a igualdade na desigualdade de Bessel, ou seja, $\lim_{N \to \infty} \| S_N \|^2 = \| f \|^2$. Al\'{e}m de necess\'{a}ria, essa condi\c{c}\~{a}o \'{e} claramente suficiente.
+
+\begin{teo}
+    Uma condi\c{c}\~{a}o necess\'{a}ria e suficiente para a s\'{e}rie de Fourier convergir na m\'{e}dia para $f(x)$ \'{e} valer a chamada identidade de Parseval:
+    \begin{align*}
+        \frac{a_0^2}{2} + \sum_{n = 1}^\infty \left( a_n^2 + b_n^2 \right) &= \frac{1}{\pi} \int_{-\pi}^\pi \left[ f(x) \right]^2 \id{x}.
+    \end{align*}
+\end{teo}
+\begin{proof}
+    % TODO Corrigir essa demonstra\c{c}\~{a}o.
+    Ver p\'{a}gina anterior.
+\end{proof}
+
+Outra nota\c{c}\~{a}o para a identidade de Parseval \'{e}:
+\begin{align*}
+    \lim_{N \to \infty} \| S_N \|^2 = \| f \|^2.
+\end{align*}
+
+\begin{obs}
+    Dizemos que o conjunto $\left\{ 1, \cos\left( n x \right), \sin\left( n x \right) \right\}$, $n = 1, 2, \ldots$, \'{e} completo no sentido da converg\^{e}ncia na m\'{e}dia em $\mathcal{L}^2(-\pi, \pi)$.
+\end{obs}
+
+\subsection{Coverg\^{e}ncia na M\'{e}dia \textit{versus} Converg\^{e}ncia Pontual e Converg\^{e}ncia Uniforme}
+Dizemos que uma sequ\^{e}ncia $\left\{ f_n(x) \right\}$ converge pontualmente (ponto a ponto) para $f(x)$ se para cada $x \in I$ e $\forall \epsilon > 0$, $\exists N = N(x, \epsilon) > 0$ tal que $| f_n(x) - f(x) | < \epsilon$ para $n > N$.
+
+Dizemos que uma sequ\^{e}ncia $\left\{ f_n(x) \right\}$ converge uniformente para $f(x)$ se $\forall \epsilon$, $\exists N = N(\epsilon) > 0$ tal que $| f_n(x) - f(x) | < \epsilon$ para $n < N$ e $\forall x \in I$.
+
+\begin{obs}
+    Note que na converg\^{e}ncia pontual permitimos que $N = N(x)$ enquanto na uniforme exigimos que $N$ seja o mesmo para todo $x \in I$.
+\end{obs}
+
+\begin{exem}
+    Seja $I = [0, 1]$ e
+    \begin{align*}
+        f_n(x) &= \begin{cases}
+            2 n x, & x \in [0, 1 / (2n)], \\
+            -2 n x + 2, & x \in (1 / (2n), 1 / n], \\
+            0, & x \in (1 / n, 1].
+        \end{cases}
+    \end{align*}
+    Note que para $x = 0$ temos $f_n(0) = 2 n 0 = 0$, $\forall n \in \mathbb{N}$. J\'{a} para $x \neq 0$, vamos tomar o inteiro $N$ tal que $N > 1 / x$, $x \in (0, 1]$. Ent\~{a}o para $n > N < 1 / x$, ou seja, $x > 1 / n$, de modo que $x \in (1/n, 1]$, temos $f_n(x) = 0$. Logo,
+    \begin{align*}
+        | f_n(x) - 0 | = 0 < \epsilon, && n > N > 1/x,
+    \end{align*}
+    de modo que a sequ\^{e}ncia $\left\{ f_n(x) \right\}$ converge pontualmente para $f(x) = 0$.
+
+    Por outro lado, vamos considerar $\epsilon < 1$. Note que
+    \begin{align*}
+        f_n\left( 1/\left( 2n \right) \right) &= 2 n \left( 2 n \right)^{-1} = 1 > \epsilon
+    \end{align*}
+    para todo $n \in \mathbb{N}$.
+
+    Logo, n\~{a}o temos $| f_n(x) - 0 | < \epsilon$ para todo $x \in [0,1]$ (e $n > N$), de modo que n\~{a}o temos converg\^{e}ncia uniforme.
+\end{exem}
+
+A converg\^{e}ncia uniforme claramente implica na converg\^{e}ncia na m\'{e}dia. De fato, se $| f_n(x) - f(x) | < \epsilon$ para $n > N$ e $\forall x \in [a,b]$, temos
+\begin{align*}
+    \| f_n - f \|^2 = \int_a^b \left[ f_n(x) - f(x) \right]^2 \id{x} < \epsilon^2 \int_a^b \id{x} = \epsilon^2 (b - a) = \epsilon'
+\end{align*}
+para $n > N$, de modo que $\lim_{n \to \infty} \| f_n - f \|^2 = 0$.
+
+Por\'{e}m, a converg\^{e}ncia pontual n\~{a}o implica na converg\^{e}ncia na m\'{e}dia, como mostra o pr\'{o}ximo exemplo.
+
+\begin{exem}
+    Seja $I = [0,1]$ e
+    \begin{align*}
+        f_n(x) = \begin{cases}
+            n, & x \in [0, 1/n^3], \\
+            0, & x \in (1/n^3, 1].
+        \end{cases}
+    \end{align*}
+    Ent\~{a}o,
+    \begin{align*}
+        \| f_n \|^2 = \int_0^1 f_n^2(x) \id{x} = \int_0^{1/n^3} n^2 \id{x} = n^2 n^{-3} = n^{-1}, \\
+        \| f_n \| &= n^{-1/2}, \\
+        \lim_{n \to \infty} \| f_n \| &= 0
+    \end{align*}
+    de modo que $f_n(x)$ converge na m\'{e}dia em $\mathcal{L}^2(0,1)$ para $f(x) = 0$.
+
+    Por outro lado,
+    \begin{align*}
+        \lim_{n \to \infty} f_n(x) &= \begin{cases}
+            \infty, & x = 0, \\
+            0, & x \in (0,1],
+        \end{cases}
+    \end{align*}
+    de modo que o limite da fun\c{c}\~{a}o n\~{a}o \'{e} zero.
+\end{exem}
+
+\begin{obs}
+    Do exemplo anterior, vemos que a diferen\c{c}a entre a converg\^{e}ncia pontual e na m\'{e}dia \'{e} um conjunto de medida nula. Por\'{e}m, como em $\mathcal{L}(a,b)$ temos que seus elementos n\~{a}o classes de equival\^{e}ncia de fun\c{c}\~{o}es que diferem por um conjunto de medida nula, vemos que $\lim_{n \to \infty} f_n(x)$ do exemplo anterior est\'{a} na classe de equival\^{e}ncia da fun\c{c}\~{a}o zero, que \'{e} para quem converge a sequ\^{e}ncia na m\'{e}dia.
+\end{obs}
+
+\begin{teo}
+    Seja $f$ uma fun\c{c}\~{a}o cont\'{i}nua sobre o intervalo $[-\pi, \pi]$ tal que $f(-\pi) = f(\pi)$ e seja $f'$ cont\'{i}nua por partes nesse intervalo. Ent\~{a}o a s\'{e}rie de Fourier de $f(x)$,
+    \begin{align*}
+        \frac{a_0}{2} + \sum_{n = 1}^\infty \left( a_n \cos\left( n x \right) + b_n \sin\left( n x \right) \right)
+    \end{align*}
+    converge absolutamente e uniformente para $f(x)$ com $x \in [-\pi,\pi]$.
+\end{teo}
+\begin{proof}
+    Temos
+    \begin{align*}
+        \| a_n \cos\left( n x \right) + b_n \sin\left( n x \right) &\leq | a_n \cos\left( n x \right) | + | b_n \sin\left( n x \right) | \\
+        &\leq | a_n | + | b_n |.
+    \end{align*}
+    Pelo teste da compara\c{c}\~{a}o, se $\sum_{n = 1}^\infty | a_n |$ e $\sum_{n = 1}^\infty | b_n |$ convergem, ent\~{a}o $\sum_{n = 1}^\infty \left( a_n \cos\left( n x \right) + b_n \sin\left( n x \right) \right)$ converge absolutamente. Al\'{e}m disso, pelo crit\'{e}rio M de Weierstrass (se existe uma s\'{e}rie convergente de constantes positivas $\sum_{n = 1}^\infty M_n$ tal que $| u_n(x) | < M_n$, ent\~{a}o a s\'{e}rie $\sum_{n = 1}^\infty u_n(x)$ \'{e} uniformemente convergente nesse intervalo), se provarmos que $\sum_{n = 1}^\infty | a_n |$ e $\sum_{n = 1}^\infty | b_n |$ convergem, provamos tamb\'{e}m que a s\'{e}rie converge absolutamente e uniformemente.
+
+    Podemos ainda notar que, como
+    \begin{align*}
+        | a_n | &\leq \sqrt{a_n^2 + b_n^2}, & | b_n | &\leq \sqrt{a_n^2 + b_n^2},
+    \end{align*}
+    basta provar que $\sum_{n = 1}^\infty \sqrt{a_n^2 + b_n^2}$ converge.
+
+    Seja a s\'{e}rie de Fourier de $f'(x)$:
+    \begin{align*}
+        f'(x) &= \frac{\alpha_0}{2} + \sum_{n = 1}^\infty \left( \alpha_n \cos\left( n x \right) + \beta_n \sin\left( n x \right) \right), \\
+        \alpha_n &= \frac{1}{\pi} \int_{-\pi}^\pi f'(x) \cos\left( n x \right) \id{x}, \\
+        \beta_n &= \frac{1}{\pi} \int_{-\pi}^\pi f'(x) \sin\left( n x \right) \id{x}.
+    \end{align*}
+    Se $f'(x)$ \'{e} cont\'{i}nua por partes ent\~{a}o existem $\alpha_n$ e $\beta_n$. Al\'{e}m disso, usando a hip\'{o}tese que $f(x) = f(-\pi)$,
+    \begin{align*}
+        \alpha_0 &= \frac{1}{\pi} \int_{-\pi}^\pi f'(x) \id{x} \\
+        &= \frac{1}{\pi} \left[ f(\pi) - f(-\pi) \right] \\
+        &= 0.
+    \end{align*}
+    Assim, a desigualdade de Bessel fica:
+    \begin{align*}
+        \underbrace{\frac{\alpha_0^2}{2}}_{=0} + \sum_{n = 1}^\infty \left( \alpha_n^2 + \beta_n^2 \right) \leq \frac{1}{\pi} \int_{-\pi}^\pi \left[ f'(x) \right]^2 \id{x} \leq K,
+    \end{align*}
+    ou seja,
+    \begin{align*}
+        \sum_{n = 1}^\infty \left( \alpha_n^2 + \beta_n^2 \right) \leq K.
+    \end{align*}
+    Mas,
+    \begin{align*}
+        \alpha_n &= \frac{1}{\pi} \int_{-\pi}^\pi f'(x) \cos\left( n x \right) \id{x} \\
+        &= \underbrace{\frac{1}{\pi} \left. f(x) \cos\left( n x \right) \right|_{-\pi}^\pi}_{= 0} + \frac{n}{\pi} \int_{-\pi}^\pi f(x) \sin\left( n x \right) \id{x} \\
+        &= n b_n, \\
+        \beta_n &= \frac{1}{\pi} \int_{-\pi}^\pi f'(x) \sin\left( n x \right) \id{x} \\
+        &= \frac{1}{\pi} \underbrace{\left. f(x) \sin\left( n x \right) \right|_{-\pi}^\pi}_{= 0} - \frac{n}{\pi} \int_{-\pi}^\pi f(x) \cos\left( n x \right) \id{x} \\
+        &= - n a_n.
+    \end{align*}
+    Com isso,
+    \begin{align*}
+        \sum_{n = 1}^N \sqrt{a_n^2 + b_n^2} = \sum_{n = 1}^N \frac{1}{n} \sqrt{\alpha_n^2 + \beta_n^2}.
+    \end{align*}
+    Usando a desigualdade de Cauchy:
+    \begin{align*}
+        \left( \sum_{n = 1}^N A_n B)n \right)^2 \leq \left( \sum_{n = 1}^N A_n^2 \right) \left( \sum_{n = 1}^N B_n^2 \right),
+    \end{align*}
+    com $A_n = 1 / n$ e $B_n = \sqrt{\alpha_n^2 + \beta_n^2}$ temos
+    \begin{align*}
+        \sum_{n = 1}^N \sqrt{a_n^2 + b_n^2} &\leq \left[ \underbrace{\left( \sum_{n = 1}^N \frac{1}{n^2} \right)}_{\leq C} \underbrace{\left( \sum_{n = 1}^N \left( \alpha_n^2 + \beta_n^2 \right) \right)}_{\leq K} \right]^{1/2},
+    \end{align*}
+    ou seja,
+    \begin{align*}
+        \sum_{n = 1}^N \sqrt{a_n^2 + b_n^2} \leq M = \text{constante}.
+    \end{align*}
+
+    Sendo limitada e mo\'{o}tona, segue que essa sequ\^{e}ncia \'{e} convergente.
+\end{proof}
+
+\begin{obs}
+    Desigualdade de Cauchy:
+    \begin{align*}
+        \sum_{n = 1}^N \left( A_n x + B_n \right)^2 = x^2 \sum_{n = 1}^N A_n^2 + 2 x \sum_{n = 1}^N A_n B_n + \sum_{n = 1} B_n^2 = 0
+    \end{align*}
+    \'{e} uma equa\c{c}\~{a}o que n\~{a}o pode ter duas ra\'{i}zes reais distintas. De fato, se $x_0$ \'{e} ra\'{i}z, temos que $A_n x_0 + B_n = 0$, ou seja, $x_0 = - B_n / A_n$ para todo $n$ e $ x_0 \neq x_1$. Logo, s\'{o} pode haver uma ra\'{i}z real ou nenhuma, o que acontece se e somente se $\Delta \leq 0$. Sendo assim:
+    \begin{align*}
+        \Delta &= 4 \left( \sum_{n = 1}^N A_n B_n \right)^2 - 4 \left( \sum_{n = 1}^N A_n^2 \right) \left( \sum_{n = 1}^N B_n^2 \right) \leq 0,
+    \end{align*}
+    de onde segue a desigualdade de Cauchy:
+    \begin{align*}
+        \left( \sum_{n = 1}^N A_n B_n \right)^2 \leq \left( \sum_{n = 1}^N A_n^2 \right) \left( \sum_{n = 1}^N B_n^2 \right).
+    \end{align*}
+\end{obs}
+
+Resumindo os tipos de converg\^{e}ncia e suas condi\c{c}\~{o}es suficientes, temos:
+\begin{center}
+    \begin{tikzpicture}
+        \node[draw=black, text width=6cm] (U) at (0,0) {Converg\^{e}ncia Uniforme
+        \begin{enumerate}
+            \item $f$ \'{e} cont\'{i}nua;
+            \item $f(\pi) = f(-\pi)$;
+            \item $f'$ \'{e} cont\'{i}nua por partes.
+        \end{enumerate}};
+        \node[draw=black, text width=6cm] (P) at (-5,-6) {Converg\^{e}ncia Pontual
+        \begin{enumerate}
+            \item $f$ cont\'{i}nua por partes e peri\'{o}dica;
+            \item Existem as derivadas laterais;
+            \item \textbf{OBS:} Converge para $1/2 \left[ f(x + 0) + f(x - 0) \right]$.
+        \end{enumerate}};
+        \node[draw=black, text width=6cm] (M) at (5,-6) {Converg\^{e}ncia na M\'{e}dia
+        \begin{enumerate}
+            \item $f \in \mathcal{L}^2(-\pi, \pi)$;
+            \item $f$ \'{e} peri\'{o}dica.
+        \end{enumerate}};
+        \draw[->, line width=.2cm] (U.south) -- (P.north);
+        \draw[->, line width=.2cm] (U.south) -- (M.north);
+        \draw[<->, line width=.2cm] (P.east) -- (M.west) node[midway, below, text width=2.5cm] {Exceto em um conjunto de medida nula};
+    \end{tikzpicture}
+\end{center}
 
 % TODO Incluir arquivo M2S12-5.pdf
 % TODO Incluir arquivo M2S12-6.pdf

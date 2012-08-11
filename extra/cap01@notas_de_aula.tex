@@ -503,7 +503,94 @@ Antes de provarmos o teorema de Fourier precisamos explicitar o que entendemos p
 % TODO Terminar de incluir arquivo M2S12-2.pdf. Interrompido na p\'{a}gina 10.
 
 % TODO Incluir arquivo M2S12-3.pdf
-% TODO Incluir arquivo M2S12-4.pdf
+
+\section{Converg\^{e}ncia na M\'{e}dia}
+Da express\~{a}o para o produto escalar em $\mathcal{L}^2(a, b)$ definimos uma norma atrav\'{e}s de
+\begin{align*}
+    \| f \|^2 &= <f, f> = \int_a^b \left[ f(x) \right]^2 \id{x}.
+\end{align*}
+
+Com isso, dados as fun\c{c}\~{o}es $f, g \in \mathcal{L}^2(a, b)$, definimos o desvio total quadr\'{a}tico dessas fun\c{c}\~{o}es como
+\begin{align*}
+    \Delta &= \| f - g \|^2 = \int_a^b \left[ f(x) - g(x) \right]^2 \id{x}.
+\end{align*}
+
+\begin{teo}
+    Seja o polin\^{o}mio trigonom\'{e}trico
+    \begin{align*}
+        \phi_N(x) &= \frac{A_0}{2} + \sum_{n = 1}^N \left( A_n \cos\left( n x \right) + B_n \sin\left( n x \right) \right),
+    \end{align*}
+    onde $A_0$, $A_n$ e $B_n$ s\~{a}o indeterminados e $f(x)$ \'{e} uma fun\c{c}\~{a}o cont\'{i}nua por partes em $[-\pi, \pi]$. Ent\~{a}o o desvio total quadr\'{a}tico $\Delta_N = \| f - \phi_N \|^2$ \'{e} minimizado quando os coeficientes $A_0$, $A_n$ e $B_n$ forem iguais aos coeficientes de Fourier de $f(x)$.
+\end{teo}
+\begin{proof}
+    Temos que
+    \begin{align*}
+        \Delta_n &= \int_{-\pi}^\pi \left[ f(x) - \phi_N(x) \right]^2 \id{x} \\
+        &= \int_{-\pi}^\pi \left[ f(x) - \frac{A_0}{2} - \sum_{n = 1}^N \left( A_n \cos\left( n x \right) + B_n \sin\left( n x \right) \right) \right]^2 \id{x} \\
+        \begin{split}
+            &= \int_{-\pi}^\pi \left[ f(x) \right]^2 \id{x} + \int_{-\pi}^\pi \left( \frac{A_0}{2}^2 \right) \id{x} + \int_{-\pi}^\pi \sum_{n = 1}^N \sum_{m = 1}^N A_n A_m \cos\left( n x \right) \cos\left( m x \right) \id{x} \\
+            &\quad {}+ \int_{-\pi}^\pi \sum_{n = 1}^N \sum_{m = 1}^N B_n B_m \sin\left( n x \right) \sin\left( m x \right) \id{x} - 2 \int_{-\pi}^\pi f(x) \frac{A_0}{2} \id{x} - 2 \int_{-\pi}^\pi f(x) \sum_{n = 1}^N \cos\left( n x \right) \id{x} \\
+            &\quad {}- 2 \int_{-\pi}^\pi f(x) \sum_{n = 1}^N B_n \sin\left( n x \right) \id{x} + 2 \int_{-\pi}^\pi \frac{A_0}{2} \cos\left( n x \right) \id{x} + 2 \int_{-\pi}^\pi \frac{A_0}{2} \sum){n = 1}^N B_n \sin\left( n x \right) \id{x} \\
+            &\quad {}+ 2 \int_{-\pi}^\pi \sum_{n = 1}^N \sum_{m = 1}^N A_n B_n \cos\left( n x \right) \sin\left( m x \right) \id{x}
+        \end{split} \\
+        \begin{split}
+            &= \int_{-\pi}^\pi \left[ f(x) \right]^2 \id{x} + \frac{A_0^2}{4} 2 \pi + \sum_{n = 1}^N \sum_{m = 1}^N A_n A_m \underbrace{\int_{-\pi}^\pi \cos\left( n x \right) \cos\left( m x \right) \id{x}}_{\pi \delta_{nm}} \\
+            &\quad {}+ \sum_{n = 1}^N \sum_{m = 1}^N B_n B_m \underbrace{\int_{-\pi}^\pi \sin\left( n x \right) \sin\left( m x \right) \id{x}}_{\pi \delta_{nm}} - A_0 \int_{-\pi}^\pi f(x) \id{x} - 2 \sum_{n = 1}^N A_n \int_{-\pi}^\pi f(x) \cos\left( n x \right) \id{x} \\
+            &\quad {}- 2 \sum_{n = 1}^N B_n \int_{-\pi}^\pi f(x) \sin\left( n x \right) \id{x} + A_0 \sum_{n = 1}^N A_n \underbrace{\int_{-\pi}^\pi \cos\left( n x \right) \id{x}}_{=0} + A_0 \sum_{n = 1}^N B_n \underbrace{\int_{-\pi}^\pi \sin\left( n x \right) \id{x}}_{=0} \\
+            &\quad {}+ 2 \sum_{n = 1}^N \sum_{m = 1}^N A_n B_m \underbrace{\int_{-\pi}^\pi \cos\left( n x \right) \sin\left( m x \right) \id{x}}_{=0}
+        \end{split}
+    \end{align*}
+    Portanto,
+    \begin{align*}
+        \begin{split}
+            \delta_N &= \int_{-\pi}^\pi \left[ f(x) \right]^2 \id{x} + \frac{\pi}{2} A_0^2 + \sum_{n = 1}^N \pi A_n^2 + \sum_{n = 1}^N \pi B_n^2 \\
+            &\quad {}- A_0 \int_{-\pi}^\pi f(x) \id{x} - 2 \sum_{n = 1}^N A_n \int_{-\pi}^\pi f(x) \cos\left( n x \right) \id{x} - 2 \sum_{n = 1}^N B_n \int_{-\pi}^\pi f(x) \sin\left( n x \right) \id{x}
+        \end{split}
+    \end{align*}
+    Exigindo agora que
+    \begin{align*}
+        \devp{\Delta_N}{A_0} &= \devp{\Delta_N}{A_n} = \devp{\Delta_N}{B_n} = 0
+    \end{align*}
+    para $n = 1, \ldots, N$ temos que
+    \begin{align*}
+        & \devp{\Delta_N}{A_0} = \pi A_0 - \int_{-\pi}^\pi f(x) \id{x} = 0 \Rightarrow A_0 = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \id{x} = a_0, \\
+        & \devp{\Delta_N}{A_n} = 2 \pi A_n - 2 \int_{-\pi}^\pi f(x) \cos\left( n x \right) \id{x} = 0 \Rightarrow A_n = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \cos\left( n x \right) \id{x} = a_n, \\
+        & \devp{\Delta_N}{B_n} = 2 \pi B_n - 2 \int_{-\pi} \pi f(x) \sin\left( n x \right) \id{x} = 0 \Rightarrow B_n = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \sin\left( n x \right) \id{x} = b_n.
+    \end{align*}
+    Al\'{e}m disso, \'{e} f\'{a}cil ver que o extremo em quest\~{a}o \'{e} um m\'{i}nimo.
+\end{proof}
+
+Com isso, temos que $\Delta_n^{\min}$ \'{e} dado por
+\begin{align*}
+    \begin{split}
+        \Delta_N^{\min} &= \int_{-\pi}^\pi \left[ f(x) \right]^2 \id{x} + \frac{\pi}{2} a_0^2 + \sum_{n = 1}^N \pi a_n^2 + \sum_{n = 1}^N \pi b_k^2 \\
+        &\quad {}- a_0 \left( \pi a_0 \right) - 2 \sum_{n = 1}^N a_n \left( \pi a_n \right) - 2 \sum_{n = 1}^N b_n \left( \pi b_n \right)
+    \end{split}
+\end{align*}
+e portanto
+\begin{align*}
+    \Delta_N^{\min} &= \int_{-\pi}^\pi \left[ f(x) \right]^2 \id{x} - \pi \left[ \frac{a_0^2}{2} + \sum_{n = 1}^N \left( a_n^2 + b_n^2 \right) \right].
+\end{align*}
+Al\'{e}m disso, como $\Delta_N \geq 0$, temos que
+\begin{align*}
+    \frac{a_0^2}{2} + \sum_{n = 1}^N \left( a_n^2 + b_n^2 \right) \leq \frac{1}{\pi} \int_{-\pi}^\pi \left[ f(x) \right]^2 \id{x}.
+\end{align*}
+
+\begin{prop}
+    Os coeficientes de Fourier satisfazem a chamada desigualdade de Bessel:
+    \begin{align*}
+        \frac{a_0^2}{2} + \sum_{n = 1}^\infty \left( a_n^2 + b_n^2 \right) \leq \frac{1}{\pi} \int_{-\pi}^\pi \left[ f(x) \right]^2 \id{x}.
+    \end{align*}
+\end{prop}
+\begin{proof}
+    Seja a sequ\^{e}ncia $\left\{ \Delta_N \right\}$, onde
+    \begin{align*}
+        \Delta_N = \frac{a_0^2}{2} + \sum_{n = 1}^N \left( a_n^2 + b_n^2 \right).
+    \end{align*}
+    Como consequ\^{e}ncia de $\Delta_n \geq 0$, temos acima que essa sequ\^{e}ncia \'{e} limitada. Al\'{e}m disso, ela \'{e} evidentemente mon\'{o}tona. Como uma sequencia mon\'{o}tona e limitada \'{e} convergente, segue que existe $\lim_{N \to \infty} \Delta_N$ satisfazendo essa desigualdade.
+\end{proof}
+% TODO Terminar de incluir arquivo M2S12-4.pdf. Interrompido na p\'{a}gina 5.
+
 % TODO Incluir arquivo M2S12-5.pdf
 % TODO Incluir arquivo M2S12-6.pdf
 % TODO Incluir arquivo M2S12-7.pdf

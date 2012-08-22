@@ -39,6 +39,13 @@
 \input{cover.tex}
 \newpage
 \setcounter{page}{1}
+
+Algumas express\~{o}es eventualmente \'{u}teis:
+\begin{align}
+    & f(x) = \frac{a_0}{2} + \sum_{r = 1}^\infty \left[ a_r \cos\left( \frac{2 \pi r x}{L} \right) + b_r \sin\left( \frac{2 \pi r x}{L} \right) \right] \label{eq:serie_fourier} \\
+    & a_r = \frac{2}{L} \int_{x_0}^{x_0 + L} f(x) \cos\left( \frac{2 \pi r x}{L} \right) \id{x} \label{eq:serie_fourier_a} \\
+    & b_r = \frac{2}{L} \int_{x_0}^{x_0 + L} f(x) \sin\left( \frac{2 \pi r x}{L} \right) \id{x} \label{eq:serie_fourier_b}
+\end{align}
 \begin{questions}
     \question Escreva a s\'{e}rie de Fourier no intervalor $(-\pi, \pi)$ das seguintes fun\c{c}\~{o}es e esboce os gr\'{a}fico das fun\c{c}\~{o}es representadas por essas s\'{e}ries para todo $x$:
     \begin{parts}
@@ -47,11 +54,74 @@
             x, & 0 < x < \pi.
         \end{cases}$
         \begin{solution}
-            % TODO Escrever solu\c{c}\~{a}o.
+            Temos que
+            \begin{align*}
+                a_0 &= \frac{1}{\pi} \int_{-\pi}^\pi f(x) \id{x} \\
+                &= \frac{1}{\pi} \int_{-\pi}^0 \left( -\pi \right) \id{x} + \frac{1}{\pi} \int_0^\pi x \id{x} \\
+                &= \frac{1}{\pi} \left( -\pi \right) \left. x \right|_{-\pi}^0 + \frac{1}{\pi 2} \left. x^2 \right|_0^\pi \\
+                &= -\left( 0 - \left( -\pi \right) \right) + \frac{1}{2 \pi} \left( \pi^2 - 0 \right) \\
+                &= -\pi + \frac{\pi}{2} \\
+                &= \frac{-\pi}{2} \\
+                a_n &= \frac{1}{\pi} \int_{-\pi}^\pi f(x) \cos\left( n x \right) \id{x} \\
+                &= \frac{1}{\pi} \left[ \int_{-\pi}^0 \left( -\pi \right) \cos\left( n x \right) \id{x} + \int_0^\pi x \cos\left( n x \right) \id{x} \right] \\
+                &= - \int_{-\pi}^0 \cos\left( n x \right) \id{x} + \frac{1}{\pi} \int_0^\pi x \cos\left( n x \right) \id{x} \\
+                &= - \left. \frac{\sin\left( n x \right)}{n} \right|_{-\pi}^0 + \frac{1}{\pi} \left[ \left. \frac{x \sin\left( n x \right)}{n} \right|_0^\pi - \int_0^\pi \frac{\sin\left( n x \right)}{n} \id{x} \right] \\
+                &= - \left( 0 - \frac{\sin\left( -n \pi \right)}{n} \right) + \frac{1}{\pi} \left[ \pi \frac{\sin\left( n \pi \right)}{n} - 0 + \frac{1}{n} \int_0^\pi \left( - \sin\left( n x \right) \right) \id{x} \right] \\
+                &= \frac{1}{n \pi}\left. \frac{\cos\left( n x \right)}{n} \right|_0^\pi \\
+                &= \frac{1}{n^2 \pi} \left( \cos\left( n \pi \right) - \cos(0) \right) \\
+                &= \frac{1}{n^2 \pi} \left( (-1)^n - 1 \right) \\
+                &= \frac{(-1)^n - 1}{n^2 \pi} \\
+                b_n &= \frac{1}{\pi} \int_{-\pi}^\pi f(x) \sin\left( n x \right) \id{x} \\
+                &= \frac{1}{\pi} \left[ \int_{-\pi}^0 \left( -\pi \right) \sin\left( n x \right) \id{x} + \int_0^\pi x \sin\left( n x \right) \id{x} \right] \\
+                &= \int_{-\pi}^0 \left( -\sin\left( n x \right) \right) \id{x} + \frac{1}{\pi} \int_0^\pi x \sin\left( n x \right) \id{x} \\
+                &= \left. \frac{\cos\left( n x \right)}{n} \right|_{-\pi}^0 + \frac{1}{\pi} \left[ \left. x \frac{\left( -\cos\left( n x \right) \right)}{n} \right|_0^\pi + \int_0^\pi \frac{\cos\left( n x \right)}{n} \id{x} \right] \\
+                &= \frac{1}{n} \left( 1 - \cos\left( - n \pi \right) \right) - \frac{1}{n \pi} \left( \pi \cos\left( n \pi \right) - 0 \right) + \frac{1}{n} \left. \frac{\sin\left( n x \right)}{n} \right|_0^\pi \\
+                &= \frac{1 - \left( -1 \right)^n}{n} - \frac{1}{n} (-1)^n + \frac{1}{n^2} \left( \sin\left( n \pi \right) - 0 \right) \\
+                &= \frac{1 - (-1)^n - (-1)^n}{n} \\
+                &= \frac{1 - 2 (-1)^n}{n}.
+            \end{align*}
+            Portanto,
+            \begin{align*}
+                f(x) &= \frac{a_0}{2} + \sum_{n = 1}^\infty \left( a_n \cos\left( n x \right) + b_n \sin\left( n x \right) \right) \\
+                &= \frac{-\pi}{4} + \sum_{n = 1}^\infty \left( \frac{(-1)^n - 1}{n^2 \pi} \cos\left( n x \right) + \frac{1 - 2 (-1)^n}{n} \sin\left( n x \right) \right).
+            \end{align*}
+            % TODO Incluir gr\'{a}fico.
         \end{solution}
 
-        \part $f(x) = | \sin x |$.
+        \part $f(x) = | \sin x |, -\pi < x < \pi$.
         \begin{solution}
+
+            Temos que $f(x) = | \sin x |, -\pi < x < \pi$ equivale a
+            \begin{align*}
+                f(x) &= \begin{cases}
+                    \sin x, 0 < x < \pi, \\
+                    -\sin x, -\pi < x < \pi,
+                \end{cases}
+            \end{align*}
+            e, portanto,
+            \begin{align*}
+                a_0 &= \frac{1}{\pi} \int_{-\pi}^\pi f(x) \id{x} \\
+                &= \frac{1}{\pi} \left[ \int_{-\pi}^0 \left( - \sin(x) \right) \id{x} + \int_0^\pi \sin(x) \id{x} \right] \\
+                &= \frac{1}{\pi} \left[ \left. \cos(x) \right|_{-\pi}^0 + \left. \left( -\cos(x) \right) \right|_0^\pi \right] \\
+                &= \frac{1}{\pi} \left[ 1 - (-1) - \left( -1 - 1 \right) \right] \\
+                &= \frac{4}{\pi}, \\
+                a_n &= \frac{1}{\pi} \int_{-\pi}^\pi f(x) \cos\left( n x \right) \id{x} \\
+                &= \frac{1}{\pi} \left[ -\int_{-\pi}^0 \sin\left( x \right) \cos\left( n x \right) \id{x} + \int_0^\pi \sin\left( x \right) \cos\left( n x \right) \id{x} \right] \\
+                \begin{split}
+                    &= - \frac{1}{\pi} \int_{-\pi}^0 \frac{1}{2} \left( \sin\left( (1 + n) x \right) + \sin\left( (1 - n) x \right) \right) \id{x} \\
+                    &\quad {}+ \frac{1}{\pi} \int_0^\pi \frac{1}{2} \left( \sin\left( (1 + n) x \right) + \sin\left( (1 - n) x \right) \right) \id{x} \\
+                \end{split} \\
+                \begin{split}
+                    &= - \frac{1}{2 \pi} \int_{-\pi}^0 \sin\left( (1 + n) x \right) \id{x} - \frac{1}{2 \pi} \int_{-\pi}^0 \sin\left( (1 - n) x \right) \id{x} \\
+                    &\quad {}+ \frac{1}{2 \pi} \int_0^\pi \sin\left( (1 + n) x \right) \id{x} + \frac{1}{2 \pi} \int_0^\pi \sin\left( (1 - n) x \right) \id{x}
+                \end{split} \\
+                \begin{split}
+                    &= \frac{1}{2 \pi} \left. \frac{\cos\left( (1 + n) x \right)}{1 + n} \right|_{-\pi}^0 + \frac{1}{2 \pi} \left. \frac{\cos\left( (1 - n) x \right)}{1 - n} \right|_{-\pi}^0 \\
+                    &\quad {}- \frac{1}{2 \pi} \left. \frac{\cos\left( (1 + n) x \right)}{1 + n} \right|_0^\pi - \frac{1}{2 \pi} \left. \frac{\cos\left( (1 - n) x \right)}{1 - n} \right|_0^\pi
+                \end{split} \\
+                % TODO Incluir passagens intermedi\'{a}rias.
+                &= \frac{1 - (-1)^{n + 1}}{\pi} \left[ \frac{1}{1 + n} + \frac{1}{1 - n} \right].
+            \end{align*} 
             % TODO Escrever solu\c{c}\~{a}o.
         \end{solution}
 
@@ -63,7 +133,7 @@
             % TODO Escrever solu\c{c}\~{a}o.
         \end{solution}
 
-        \part $f(x) = \cosh x$.
+        \part $f(x) = \cosh x, -\pi < x < \pi$.
         \begin{solution}
             % TODO Escrever solu\c{c}\~{a}o.
         \end{solution}
@@ -146,6 +216,156 @@
     \question Escreva a s\'{e}rie em senos de Fourier sobre o intervalo $(0, 1)$ para a fun\c{c}\~{a}o $f(x) = \cos(\pi x)$.
     \begin{solution}
         % TODO Escrver solu\c{c}\~{a}o.
+    \end{solution}
+
+    \question[P1 de 2006] Considdere a fun\c{c}\~{a}o $f(x) = x^3 + 1$.
+    % TODO Escrever integra\c{c}\~{a}o.
+    \begin{parts}
+        \part Encontre sua s\'{e}rie de Fourier no intervalo $(-\pi,\pi)$;
+        \begin{solution}
+            Temos que
+            \begin{align*}
+                a_0 &= \frac{1}{\pi} \int_{-\pi}^\pi \left( x^3 + 1 \right) \id{x} \\
+                &= \frac{1}{4} \left. \left( \frac{x^4}{4} + x \right) \right|_{-\pi}^\pi \\
+                &= 2 \pi / \pi = 2, \\
+                a_n &= \frac{1}{\pi} \int_{-\pi}^\pi \left( x^3 + 1 \right) \cos\left( n x \right) \id{x} \\
+                \begin{split}
+                    &= \frac{1}{\pi} \left. \frac{\sin\left( n x \right)}{n} \right|_{-\pi}^\pi + \frac{1}{\pi} \frac{3 \pi^2 \cos\left( n \pi \right)}{n^2} - \frac{1}{\pi} \frac{3 (-\pi)^2 \cos\left( -n \pi \right)}{n^2} \\
+                    &\quad {}- \frac{1}{\pi} \frac{6}{n^4} \cos\left( n \pi \right) + \frac{6}{n^4} \cos\left( -n \pi \right)
+                \end{split} \\
+                &= 0, \\
+                b_n &= \frac{1}{\pi} \int_{-\pi}^\pi \left( x^3 + 1 \right) \sin\left( n x \right) \id{x} \\
+                \begin{split}
+                    &= \frac{1}{\pi} \left. \frac{- \cos\left( n x \right)}{n} \right|_{-\pi}^\pi - \frac{1}{\pi} \frac{\pi^3 \cos\left( n \pi \right)}{n} - \frac{1}{\pi} \frac{- (-\pi)^3 \cos\left( - n \pi \right)}{n} \\
+                    &\quad {}+ \frac{1}{\pi} \frac{6 \pi \cos\left( n \pi \right)}{n^3} - \frac{1}{\pi} \frac{6 (-\pi) \cos\left( n (-\pi) \right)}{n^3}
+                \end{split} \\
+                &= \frac{2 (-1)^n [6 - \pi^2 n^2]}{n^3}.
+            \end{align*}
+            Portanto,
+            \begin{align*}
+                F[f](x) &= 1 + \sum_{n = 1}^\infty \frac{2 (-1)^n (6 - \pi^2 n^2)}{n^3} \sin\left( n x \right).
+            \end{align*}
+        \end{solution}
+
+        \part Encontre sua s\'{e}rie de Fourier em senos no intervalo $(0,\pi)$;
+        \begin{solution}
+            Temos que
+            \begin{align*}
+                b_n &= \frac{2}{\pi} \int_0^\pi \left( x^3 + 1 \right) \sin\left( n x \right) \id{x} \\
+                &= \frac{2}{\pi} \left[ \left. \frac{-\cos\left( n x \right)}{n} \right|_0^\pi - \frac{\pi^3 \cos\left( n \pi \right)}{n} + \frac{6 \pi \cos\left( n \pi \right)}{n^3} \right] \\
+                &= \frac{2 (-1)^n}{\pi n} \left[ -1 + (-1)^n - \pi^3 + \frac{6 \pi}{n^2} \right].
+            \end{align*}
+            Portanto,
+            \begin{align*}
+                F_s[f](x) &= \sum_{n = 1}^\infty \frac{2 (-1)^n}{\pi n} \left[ (-1)^n - 1 - \frac{\pi}{n^2} \left( 6 + \pi^2 n^2 \right) \right] \sin\left( n x \right).
+            \end{align*}
+        \end{solution}
+
+        \part Enconre sua s\'{e}rie de Fourier em cossenos no intervalo $(-\pi,0)$;
+        \begin{solution}
+            Temos que
+            \begin{align*}
+                a_0 &= \frac{2}{\pi} \int_{-\pi}^0 \left( x^3 + 1 \right) \id{x} \\
+                &= \frac{2}{\pi} \left. \left( \frac{x^4}{4} + x \right) \right|_{-\pi}^0 \\
+                &= 2 \left( 1 - \frac{\pi^3}{4} \right), \\
+                a_n &= \frac{2}{\pi} \int_{-\pi}^0 \left( x^3 + 1 \right) \cos\left( n x \right) \id{x} \\
+                &= \frac{2}{\pi} \left[ \left. \frac{\sin\left( n x \right)}{n} \right|_{-\pi}^0 - \frac{3 \pi^2 \cos\left( n \pi \right)}{n^2} - \frac{6}{n^4} + \frac{6 (-1)^n}{n^4} \right] \\
+                &= \frac{12}{\pi n^4} \left[ (-1)^n \left( 1 - \frac{\pi^2 n^2}{2} \right) - 1 \right].
+            \end{align*}
+            Portanto,
+            \begin{align*}
+                F_c[f](x) &= \left( 1 - \frac{\pi^3}{4} \right) + \sum_{n = 1}^\infty \frac{12}{\pi n^4} \left[ (-1)^n \left( 1 - \frac{\pi^2 n^2}{2} \right) - 1 \right] \cos\left( n x \right).
+            \end{align*}
+        \end{solution}
+
+        \part Fa\c{c}a um esbo\c{c}o do gr\'{a}fico das fun\c{c}\~{o}es representadas pelas s\'{e}ries obtidas nos itens anteriores para todo $x \in \mathbb{R}$.
+        \begin{solution}
+            % TODO Escrever solu\c{c}\~{a}o.
+        \end{solution}
+    \end{parts}
+
+    \question[P1 de 2006] Seja $f(x)$ uma fun\c{c}\~{a}o satisfazendo a propriedade
+    \begin{align*}
+        f(x + L) &= -f(x), && L > 0,
+    \end{align*}
+    para todo $x \in \mathbb{R}$. Mostre que todos os coeficientes pares da sua s\'{e}rie de Fourier no intervalor $(a, a + 2 L)$ s\~{a}o nulos, ou seja,
+    \begin{align*}
+        & a_0 = a_2 = a_4 = \ldots = 0, \\
+        & b_2 = b_4 = b_6 = \ldots = 0.
+    \end{align*}
+    \begin{solution}
+        % TODO Escrever solu\c{c}\~{a}o.
+        Do formul\'{a}rio temos que $\alpha = a$ e $\beta = a + 2 l$, portanto
+        \begin{align*}
+            a_0 &= \frac{1}{L} \int_a^{a + 2 L} f(x) \id{x} \\
+            &= \frac{1}{L} \int_a^{a + L} f(x) \id{x} + \frac{1}{L} \int_{a + L}^{a + 2 L} f(x) \id{x} \\
+            &= \frac{1}{L} \int_a^{a + L} f(x) \id{x} + \frac{1}{L} \int_a^{a + L} f(\xi + L) \id{\xi} \\
+            &= 0, \\
+            a_n &= \frac{1}{L} \int_a^{a + 2 L} f(x) \cos\left( \frac{n \pi x}{L} \right) \id{x} \\
+            &= \frac{1}{L} \int_a^{a + L} f(x) \cos\left( \frac{n \pi x}{L} \right) \id{x} + \frac{1}{L} \int_{a + L}^{a + 2 L} f(x) \cos\left( \frac{n \pi x}{L} \right) \id{x} \\
+            &= \frac{1}{L} \int_a^{a + L} f(x) \cos\left( \frac{n \pi x}{L} \right) \id{x} + \frac{1}{L} \int_a^{a + L} f(\xi + L) \cos\left( \frac{n \pi \xi}{L} + n \pi \right) \id{\xi} \\
+            &= \frac{1}{L} \int_a^{a + L} f(x) \cos\left( \frac{n \pi x}{L} \right) \id{x} - (-1)^n \frac{1}{L} \int_a^{a + L} f(\xi) \cos\left( \frac{n \pi \xi}{L} \right) \id{\xi} \\
+            &= \begin{cases}
+                0, & n \text{ \'{e} par}, \\
+                2(\ldots), & n \text{ \'{e} \'{i}mpar},
+            \end{cases} \\
+            b_n &= \frac{1}{L} \int_a^{a + 2 L} f(x) \sin\left( \frac{n \pi x}{L} \right) \id{x} \\
+            &= \frac{1}{L} \int_a^{a + L} f(x) \sin\left( \frac{n \pi x}{L} \right) \id{x} + \frac{1}{L} \int_{a + L}^{a + 2 L} f(x) \sin\left( \frac{n \pi x}{L} \right) \id{x} \\
+            &= \frac{1}{L} \int_a^{a + L} f(x) \sin\left( \frac{n \pi x}{L} \right) \id{x} + \frac{1}{L} \int_a^{a + L} f(\xi + L) \sin\left( \frac{n \pi \xi}{L} + n \pi \right) \id{\xi} \\
+            &= \frac{1}{L} \int_a^{a + L} f(x) \sin\left( \frac{n \pi x}{L} \right) \id{x} - (-1)^n \frac{1}{L} \int_a^{a + L} f(\xi) \sin\left( \frac{n \pi \xi}{L} \right) \id{\xi} \\
+            &= \begin{cases}
+                0, & n \text{ \'{e} par}, \\
+                2 (\ldots), & n \text{ \'{e} \'{i}mpar}.
+            \end{cases}
+        \end{align*}
+    \end{solution}
+
+    \question[T2 de 2008] Calcule $\int_{-\infty}^\infty \sin\left( x \right) / x \id{x}$.
+    \begin{solution}
+        Considere o caminho no plano complexo representado na figura abaixo.
+        \begin{center}
+            \begin{tikzpicture}
+                \draw[->] (-4.2,0) -- (4.2,0);
+                \draw[->] (0,-.2) -- (0,4.2);
+                \draw[line width=2, ->] (4,0) arc (0:60:4) node[above]{$C_R$};
+                \draw[line width=2, ->] (60:4) arc (60:120:4);
+                \draw[line width=2, ->] (120:4) arc (120:180:4);
+                \draw[line width=2, ->] (-4,0) node[below]{$-R$} -- (-1,0) node[below]{$-r$};
+                \draw[line width=2, ->] (-1,0) arc (180:120:1);
+                \draw[line width=2, ->] (120:1) arc (120:60:1) node[above]{$C_r$};
+                \draw[line width=2, ->] (60:1) arc (60:0:1);
+                \draw[line width=2, ->] (1,0) node[below]{$r$} -- (4,0) node[below]{$R$};
+                \node[below left] at (30:4) {$\Gamma$};
+            \end{tikzpicture}
+        \end{center}
+
+        Do Teorema de Cauchy, temos que
+        \begin{align*}
+            \int_\Gamma \frac{\exp\left( i z \right)}{x} \id{z} &= \int_{-R}^{-r} \frac{\exp\left( i z \right)}{z} \id{z} + \int_{C_r} \frac{\exp\left( i z \right)}{z} \id{z} + \int_r^R \frac{\exp\left( i z \right)}{z} \id{z} + \int_{C_R} \frac{\exp\left( i z \right)}{z} = 0.
+        \end{align*}
+        Por\'{e}m, note que
+        \begin{align*}
+            \int_{-R}^{-r} \frac{\exp\left( i z \right)}{z} \id{z} + \int)_r^R \frac{\exp\left( i z \right)}{z} \id{z} &= i \int_{-R}^{-r} \frac{\sin\left( z \right)}{z} \id{z} + i \int_r^R \frac{\sin\left( z \right)}{z} \id{z}.
+        \end{align*}
+        Como $\sin\left( x \right) / x$ \'{e} cont\'{i}nuo em $x = 0$, tem-se
+        \begin{align*}
+            i \int_{-\infty}^\infty \frac{\sin\left( x \right)}{x} \id{x} = - \lim_{r \to 0} \int_{C_r} \frac{\exp\left( i z \right)}{z} \id{z} - \lim_{R \to \infty} \int_{C_R} \frac{\exp\left( i z \right)}{z} \id{z}.
+        \end{align*}
+        Fazendo-se uma integra\c{c}\~{a}o por partes
+        \begin{align*}
+            \int_{C_R} \frac{\exp\left( i z \right)}{z} \id{z} &= \left. \frac{\exp\left( i z \right)}{i z} \right|_R^{-R} - \int_{C_R} \frac{\exp\left( i z \right)}{z^2} \id{z} \\
+            &= - \frac{\cos\left( R \right)}{i R} + i \int_0^\pi \frac{\exp\left( i R \exp\left( i \theta \right) \right)}{R \exp\left( 2 i \theta \right)} \id{\theta} \\
+            &= 0,
+        \end{align*}
+        para $R \to \infty$. Para o trecho $C_r$
+        \begin{align*}
+            \int_{C_r} \frac{\exp\left( i z \right)}{z} \id{z} &= - i \int_0^\pi \exp\left( i r \exp\left( i \theta \right) \right) \id{\theta} \\
+            &= - i \pi,
+        \end{align*}
+        para $r = 0$, de onde finalmente tem-se
+        \begin{align*}
+            \int_{-\infty}^\infty \frac{\sin\left( x \right)}{x} \id{x} = \pi.
+        \end{align*}
     \end{solution}
 
     \question[T1 de 2011] Encontre a s\'{e}rie em cossenos de Fourier sobre o intervalo $(0, \pi)$ para a fun\c{c}\~{a}o $f(x) = \sin\left( \kappa x \right)$, onde $\kappa$ \'{e} um n\'{u}mero inteiro positivo.

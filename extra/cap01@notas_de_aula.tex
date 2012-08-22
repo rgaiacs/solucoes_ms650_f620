@@ -51,7 +51,7 @@ Um fato not\'{a}vel \'{e} que as condi\c{c}\~{o}es para representar uma fun\c{c}
     Temos que $\left\{ \cos\left( n x \right), \sin\left( n x \right) \right\}$ s\~{a}o fun\c{c}\~{o}es peri\'{o}dicas com $T = 2\pi$ e portanto $f(x)$ \'{e} uma fun\c{c}\~{a}o peri\'{o}dica, i.e., $f(x + 2\pi) = f(x)$.
 \end{obs}
 
-\begin{exem}
+\begin{exem} \label{exem:fourier:x^2}
     Para $f(x) = x^2$ temos que
     \begin{align*}
         a_0 &= \frac{1}{\pi} \int_{-\pi}^\pi x^2 \id{x} = \frac{1}{\pi} \left. \frac{x^3}{3} \right|_{-\pi}^\pi = \frac{2 \pi^2}{3}, \\
@@ -60,13 +60,14 @@ Um fato not\'{a}vel \'{e} que as condi\c{c}\~{o}es para representar uma fun\c{c}
         &= \frac{-1}{n \pi} \left[ \left. \frac{-2 x \cos\left( n x \right)}{n} \right|_{-\pi}^\pi + \frac{1}{n} \int_{-\pi}^\pi 2 \cos\left( n x \right) \id{x} \right] \\
         &= \frac{-1}{n \pi} \left[ \frac{-2 \pi \cos\left( n \pi) \right)}{n} + \frac{2 (-\pi) \cos(n) (-\pi)}{n} + \frac{2}{n} \underbrace{\left. \frac{\sin\left( n x \right)}{n} \right|_{-\pi}^\pi}_{= 0} \right] \\
         &= \frac{-1}{n \pi} \left[ \frac{- 4 \pi}{n} \cos\left( n \pi \right) \right] \\
-        &= \frac{4}{n^2} (-1)^n && n > 0 \\
+        &= \frac{4}{n^2} (-1)^n, \\
         b_n &= \frac{1}{n} \int_{-\pi}^\pi x^2 \sin\left( n x \right) \id{x} \\
         &= \frac{1}{\pi} \left[ \left. \frac{- x^2 \cos\left( n x \right)}{n} \right|_{-\pi}^\pi + \frac{1}{n} \int_{-\pi}^\pi 2 x \cos\left( n x \right) \id{x} \right] \\
         &= \frac{1}{n} \left[ \frac{-\pi^2 \cos\left( n \pi \right)}{n} + \frac{\pi \cos\left( n (-\pi) \right)}{n} + \frac{1}{n} \int_{-\pi}^\pi 2 x \cos\left( n x \right) \id{x} \right] \\ 
         &= \frac{1}{n} \left[ \frac{1}{n} \left[ \underbrace{\left. \frac{2 x \sin\left( n x \right)}{n} \right|_{-\pi}^\pi}_{= 0} - \frac{1}{n} \underbrace{\int_{-\pi}^\pi 2 \sin\left( n x \right) \id{x}}_{= 0} \right] \right] \\
-        &= 0
+        &= 0,
     \end{align*}
+    onde $n > 0$.
 
     Logo,
     \begin{align*}
@@ -213,7 +214,8 @@ e
     \begin{align*}
         \begin{split}
             \int_{-\pi}^\pi f(x) \cos\left( m x \right) \id{x} &= \frac{A_0}{2} \underbrace{\int_{-\pi}^\pi \cos\left( m x \right) \id{x}}_{= 0} \\
-            &\quad {}+ \sum_{n = 1}^\infty \left( A_n \underbrace{\int_{-\pi}^\pi \cos\left( n x \right) \cos\left( m x \right) \id{x}}_{= 0 (n \neq m)} + B_n \underbrace{\int_{-\pi}^\pi \sin\left( n x \right) \cos\left( m x \right) \id{x}}_{= 0} \right)
+            &\quad {}+ \sum_{n = 1}^\infty \left( A_n \underbrace{\int_{-\pi}^\pi \cos\left( n x \right) \cos\left( m x \right) \id{x}}_{= 0 (n \neq m)} \right. \\
+            &\quad \left. {}+ B_n \underbrace{\int_{-\pi}^\pi \sin\left( n x \right) \cos\left( m x \right) \id{x}}_{= 0} \right)
         \end{split}
     \end{align*}
     onde usamos a proposi\c{c}\~{a}o anterior, de modo que
@@ -300,8 +302,8 @@ E $c_n$ \'{e} obtido por
 \begin{align*}
     \int_{-L}^L \exp\left( -i m \pi x / L \right) \exp\left( i n \pi x / L \right) \id{x} &= \int_{-L}^L \exp\left( i (n - m) \pi x / L \right) \id{x} \\
     &= \begin{cases}
-        \int_{-L}^L \id{x} = 2 L, & n = m, \\
-        \left. \exp\left( i (n - m) \pi x / L \right) \left( i (n - m) \pi / L \right)^{-1} \right|_{-L}^L = 0
+        \int_{-L}^L \id{x} = 2 L, n = m, \\
+        \left. \exp\left( \frac{i (n - m) \pi x}{L} \right) \left( \frac{i (n - m) \pi}{L} \right)^{-1} \right|_{-L}^L = 0,
     \end{cases} \\
     &= 2 L \delta_{mn}.
 \end{align*}
@@ -339,7 +341,10 @@ Logo,
     \end{align*}
     Tamb\'{e}m \'{e} poss\'{i}vel
     \begin{align*}
-        f(x) &= \frac{1}{2 L} + \sum_{n = 1}^\infty \frac{\sin\left( n \pi a / L \right)}{2 n \pi a} \exp\left( i n \pi a / L \right) + \sum_{n = 1}^\infty \frac{\sin\left( (-n) \pi a / L \right)}{2 (-n) \pi a} \exp\left( i (-n) \pi a / L \right) \\
+        \begin{split}
+            f(x) &= \frac{1}{2 L} + \sum_{n = 1}^\infty \frac{\sin\left( n \pi a / L \right)}{2 n \pi a} \exp\left( i n \pi a / L \right) \\
+            &\quad {}+ \sum_{n = 1}^\infty \frac{\sin\left( (-n) \pi a / L \right)}{2 (-n) \pi a} \exp\left( i (-n) \pi a / L \right)
+        \end{split} \\
         &= \frac{1}{2L} + \sum_{n = 1}^\infty \frac{\sin\left( n \pi a / L \right)}{2 n \pi a} \left( \exp\left( i n \pi a / L \right) + \exp\left( -i n \pi a / L \right) \right) \\
         &= \frac{1}{2L} + \sum_{n = 1}^\infty \frac{\sin\left( n \pi a / L \right)}{n \pi a} \cos\left( n \pi a / L \right).
     \end{align*}
@@ -377,7 +382,7 @@ Debotando uma fun\c{c}\~{a}o par por $f_+(x)$ e uma fun\c{c}\~{a}o \'{i}mpar por
         &= \begin{cases}
             2 \int_0^L f_\pm(x) \id{x}, & \text{para } f_+, \\
             0, & \text{para } f_-.
-        \end{cases}
+        \end{cases} \qedhere
     \end{align*}
 \end{proof}
 
@@ -463,7 +468,10 @@ Logo:
             \begin{align*}
                 b_n &= \frac{2}{L} \int_0^L \sin\left( n \pi x / L \right) \left( \frac{x}{2} + \frac{1}{2} \right) \id{x} \\
                 &= \frac{1}{L^2} \int_0^L x \sin\left( n \pi x / L \right) \id{x} + \frac{1}{L} \int_0^L \sin\left( n \pi x / L \right) \id{x} \\
-                &= \frac{1}{L^2} \left[ \left. \frac{- x \cos\left( n \pi x / L \right)}{n \pi / L} \right|_0^L + \frac{L}{n \pi} \int_0^L \cos\left( n \pi x / L \right) \id{x} \right] + \frac{1}{L} \left. \frac{- \cos\left( n \pi x / L \right)}{n \pi / L} \right|_0^L \\
+                \begin{split}
+                    &= \frac{1}{L^2} \left[ \left. \frac{- x \cos\left( n \pi x / L \right)}{n \pi / L} \right|_0^L + \frac{L}{n \pi} \int_0^L \cos\left( n \pi x / L \right) \id{x} \right] \\
+                    &\quad {}+ \frac{1}{L} \left. \frac{- \cos\left( n \pi x / L \right)}{n \pi / L} \right|_0^L
+                \end{split} \\
                 &= \frac{-1}{n \pi} \cos\left( n \pi \right) - \frac{1}{n \pi} \cos\left( n \pi \right) + \frac{1}{n \pi} \\
                 &= \frac{1 - 2 (-1)^n}{n \pi}.
             \end{align*}
@@ -480,7 +488,10 @@ Logo:
                 &= \frac{3}{2}. \\
                 a_n &= \frac{2}{L} \int_0^L \left( \frac{x}{2L} + \frac{1}{2} \right) \cos\left( n \pi x / L \right) \\
                 &= \frac{1}{L^2} \int_0^L x \cos\left( n \pi x / L \right) \id{x} + \frac{1}{L} \int_0^L \cos\left( n \pi x / L \right) \id{x} \\
-                &= \frac{1}{L^2} \left[ \left. \frac{x \sin\left( n \pi x / L \right)}{n \pi / L} \right|_0^L - \frac{L}{n \pi} \int_0^L \sin\left( n \pi x / L \right) \id{x} \right] + \frac{1}{L} \frac{1}{n \pi / L} \left. \sin\left( n \pi x / L \right) \right|_0^L \\
+                \begin{split}
+                    &= \frac{1}{L^2} \left[ \left. \frac{x \sin\left( n \pi x / L \right)}{n \pi / L} \right|_0^L - \frac{L}{n \pi} \int_0^L \sin\left( n \pi x / L \right) \id{x} \right] \\
+                    &\quad {}+ \frac{1}{L} \frac{1}{n \pi / L} \left. \sin\left( n \pi x / L \right) \right|_0^L
+                \end{split} \\
                 &= \frac{1}{L n \pi} \left. \frac{\cos\left( n \pi x / L \right)}{n \pi / L} \right|_0^L \\
                 &= \frac{1}{n^2 \pi^2} \left[ (-1)^n - 1 \right].
             \end{align*}
@@ -497,9 +508,14 @@ Para facilitar a nota\c{c}\~{a}o, vamos tomar $L = \pi$. Ent\~{a}o
 \begin{align*}
     f(x) &= \frac{a_0}{2} + \sum_{n = 1}^\infty \left( a_n \cos\left( n x \right) + b_n \sin\left( n x \right) \right) \\
     \begin{split}
-        &= \frac{1}{2} \left[ \frac{1}{\pi} \int_{-\pi}^\pi f(\xi) \id{\xi} \right] \\ &\quad {}+ \sum_{n = 1}^\infty \left[ \left( \frac{1}{\pi} \int_{-\pi}^\pi f(\xi) \cos\left( n \xi \right) \id{\xi} \right) \cos\left( n x \right) + \left( \frac{1}{\pi} \int_{-\pi}^\pi f(\xi) \sin\left( n \xi \right) \id{\xi} \right) \sin\left( n x \right) \right]
+        &= \frac{1}{2} \left[ \frac{1}{\pi} \int_{-\pi}^\pi f(\xi) \id{\xi} \right] \\ 
+        &\quad {}+ \sum_{n = 1}^\infty \left[ \left( \frac{1}{\pi} \int_{-\pi}^\pi f(\xi) \cos\left( n \xi \right) \id{\xi} \right) \cos\left( n x \right) \right. \\
+        &\quad \left. {}+ \left( \frac{1}{\pi} \int_{-\pi}^\pi f(\xi) \sin\left( n \xi \right) \id{\xi} \right) \sin\left( n x \right) \right]
     \end{split} \\
-    &= \frac{1}{2\pi} \int_{-\pi}^\pi f(\xi) \id{\xi} + \frac{1}{\pi} \sum_{n = 1}^\infty \int_{-\pi}^\pi f(\xi) \left[ \cos\left( n \xi \right) \cos\left( n x \right) + \sin\left( n \xi \right) \sin\left( n x \right) \right] \id{\xi}.
+    \begin{split}
+        &= \frac{1}{2\pi} \int_{-\pi}^\pi f(\xi) \id{\xi} \\
+        &\quad {}+ \frac{1}{\pi} \sum_{n = 1}^\infty \int_{-\pi}^\pi f(\xi) \left[ \cos\left( n \xi \right) \cos\left( n x \right) + \sin\left( n \xi \right) \sin\left( n x \right) \right] \id{\xi}.
+    \end{split}
 \end{align*}
 Portanto,
 \begin{align}
@@ -507,7 +523,7 @@ Portanto,
     \label{eq:serie_fourier}
 \end{align}
 
-\begin{teo}[Fourier]
+\begin{teo}[Fourier] \label{teo:fourier}
     Seja $f(x)$ uma fun\c{c}\~{a}o cont\'{i}nua por partes e com derivadas laterais no intervalo $(-\pi, \pi)$ e peri\'{o}dica com per\'{i}odo $2\pi$. Ent\~{a}o sua s\'{e}rie de Fourier, \eqref{eq:serie_fourier}, converge para o valor
     \begin{align*}
         \frac{1}{2} \left[ f(x + 0) + f(x - 0) \right]
@@ -607,7 +623,70 @@ Portanto, em cada ponto de um intervalo fechado no qual $f$ e $f'$ s\~{a}o cont\
     Portanto, $f'(x) = 2 x \sin\left( 1 / x \right) - \cos\left( 1 / x \right)$ que implica n\~{a}o existir $f'(0+)$ e nem $f'(0-)$ de maneira que n\~{a}o existe $f'(0)$. Neste caso, $f_+'(0) \neq f'(0+)$ e $f_-'(0) \neq f'(0-)$.
 \end{exem}
 
-% TODO Incluir arquivo M2S12-3.pdf
+\subsection{Lemas auxiliares}
+\begin{lem} \label{lem:cont}
+    Se $F$ \'{e} cont\'{i}nua por partes em $[a,b]$, ent\~{a}o
+    \begin{enumerate}
+        \item \label{enum:cont:sin} $\lim_{k \to \infty} \int_a^b F(x) \sin\left( k x \right) \id{x} = 0$, 
+        \item \label{enum:cont:cos} $\lim_{k \to \infty} \int_a^b F(x) \cos\left( k x \right) \id{x} = 0$.
+    \end{enumerate}
+\end{lem}
+\begin{proof}
+    Vamos dividir $(a,b)$ em intervalos onde $F$ \'{e} cont\'{i}nua. Vamos denotar um desses intervalos por $[p,q]$. Ent\~{a}o vale o item~\ref{enum:cont:sin} se
+    \begin{align*}
+        I = \lim_{k \to \infty} \int_p^q F(x) \sin\left( k x \right) \id{x} = 0.
+    \end{align*}
+    % TODO Terminar a demonstra\c{c}\~{a}o do Lema.
+\end{proof}
+
+\begin{lem} \label{lem:sin(x)/x}
+    $\int_0^\infty \sin\left( x \right) / x \id{x} = \pi / 2$.
+\end{lem}
+\begin{proof}
+    Temos que
+    \begin{align*}
+        \int_0^\infty \frac{\sin\left( x \right)}{x} \id{x} = F(0),
+    \end{align*}
+    onde $F(x) = \int_0^\infty \exp\left( -t x \right) \sin\left( x \right) / x \id{x}$ para $t \geq 0$.
+
+    Seja $S(x) = \sin\left( x \right) / x$.
+    % TODO Terminar a demonstra\c{c}\~{a}o do Lema.
+\end{proof}
+
+\begin{lem} \label{lem:F_+'(x)}
+    Se $F$ \'{e} cont\'{i}nua por partes em $[0,b]$ e tem derivada \`{a} direita $F_+'(0)$, ent\~{a}o
+    \begin{align*}
+        \lim_{k \to \infty} \int_0^b F(x) \frac{\sin\left( k x \right)}{x} \id{x} &= \frac{\pi}{2} F(0+).
+    \end{align*}
+\end{lem}
+\begin{proof}
+    Temos que
+    \begin{align*}
+        I(k) &= \int_0^b F(x) \frac{\sin\left( k x \right)}{x} \id{x} \\
+        &= \lim_{k \to \infty} \int_0^{k b} \frac{\sin\left( t \right)}{t} \id{t} \\
+        &= \int_0^\infty \frac{\sin\left( t \right)}{t} \id{t} \\
+        \intertext{e pelo Lema~\ref{lem:sin(x)/x}}
+        I(k) &= \pi / 2.
+    \end{align*}
+    % TODO Terminar a demonstra\c{c}\~{a}o do Lema.
+\end{proof}
+
+\begin{lem}
+    Seja $F$ uma fun\c{c}\~{a}o cont\'{i}nua por partes em $(a,b)$ e que tem derivadas laterias \`{a} esquerda e \`{a} direita em um ponto $x_0$ tal que $a < x_0 < b$. Ent\~{a}o
+    \begin{align*}
+        \lim_{k \to \infty} \int_a^ F(x) \frac{\sin\left( k \left( x - x_0 \right) \right)}{x - x_0} \id{x} &= \pi \frac{F\left( x_0 + 0 \right) + F\left( x_0 - 0 \right)}{2}.
+    \end{align*}
+\end{lem}
+\begin{proof}
+    Temos que
+    \begin{align*}
+        I(k) &= \int_a^b F(x) \frac{\sin\left( k \left( x - x_0 \right) \right)}{x - x_0} \id{x}
+    \end{align*}
+    % TODO Terminar a demonstra\c{c}\~{a}o do Lema.
+\end{proof}
+
+\subsection{Demonstra\c{c}\~{a}o do Teorema de Fourier}
+% TODO Terminar de incluir o arquivo M2S12-3.pdf. Interrompido na p\'{a}gina 8.
 
 \section{Converg\^{e}ncia na M\'{e}dia}
 Da express\~{a}o para o produto escalar em $\mathcal{L}^2(a, b)$ definimos uma norma atrav\'{e}s de
@@ -634,14 +713,18 @@ Com isso, dados as fun\c{c}\~{o}es $f, g \in \mathcal{L}^2(a, b)$, definimos o d
         &= \int_{-\pi}^\pi \left[ f(x) - \frac{A_0}{2} - \sum_{n = 1}^N \left( A_n \cos\left( n x \right) + B_n \sin\left( n x \right) \right) \right]^2 \id{x} \\
         \begin{split}
             &= \int_{-\pi}^\pi \left[ f(x) \right]^2 \id{x} + \int_{-\pi}^\pi \left( \frac{A_0}{2}^2 \right) \id{x} + \int_{-\pi}^\pi \sum_{n = 1}^N \sum_{m = 1}^N A_n A_m \cos\left( n x \right) \cos\left( m x \right) \id{x} \\
-            &\quad {}+ \int_{-\pi}^\pi \sum_{n = 1}^N \sum_{m = 1}^N B_n B_m \sin\left( n x \right) \sin\left( m x \right) \id{x} - 2 \int_{-\pi}^\pi f(x) \frac{A_0}{2} \id{x} - 2 \int_{-\pi}^\pi f(x) \sum_{n = 1}^N \cos\left( n x \right) \id{x} \\
-            &\quad {}- 2 \int_{-\pi}^\pi f(x) \sum_{n = 1}^N B_n \sin\left( n x \right) \id{x} + 2 \int_{-\pi}^\pi \frac{A_0}{2} \cos\left( n x \right) \id{x} + 2 \int_{-\pi}^\pi \frac{A_0}{2} \sum){n = 1}^N B_n \sin\left( n x \right) \id{x} \\
+            &\quad {}+ \int_{-\pi}^\pi \sum_{n = 1}^N \sum_{m = 1}^N B_n B_m \sin\left( n x \right) \sin\left( m x \right) \id{x} - 2 \int_{-\pi}^\pi f(x) \frac{A_0}{2} \id{x} \\
+            &\quad {}- 2 \int_{-\pi}^\pi f(x) \sum_{n = 1}^N \cos\left( n x \right) \id{x} \\
+            &\quad {}- 2 \int_{-\pi}^\pi f(x) \sum_{n = 1}^N B_n \sin\left( n x \right) \id{x} + 2 \int_{-\pi}^\pi \frac{A_0}{2} \cos\left( n x \right) \id{x} \\
+            &\quad {}+ 2 \int_{-\pi}^\pi \frac{A_0}{2} \sum){n = 1}^N B_n \sin\left( n x \right) \id{x} \\
             &\quad {}+ 2 \int_{-\pi}^\pi \sum_{n = 1}^N \sum_{m = 1}^N A_n B_n \cos\left( n x \right) \sin\left( m x \right) \id{x}
         \end{split} \\
         \begin{split}
             &= \int_{-\pi}^\pi \left[ f(x) \right]^2 \id{x} + \frac{A_0^2}{4} 2 \pi + \sum_{n = 1}^N \sum_{m = 1}^N A_n A_m \underbrace{\int_{-\pi}^\pi \cos\left( n x \right) \cos\left( m x \right) \id{x}}_{\pi \delta_{nm}} \\
-            &\quad {}+ \sum_{n = 1}^N \sum_{m = 1}^N B_n B_m \underbrace{\int_{-\pi}^\pi \sin\left( n x \right) \sin\left( m x \right) \id{x}}_{\pi \delta_{nm}} - A_0 \int_{-\pi}^\pi f(x) \id{x} - 2 \sum_{n = 1}^N A_n \int_{-\pi}^\pi f(x) \cos\left( n x \right) \id{x} \\
-            &\quad {}- 2 \sum_{n = 1}^N B_n \int_{-\pi}^\pi f(x) \sin\left( n x \right) \id{x} + A_0 \sum_{n = 1}^N A_n \underbrace{\int_{-\pi}^\pi \cos\left( n x \right) \id{x}}_{=0} + A_0 \sum_{n = 1}^N B_n \underbrace{\int_{-\pi}^\pi \sin\left( n x \right) \id{x}}_{=0} \\
+            &\quad {}+ \sum_{n = 1}^N \sum_{m = 1}^N B_n B_m \underbrace{\int_{-\pi}^\pi \sin\left( n x \right) \sin\left( m x \right) \id{x}}_{\pi \delta_{nm}} - A_0 \int_{-\pi}^\pi f(x) \id{x} \\
+            &\quad {}- 2 \sum_{n = 1}^N A_n \int_{-\pi}^\pi f(x) \cos\left( n x \right) \id{x} \\
+            &\quad {}- 2 \sum_{n = 1}^N B_n \int_{-\pi}^\pi f(x) \sin\left( n x \right) \id{x} + A_0 \sum_{n = 1}^N A_n \underbrace{\int_{-\pi}^\pi \cos\left( n x \right) \id{x}}_{=0} \\
+            &\quad {}+ A_0 \sum_{n = 1}^N B_n \underbrace{\int_{-\pi}^\pi \sin\left( n x \right) \id{x}}_{=0} \\
             &\quad {}+ 2 \sum_{n = 1}^N \sum_{m = 1}^N A_n B_m \underbrace{\int_{-\pi}^\pi \cos\left( n x \right) \sin\left( m x \right) \id{x}}_{=0}
         \end{split}
     \end{align*}
@@ -649,7 +732,8 @@ Com isso, dados as fun\c{c}\~{o}es $f, g \in \mathcal{L}^2(a, b)$, definimos o d
     \begin{align*}
         \begin{split}
             \delta_N &= \int_{-\pi}^\pi \left[ f(x) \right]^2 \id{x} + \frac{\pi}{2} A_0^2 + \sum_{n = 1}^N \pi A_n^2 + \sum_{n = 1}^N \pi B_n^2 \\
-            &\quad {}- A_0 \int_{-\pi}^\pi f(x) \id{x} - 2 \sum_{n = 1}^N A_n \int_{-\pi}^\pi f(x) \cos\left( n x \right) \id{x} - 2 \sum_{n = 1}^N B_n \int_{-\pi}^\pi f(x) \sin\left( n x \right) \id{x}
+            &\quad {}- A_0 \int_{-\pi}^\pi f(x) \id{x} - 2 \sum_{n = 1}^N A_n \int_{-\pi}^\pi f(x) \cos\left( n x \right) \id{x} \\
+            &\quad {}- 2 \sum_{n = 1}^N B_n \int_{-\pi}^\pi f(x) \sin\left( n x \right) \id{x}
         \end{split}
     \end{align*}
     Exigindo agora que
@@ -738,11 +822,20 @@ Para explorarmos essa defini\c{c}\~{a}o necessitamos de um resultado auxiliar:
     Temos que
     \begin{align*}
         <f, \phi_N> &= \int_{-\pi}^\pi f(x) \left[ \frac{A_0}{2} + \sum_{n = 1}^N \left( A_n \cos\left( n x \right) + B_n \sin\left( n x \right) \right) \right] \id{x} \\
-        &= \frac{A_0}{2} \int_{-\pi}^\pi f(x) \id{x} + \sum_{n = 1}^N A_n \int_{-\pi}^\pi f(x) \cos\left( n x \right) \id{x} + \sum_{n = 1}^N B_n \int_{-\pi}^\pi f(x) \sin\left( n x \right) \id{x} \\
+        \begin{split}
+            &= \frac{A_0}{2} \int_{-\pi}^\pi f(x) \id{x} + \sum_{n = 1}^N A_n \int_{-\pi}^\pi f(x) \cos\left( n x \right) \id{x} \\
+            &\quad {}+ \sum_{n = 1}^N B_n \int_{-\pi}^\pi f(x) \sin\left( n x \right) \id{x}
+        \end{split} \\
         &= \frac{\pi}{2} A_0 a_0 + \pi \sum_{n = 1}^N \left( a_n A_n + b_n B_n \right) \\
         \intertext{e}
-        <S_N, \phi_N> &= \int_{-\pi}^\pi \left[ \frac{a_0}{2} + \sum_{n = 1}^N \left( a_n \cos\left( n x \right) + b_n \sin\left( n x \right) \right) \right] \left[ \frac{A_0}{2} + \sum_{m = 1}^N \left( A_m \cos\left( m x \right) + B_m \sin\left( m x \right) \right) \right] \id{x} \\
-        &= \frac{\pi}{2} A_0 a_0 + \pi \sum_{n =1}^N\left( a_n A_n + b_n B_n \right) \qedhere
+        <S_N, \phi_N> &= \int_{-\pi}^\pi \bigstar \id{x} \\
+        \intertext{onde}
+        \begin{split}
+            \bigstar &= \left[ \frac{a_0}{2} + \sum_{n = 1}^N \left( a_n \cos\left( n x \right) + b_n \sin\left( n x \right) \right) \right] \\
+            &\quad \left[ \frac{A_0}{2} + \sum_{m = 1}^N \left( A_m \cos\left( m x \right) + B_m \sin\left( m x \right) \right) \right]
+        \end{split} \\
+        \intertext{e portanto}
+        <S_N, \phi_N> &= \frac{\pi}{2} A_0 a_0 + \pi \sum_{n =1}^N\left( a_n A_n + b_n B_n \right) \qedhere
     \end{align*}
 \end{proof}
 
@@ -826,7 +919,9 @@ Por\'{e}m, a converg\^{e}ncia pontual n\~{a}o implica na converg\^{e}ncia na m\'
     \end{align*}
     Ent\~{a}o,
     \begin{align*}
-        \| f_n \|^2 = \int_0^1 f_n^2(x) \id{x} = \int_0^{1/n^3} n^2 \id{x} = n^2 n^{-3} = n^{-1}, \\
+        \| f_n \|^2 &= \int_0^1 f_n^2(x) \id{x} \\
+        &= \int_0^{1/n^3} n^2 \id{x} = n^2 n^{-3} \\
+        &= n^{-1}, \\
         \| f_n \| &= n^{-1/2}, \\
         \lim_{n \to \infty} \| f_n \| &= 0
     \end{align*}
@@ -934,29 +1029,383 @@ Por\'{e}m, a converg\^{e}ncia pontual n\~{a}o implica na converg\^{e}ncia na m\'
 Resumindo os tipos de converg\^{e}ncia e suas condi\c{c}\~{o}es suficientes, temos:
 \begin{center}
     \begin{tikzpicture}
-        \node[draw=black, text width=6cm] (U) at (0,0) {Converg\^{e}ncia Uniforme
+        \node[draw=black, text width=5.5cm] (U) at (0,0) {Converg\^{e}ncia Uniforme
         \begin{enumerate}
             \item $f$ \'{e} cont\'{i}nua;
             \item $f(\pi) = f(-\pi)$;
             \item $f'$ \'{e} cont\'{i}nua por partes.
         \end{enumerate}};
-        \node[draw=black, text width=6cm] (P) at (-5,-6) {Converg\^{e}ncia Pontual
+        \node[draw=black, text width=5.5cm] (P) at (-4.5,-6) {Converg\^{e}ncia Pontual
         \begin{enumerate}
             \item $f$ cont\'{i}nua por partes e peri\'{o}dica;
             \item Existem as derivadas laterais;
             \item \textbf{OBS:} Converge para $1/2 \left[ f(x + 0) + f(x - 0) \right]$.
         \end{enumerate}};
-        \node[draw=black, text width=6cm] (M) at (5,-6) {Converg\^{e}ncia na M\'{e}dia
+        \node[draw=black, text width=5.5cm] (M) at (4.5,-6) {Converg\^{e}ncia na M\'{e}dia
         \begin{enumerate}
             \item $f \in \mathcal{L}^2(-\pi, \pi)$;
             \item $f$ \'{e} peri\'{o}dica.
         \end{enumerate}};
-        \draw[->, line width=.2cm] (U.south) -- (P.north);
-        \draw[->, line width=.2cm] (U.south) -- (M.north);
+        \draw[->, line width=.2cm] (U.south west) -- (P.north);
+        \draw[->, line width=.2cm] (U.south east) -- (M.north);
         \draw[<->, line width=.2cm] (P.east) -- (M.west) node[midway, below, text width=2.5cm] {Exceto em um conjunto de medida nula};
     \end{tikzpicture}
 \end{center}
 
-% TODO Incluir arquivo M2S12-5.pdf
+\section{M\'{e}todo de Fej\'{e}r}
+\begin{defi}
+    Dadas as somas parciais $S_k(x) = \sum_{i = 0}^k \mu_i(x)$ para $k = 0, 1, \ldots, N - 1$, a soma de Ces\`{a}ro (ou m\'{e}dia C-1) \'{e} definida como a meia aritm\'{e}tica dessas somas parciais:
+    \begin{align*}
+        \sigma_N(x) &= \frac{1}{N} \sum_{k = 0}^{N - 1} S_k(x).
+    \end{align*}
+    Dizemos que uma s\'{e}rie \'{e} C-1 som\'{a}vel se existir o $\lim_{N \to \infty} \sigma_N(x)$.
+\end{defi}
+\begin{obs}
+    Podemos definir a m\'{e}dia C-2, etc, como a m\'{e}dia aritm\'{e}tica das somas de Ces\`{a}ro, ou seja,
+    \begin{align*}
+        \sigma_N^{(2)}(x) &= \frac{1}{N} \sum_{k = 0}^{N - 1} \sigma_N(x),
+    \end{align*}
+    e dizer que a s\'{e}rie \'{e} C-2 som\'{a}vel se existir $\lim_{N \to \infty} \sigma_N^{(2)}(x)$.
+\end{obs}
+\begin{exem}
+    Considere $S_k(x) = \sum_{i = 0}^{k - 1} (-1)^i$, ent\~{a}o
+    \begin{align*}
+        S_0 &= 1, \\
+        S_1 &= 1 - 1 = 0, \\
+        S_2 &= 1 - 1 + 1 = 1,
+        \vdots
+    \end{align*}
+    e
+    \begin{align*}
+        S_0 &= 1, \\
+        S_0 + S_1 &= 1, \\
+        S_0 + S_1 + S_2 &= 2, \\
+        \vdots
+    \end{align*}
+    Logo,
+    \begin{align*}
+        \sigma_0 &= \frac{1}{1} 1 = 1, & \sigma_1 &= \frac{1}{2} 1 = \frac{1}{2}, \\
+        \sigma_2 &= \frac{1}{3} 2 = \frac{2}{3}, & \sigma_3 &= \frac{1}{4} 2 = \frac{1}{2}, \\
+        \sigma_4 &= \frac{1}{5} 3 = \frac{3}{5}, & \sigma_5 &= \frac{1}{6} 3 = \frac{1}{2}, \\
+        \vdots && \vdots \\
+        \sigma_{2n} &= \frac{n + 1}{2n + 1}, & \sigma_{2n + 1} &= \frac{1}{2}.
+    \end{align*}
+    e como
+    \begin{align*}
+        & \lim_{n \to \infty} \sigma_{2n + 1} = 1/2, \\
+        & \lim_{n \to \infty} \sigma_{2n} = 1/2,
+    \end{align*}
+    temos que a s\'{e}rie $\sum_{i = 0}^\infty (-1)^i$ \'{e} C-1 som\'{a}vel e o resultado \'{e} $1/2$.
+\end{exem}
+\begin{obs}
+    Usar a soma de Ces\`{a}ro da s\'{e}rie de Fourier.
+    \begin{align*}
+        \sigma_1 &= \frac{a_0}{2}, \\
+        \sigma_2 &= \frac{1}{2} \left[ \frac{a_0}{2} + \left[ \frac{a_0}{2} + \left( a_1 \cos\left( x \right) + b_1 \sin\left( x \right) \right) \right] \right], \\
+        \begin{split}
+            \sigma_3 &= \frac{1}{3} \left[ \frac{a_0}{2} + \left[ \frac{a_0}{2} + \sum_{k = 1}^1 \left( a_k \cos\left( k x \right) + b_k \sin\left( k x \right) \right) \right] \right. \\
+            &\quad \left. {}+ \left[ \frac{a_0}{2} + \sum_{k = 1}^2 \left( a_k \cos\left( k x \right) + b_k \sin\left( k x \right) \right) \right] \right],
+        \end{split} \\
+        \vdots \\
+        \begin{split}
+            \sigma_N &= \frac{1}{N} \left[ \frac{a_0}{2} + \left[ \frac{a_0}{2} + \sum_{k = 1}^1 \left( a_k \cos\left( k x \right) + b_k \sin\left( k x \right) \right) \right] \right. \\
+            &\quad {}+ \left[ \frac{a_0}{2} + \sum_{k = 1}^2 \left( a_k \cos\left( k x \right) + b_k \sin\left( k x \right) \right) \right] \\
+            &\quad \vdots \\
+            &\quad \left. {}+ \left[ \frac{a_0}{2} + \sum_{k = 1}^{N - 1} \left( a_k \cos\left( k x \right) + b_k \sin\left( k x \right) \right) \right]\right] \\
+            &= \left( \frac{N}{N} \right) \left( \frac{a_0}{2} \right) + \left( \frac{N - 1}{N} \right) \left( a_1 \cos\left( x \right) + b_1 \sin\left( x \right) \right) \\
+            &\quad {}+ \left( \frac{N - 2}{N} \left( a_2 \cos\left( 2 x \right) + b_2 \sin\left( 2 x \right) \right) \right) \\
+            &\quad {}+ \cdots \\
+            &\quad {}+ \left( \frac{N - \left( N - 1 \right)}{N} \right) \left( a_{N - 1} \cos\left( \left( N - 1 \right) x \right) + b_{N - 1} \sin\left( \left( N - 1 \right) x \right) \right) \\
+        \end{split}
+    \end{align*}
+    Portanto,
+    \begin{align*}
+        \sigma_N(x) &= \frac{a_0}{2} + \sum_{k = 1}^{N - 1} \left( \alpha_k^N \cos\left( k x \right) + \beta_k^N \sin\left( k x \right) \right), \\
+        \alpha_k^N &= \left( 1 - \frac{k}{N} \right) a_k, \\
+        \beta_k^N &= \left( 1 - \frac{k}{N} \right) b_k.
+    \end{align*}
+
+    Por outro lado, sabemos que
+    \begin{align*}
+        S_N(x) &= \int_{-\pi}^\pi f(\xi) D_N(\xi - x) \id{\xi},
+    \end{align*}
+    onde $D_N$ denota o n\'{u}cleo de Dirichlet. Logo
+    \begin{align*}
+        \sigma_N(x) &= \frac{1}{N} \sum_{k = 0}^{N - 1} \int_{-\pi}^\pi f(\xi) D_k(\xi - x) \id{\xi}
+    \end{align*}
+    ou ainda
+    \begin{align*}
+        \sigma_N(x) &= \int_{-\pi}^\pi f(\xi) F_N(\xi - x) \id{\xi},
+    \end{align*}
+    onde
+    \begin{align*}
+        F_N(\mu) &= \frac{1}{N} \sum_{k = 0}^{N - 1} D_k(\mu).
+    \end{align*}
+
+    Lembrando que $D_k(\mu) = \left[ \sin\left( k + 1/2 \right) \mu \right] / \left[ 2 \pi \sin\left( \mu/2 \right) \right]$, temos
+    \begin{align*}
+        \sin^2\left( \mu/2 \right) F_N(\mu) &= \frac{1}{N} \sin^2\left( \mu/2 \right) \sum_{k = 0}^{N - 1} \frac{\sin\left( k + 1/2 \right) \mu}{2 \pi \sin\left( \mu/2 \right)} \\
+        &= \frac{1}{2 \pi N} \sum_{k = 0}^{N - 1} \sin\left( \mu/2 \right) \sin\left( k + 1/2 \right) \mu \\
+        &= \frac{1}{2 \pi N} \sum_{k = 0}^{N - 1} \frac{1}{2} \left[ \cos\left( k + 1/2 - 1/2 \right) \mu - \cos\left( k + 1/2 + 1/2 \right) \mu \right] \\
+        &= \frac{1}{4 \pi N} \sum_{k = 0}^{N - 1} \left( \cos\left( k \mu \right) - \cos\left( \left( k + 1 \right) \mu \right) \right) \\
+        &= \frac{1}{4 \pi N} \left( 1 - \cos\left( N \mu \right) \right) \\
+        &= \frac{1}{2 \pi N} \left( \frac{1 - \cos\left( N \mu \right)}{2} \right) \\
+        &= \frac{1}{2 \pi N} \sin^2\left( N \mu / 2 \right).
+    \end{align*}
+\end{obs}
+\begin{defi}
+    O n\'{u}cleo de Fej\'{e}r $F_N(\mu)$ \'{e} definido como
+    \begin{align*}
+        F_N(\mu) &= \frac{1}{N} \sum_{k = 0}^{N - 1} D_k(\mu) = \frac{\sin^2\left( N \mu / 2 \right)}{2 \pi N \sin^2\left( \mu/2 \right)}.
+    \end{align*}
+\end{defi}
+
+Antes de prosseguir, \'{e} importante notermos que:
+\begin{lem}
+    Temos que
+    \begin{align*}
+        & \int_{-\pi}^\pi D_k(\mu) \id{\mu} = 1, \\
+        & \int_{-\pi}^\pi F_k\left( \mu \right) \id{\mu} = 1.
+    \end{align*}
+\end{lem}
+\begin{proof}
+    Sabendo que
+    \begin{align*}
+        D_k(\mu) &= \frac{\sin\left( k + 1/2 \right) \mu}{2 \pi \sin\left( \mu/2 \right)} \\
+        &= \left( 1 + 2 \sum_{j = 1}^{k - 1} \cos\left( j \mu \right) \right) \frac{1}{2 \pi}
+    \end{align*}
+    temos que
+    \begin{align*}
+        \int_{-\pi}^\pi D_k\left( \mu \right) \id{\mu} &= \frac{1}{2 \pi} \left[ \pi - \left( -\pi \right) + 2 \sum_{j = 1}^{k - 1} \left. \frac{\sin\left( j \mu \right)}{j} \right|_{-\pi}^\pi \right] = 1
+    \end{align*}
+    e
+    \begin{align*}
+        \int_{-\pi}^\pi F_k(\mu) \id{\mu} &= \frac{1}{k} \sum_{j = 0}^{k - 1} \int_{-\pi}^\pi D_j(\mu) \id{\mu} = \frac{1}{k} k = 1. \qedhere
+    \end{align*}
+\end{proof}
+\begin{teo}[Fej\'{e}r] \label{teo:fejer}
+    Seja $f(x)$ uma fun\c{c}\~{a}o cont\'{i}nua e peri\'{o}dica (de per\'{i}odo $2\pi$) e seja $\sigma_N(x)$ a soma de Ces\`{a}ro da s\'{e}rie de Fourier de $f(x)$, ou seja,
+    \begin{align*}
+        \sigma_N(x) &= \frac{a_0}{2} + \sum_{k = 1}^{N - 1} \left( \alpha_k^N \cos\left( k x \right) + \beta_k^N \sin\left( k x \right) \right),
+    \end{align*}
+    onde $\sigma_k^N = \left( 1 - k/N \right) a_k$ e $\beta_k^N = \left( 1 - k/N \right) b_k$. Ent\~{a}o a sequ\^{e}ncia de fun\c{c}\~{o}es $\sigma_n(x)$ converge para $f(x)$.
+\end{teo}
+\begin{proof}
+    (mais f\'{a}cil que Fourier pois $F_N(\mu) \geq 0$)
+    \begin{align*}
+        \sigma_N(x) &= \int_{-\pi}^\pi f(\xi) F_N(\xi - x) \id{\xi} \\
+        &= \int_{a - \pi}^{a + \pi} f(\xi) F_{N}(\xi - x) \id{\xi} \\
+        &= \int_{x - \pi}^{x + \pi} f(\xi) F_N(\xi - x) \id{\xi} \\
+        &= \int_{-\pi}^\pi f(x + \mu) F_N(\mu) \id{\mu} \\
+        \sigma_N(x) - f(x) &= \int_{-\pi}^\pi f(x + \mu) F_N(\mu) \id{\mu} - f(x) \int_{-\pi}^\pi F_N(\mu) \id{\mu} \\
+        &= \int_{-\pi}^\pi \left[ f(x + \mu) - f(x) \right] F_N(\mu) \id{\mu} \\
+        &= \frac{1}{\pi N} \int_{-\pi}^\pi \left[ f(x + \mu) - f(x) \right] \frac{\sin^2\left( N \mu/2 \right)}{2 \sin^2\left( \mu/2 \right)} \id{\mu}
+    \end{align*}
+    Logo, como $f$ \'{e} cont\'{i}nua ent\~{a}o $\forall \epsilon > 0, \exists \delta > 0$ tal que $| f(x + \mu) - f(x)| < \epsilon$ para $| x + \mu - x| = | \mu | < \delta$.
+    \begin{align*}
+        | \sigma_N(x) - f(x)| &= \left| \int_{-\pi}^\pi \left( \ldots \right) \right| \\
+        &= \left| \int_{-\pi}^{-\delta} \left( \ldots \right) + \int_{-\sigma}^\sigma \left( \ldots \right) + \int_\sigma^\pi \left( \ldots \right) \right| \\
+        &\leq \underbrace{\left| \int_{-\pi}^{-\delta} \left( \ldots \right) \right|}_{|I_1|} + \underbrace{\left| \int_{-\sigma}^\sigma \left( \ldots \right) \right|}_{|I_2|} + \underbrace{\left| \int_\sigma^\pi \left( \ldots \right) \right|}_{|I_3|}
+    \end{align*}
+    Mas
+    \begin{align*}
+        |I_2| &\leq \int_{-\delta}^\delta \underbrace{| f(x + \mu) - f(x) |}_{< \epsilon} F_N(\mu) \id{\mu} \\
+        &< \epsilon \int_{-\delta}^\delta \underbrace{F_N(\mu)}_{\geq 0} \id{\mu} \\
+        &< \epsilon \underbrace{\int_{-\delta}^\delta F_N(\mu) \id{\mu}}_{=1} \\
+        &< \epsilon, \\
+        |I_1| &\leq  \frac{1}{\pi N} \int_{-\pi}^{-\delta} | f(x + \mu) - f(x) | \frac{\sin^2\left( N \mu/2 \right)}{2 \sin^2\left( \mu/2 \right)} \id{\mu} \\
+        &\leq \frac{2 M}{\pi N} \int_{-\pi}^{-\delta} \frac{\sin^2\left( N \mu/2 \right)}{2 \sin^2\left( \mu/2 \right)} \id{\mu} \\
+        \intertext{onde $M = \max |f(x)|$}
+        &\leq \frac{2 M}{\pi N} \int_{-\pi}^{-\delta} \frac{1}{2 \sin^2\left( \mu/2 \right)} \id{\mu} \\
+        &\leq \frac{2 M}{\pi N} \int_{-\pi}^{-\delta} \frac{1}{2 \sin^2\left( \delta/2 \right)} \id{\mu}\\
+        &= \frac{M}{\pi N \sin^2\left( \delta/2 \right)} \underbrace{\int_{-\pi}^{-\delta} \id{\mu}}_{\pi - \delta < \pi} \\
+        &\leq \frac{M \pi}{\pi N \sin^2\left( \delta/2 \right)} \\
+        &\leq \frac{M}{N \sin^2\left( \delta/2 \right)}, \\
+        \intertext{e analogamente}
+        |I_3| &\leq \frac{M}{N \sin^2\left( \delta/2 \right)}.
+    \end{align*}
+    Portanto,
+    \begin{align*}
+        & |\sigma_N(x) - f(x)| \leq \epsilon + \frac{2 M}{N \sin^2\left( \delta/2 \right)}, \\
+        & \lim_{N \to \infty} | \sigma_N(x) - f(x) | \leq \epsilon
+    \end{align*}
+    de onde conlu\'{i}mos que
+    \begin{align*}
+        \lim_{N \to \infty} \sigma_N(x) &= f(x) \qedhere
+    \end{align*}
+\end{proof}
+
+\section{Diferencia\c{c}\~{a}o e Integra\c{c}\~{a}o}
+\begin{teo}
+    Seja $f(x)$ uma fun\c{c}\~{a}o cont\'{i}nua em $[-\pi,\pi]$ tal que $f(-\pi) = f(\pi)$ e seja $f'(x)$ cont\'{i}nua por partes e com derivadas laterais nesse intervalo. Ent\~{a}o a s\'{e}rie de Fourier de $f(x)$ \'{e} diferencia\'{a}vel e
+    \begin{align*}
+        f'(x) &= \sum_{n = 1}^\infty n \left( -a_n \sin\left( n x \right) + b_n \cos\left( n x \right) \right)
+    \end{align*}
+\end{teo}
+\begin{proof}
+    Como $f'(x)$ satisfaz as condi\c{c}\~{o}es do Teorema de Fourier (p\'{a}gina~\pageref{teo:fourier}), ela possui a s\'{e}rie de Fourier
+    \begin{align*}
+        f'(x) &= \frac{\alpha_0}{2} + \sum_{n = 1}^\infty \left( \alpha_n \cos\left( n x \right) + \beta_n \sin\left( n x \right) \right).
+    \end{align*}
+    Mas
+    \begin{align*}
+        \alpha_0 &= \frac{1}{\pi} \int_{-\pi}^\pi f'(x) \id{x} \\
+        &= \frac{1}{\pi} \left[ f(\pi) - f(-\pi) \right] \\
+        &= 0, \\
+        \alpha_n &= \frac{1}{\pi} \left[ \underbrace{\left. f(x) \cos\left( n x \right) \right|_{-\pi}^\pi}_{=0} + n \int_{-\pi}^\pi f(x) \sin\left( n x \right) \id{x} \right] \\
+        &= n b_n \\
+        \beta_n &= \frac{1}{\pi} \left[ \underbrace{\left. f(x) \sin\left( n x \right) \right|_{-\pi}^\pi}_{=0} - n \int_{-\pi}^\pi f(x) \cos\left( n x \right) \id{x} \right] \\
+        &= -n a_n
+    \end{align*}
+    de modo que
+    \begin{align*}
+        f'(x) &= \sum_{n = 1}^\infty \left( n b_n \cos\left( n x \right) - n a_n \sin\left( n x \right) \right). \qedhere
+    \end{align*}
+\end{proof}
+\begin{obs}
+    Note que o teorema fornece apenas uma condi\c{c}\~{a}o suficiente. Al\'{e}m disso, podemos ter s\'{e}rie de Fourier para $f(x)$ e n\~{a}o para $f'(x)$ (nesse caso o termo $n$ no numerador diminui a taxa de converg\^{e}ncia da s\'{e}rie).
+\end{obs}
+\begin{exem}
+    A fun\c{c}\~{a}o $f(x) = x$ possui a s\'{e}rie de Fourier
+    \begin{align*}
+        x = 2 \sum_{n = 1}^\infty (-1)^{n + 1} \frac{\sin\left( n x \right)}{n}.
+    \end{align*}
+    Por\'{e}m $f(-\pi) = -\pi \neq \pi f(\pi)$, de modo que as condi\c{c}\~{o}es do teorema n\~{a}o s\~{a}o satisfeitas e nada podemos afirmar acerca da s\'{e}rie de Fourier de $f'(x)$ usando esse teorema. Note que nesse caso que a derivada da s\'{e}rie de Fourier n\~{a}o converge!
+    \begin{align*}
+        1 \neq 2 \sum_{n = 1}^\infty (-1)^{n + 1} \cos\left( n x \right).
+    \end{align*}
+\end{exem}
+\begin{obs}
+    Dentro das condi\c{c}\~{o}es do teorema anterior, uma vez que $\lim_{n \to \infty} \alpha_n = 0$ e $\lim_{n \to \infty} \beta_n = 0$ (crit\'{e}rio do termo geral), temos
+    \begin{align*}
+        \lim_{n \to \infty} n a_n &= 0, & \lim_{n \to \infty} n b_n &= 0.
+    \end{align*}
+    Note que a s\'{e}rie do exemplo anterior n\~{a}o satisfaz essas condi\c{c}\~{o}es.
+\end{obs}
+\begin{teo}
+    Seja $f(x)$ uma fun\c{c}\~{a}o cont\'{i}nua por partes em $(-\pi,\pi)$. Ent\~{a}o, independentemente da s\'{e}rie de Fourier de $f(x)$ convergir ou n\~{a}o, vale a seguinte igualdade:
+    \begin{align*}
+        \int_{-\pi}^x f(\xi) \id{\xi} &= \frac{1}{2} a_0 \left( x + \pi \right) + \sum_{n = 1}^\infty \frac{1}{n} \left[ a_n \sin\left( n x \right) - b_n \left( \cos\left( n x \right) - \cos\left( n \pi \right) \right) \right],
+    \end{align*}
+    quando $x \in [-\pi,\pi]$.
+\end{teo}
+\begin{proof}
+    Seja
+    \begin{align*}
+        F(x) &= \int_{-\pi}^x f(\xi) \id{\xi} - \frac{a_0}{2} x.
+    \end{align*}
+    Se $f(x)$ \'{e} cont\'{i}nua por partes ent\~{a}o $F(x)$ \'{e} cont\'{i}nua. Al\'{e}m disso $F'(x) = f(x) - a_0/2$, de modo que $F'(x)$ \'{e} cont\'{i}nua por partes. Podemos ainda notar que $F(-\pi) = -a_0 / 2 (-\pi) = \pi a_0 / 2$ e
+    \begin{align*}
+        F(\pi) &= \int_{-\pi}^\pi f(\xi) \id{\xi} - \frac{a_0}{2} \pi \\
+        &= a_0 \pi - \frac{a_0}{2} \pi \\
+        &= \frac{a_0 \pi}{2}
+    \end{align*} 
+    ou seja, $F(\pi) = F(-\pi)$. Temos com isso que $F(x)$ satisfaz as condi\c{c}\~{o}es do teorema de Fourier e possui portanto a s\'{e}rie de Fourier
+    \begin{align*}
+        F(x) &= \frac{A_0}{2} + \sum_{n = 1}^\infty \left( A_n \cos\left( n x \right) + B_n \sin\left( n x \right) \right), \\
+        A_n &= \frac{1}{\pi} \int_{-\pi}^\pi F(x) \cos\left( n x \right) \id{x}, \\
+        B_n &= \frac{1}{\pi} \int_{-\pi}^\pi F(x) \sin\left( n x \right) \id{x}.
+    \end{align*}
+    Para $n \neq 0$,
+    \begin{align*}
+        A_n &= \frac{1}{n} \int_{-\pi}^\pi \left[ \int_{-\pi}^x f(\xi) \id(\xi) - \frac{a_0}{2} x \right] \cos\left( n x \right) \id{x} \\
+        &= \frac{1}{\pi} \underbrace{\left. F(x) \frac{\sin\left( n x \right)}{n} \right|_{-\pi}^\pi}_{=0} - \frac{1}{\pi} \int_{-\pi}^\pi \frac{\sin\left( n x \right)}{n} \left[ f(x) - \frac{a_0}{2} \right] \id{x} \\
+        &= - \frac{1}{n \pi} \int_{-\pi}^\pi f(x) \sin\left( n x \right) \id{x} + \frac{a_0}{2 n \pi} \underbrace{\int_{-\pi}^\pi \sin\left( n x \right) \id{x}}_{=0} \\
+        &= -\frac{1}{n} b_n, \\
+        B_n &= \frac{1}{n} \int_{-\pi}^\pi \left[ \int_{-\pi}^x f(\xi) \id{\xi} - \frac{a_0 x}{2} \right] \sin\left( n x \right) \id{x} \\
+        &= \underbrace{-\frac{1}{\pi} \left. F(x) \frac{\cos\left( n x \right)}{n} \right|_{-\pi}^\pi}_{=0} + \frac{1}{n \pi} \int_{-\pi}^\pi \cos\left( n x \right) \left[ f(x) - \frac{a_0}{2} \right] \id{x} \\
+        &= \frac{1}{n \pi} \int_{-\pi}^\pi \cos\left( n x \right) f(x) \id{x} - \frac{a_0}{2 n \pi} \underbrace{\int_{-\pi}^\pi \cos\left( n x \right) \id{x}}_{=0} \\
+        &= \frac{1}{n} a_n
+    \end{align*}
+    e portanto
+    \begin{align*}
+        F(x) &= \frac{A_0}{2} + \sum_{n = 1}^\infty \left( \frac{-b_n}{n} \cos\left( n x \right) + \frac{a_n}{n} \sin\left( n x \right) \right).
+    \end{align*}
+    Tomando $x = \pi$,
+    \begin{align*}
+        F(\pi) &= \frac{a_0 \pi}{2} = \frac{A_0}{2} \sum_{n = 1}^\infty \left( \frac{-b_n}{n} \cos\left( n \pi \right) + \frac{a_n}{n} \underbrace{\sin\left( n \pi \right)}_{=0} \right)
+    \end{align*}
+    e portanto
+    \begin{align*}
+        \frac{A_0}{2} &= \frac{a_0 \pi}{2} + \sum_{n = 1}^\infty \frac{b_n}{n} \cos\left( n \pi \right)
+    \end{align*}
+    de modo que
+    \begin{align*}
+        \int_{-\pi}^x f(\xi) \id{\xi} - \frac{a_0 x}{2} &= \frac{a_0 \pi}{2} + \sum_{n = 1}^\infty \frac{1}{n} \left[ a_n \sin\left( n x \right) - b_n \left( \cos\left( n x \right) - \cos\left( n \pi \right) \right) \right]. \qedhere
+    \end{align*}
+\end{proof}
+\begin{obs}
+    Note que no caso da integra\c{c}\~{a}o o termo $n$ no denominador aumenta a taxa de converg\^{e}ncia.
+\end{obs}
+\begin{exem}
+    A s\'{e}rie de $f(x) = x$ \'{e}
+    \begin{align*}
+        x = 2 \sum_{n = 1}^\infty (-1)^{n + 1} \frac{\sin\left( n x \right)}{n}.
+    \end{align*}
+    Tomando $\int_0^x f(\xi) \id{\xi}$ temos
+    \begin{align*}
+        x^2 &= 4 \sum_{n = 1}^\infty \frac{(-1)^n}{n^2} \cos\left( n x \right) - 4 \sum_{n = 1}^\infty \frac{(-1)^n}{n^2}
+    \end{align*}
+    que \'{e} justamente a s\'{e}rie obtida na p\'{a}gina~\pageref{exem:fourier:x^2} uma vez que $\sum_{n = 1}^\infty (-1)^n / (n^2) = -\pi^2 / 12$.
+\end{exem}
+
+\section{Fen\^{o}meno de Gibbs}
+Para ilustrar o fen\^{o}meno de Gibbs, vamos considerar uma onda quadrada peri\'{o}dica representada por
+\begin{align*}
+    f(x) &= \begin{cases}
+        h/2, & 0 < x < \pi, \\
+        -h/2, & -\pi < x < 0.
+    \end{cases}
+    1;3P
+\end{align*}
+e ilustrada na Figura
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=.5\textwidth]{figuras/gibbs_phenomenon.png}
+    \begin{flushright}
+        Imagem em dom\'{i}nio p\'{u}blico de Johannes Rössel e dispon\'{i}vel em \url{http://en.wikipedia.org/wiki/File:Gibbs_phenomenon_10.svg}.
+    \end{flushright}
+    \caption{Ilustra\c{c}\~{a}o do Fen\^{o}meno de Gibbs para onda quadrada.}
+    \label{fig:fenom_gibbs}
+\end{figure}
+% TODO Terminar de digitar a se\c{c}\~{a}o sobre o Fen\^{o}meno de Gibbs do arquivo M2S12-5.
+
+\section{Teorema da Aproxima\c{c}\~{a}o de Weierstrass}
+\begin{teo}
+    Seja $f(x)$ cont\'{i}nua em $a \leq x \leq b$. Ent\~{a}o para todo $\epsilon > 0$ existe um polin\^{o}mio $P(x)$ tal que $|P(x) - f(x)| \leq \epsilon, \forall x \in [a,b]$.
+\end{teo}
+\begin{proof}
+    Dado $f(x)$, $x \in [a,b]$, podemos definir $g(t)$ para $t \in [-\pi/2, \pi/2]$ atrav\'{e}s de
+    \begin{align*}
+        g(t) &= f\left[ \left( \frac{b - a}{\pi} t + \left( \frac{b - a}{2} \right) \right) \right].
+    \end{align*}
+    Podemos ainda definir uma extens\~{a}o de $g(t)$ para $x \in [-\pi, \pi]$, que denotaremos por $G(t)$, e de modo que $G(-\pi) = G(\pi)$. Podemos al\'{e}m disso considerar para os demais pontos a extens\~{a}o peri\'{o}dica de $G(t)$. Nessas condi\c{c}\~{o}es o Teorema de Fej\'{e}r (p\'{a}gina~\pageref{teo:fejer}) nos garante que a sequ\^{e}ncia $\sigma_N(t)$,
+    \begin{align*}
+        \sigma_N(t) &= \frac{a_0}{2} + \sum_{k = 1}^{N - 1} \left( \alpha_k^N \cos\left( k t \right) + \beta_k^N \sin\left( k t \right) \right),
+    \end{align*}
+    converge para $G(t)$, ou seja, $\forall \epsilon > 0$, existe $N_0 > 0$ tal que
+    \begin{align*}
+        | \sigma_N(t) - G(t) | < \epsilon/2
+    \end{align*}
+    para $N > N_0$. Por outro lado, pelo Teorema de Taylor, existem polin\^{o}mios $R_n^k(t)$ e $S_n^k(t)$ de grau $n$ tais que
+    \begin{align*}
+        | \cos\left( k t \right) - R_n^k(t) | &< \epsilon', & | \sin\left( k t \right) - S_n^k(t) | &< \epsilon'',
+    \end{align*}
+    para $n > N_1$. Portanto, existe um polin\^{o}mio $Q_N(t)$, que \'{e} uma combina\c{c}\~{a}o dos polin\^{o}mios $R_n^k(t)$ e $S_n^k(t)$, tal que
+    \begin{align*}
+        | \sigma_N(t) - Q_N(t) | < \epsilon/2.
+    \end{align*}
+    Com isso,
+    \begin{align*}
+        | G(t) - Q_N(t) | &= | G(t) - \sigma_N(t) + \sigma_N(t) - Q_N(t) | \\
+        &\leq \underbrace{| G(t) - \sigma_N(t) |}_{< \epsilon/2} + \underbrace{| \sigma_N(t) - Q_N(t) |}_{< \epsilon/2}
+    \end{align*}
+    e portanto $| G(t) - Q_N(t) | < \epsilon$ para $t \in [-\pi, \pi]$ e $| g(t) - Q_N(t) | < \epsilon$ para $t \in [-\pi/2, \pi/2]$ ou, definindo $P_N(x) = Q_N\left[ \left( \pi / \left( b - a \right) \right) x - \left( \pi / 2 \right) \left( \left( b + a \right) / \left( b - a \right) \right) \right]$,
+    \begin{align*}
+        | f(x) - P_N(x) | < \epsilon
+    \end{align*}
+    para $x \in [a, b]$.
+\end{proof}
+
 % TODO Incluir arquivo M2S12-6.pdf
 % TODO Incluir arquivo M2S12-7.pdf

@@ -137,6 +137,163 @@
             % TODO EScrever solu\c{c}\~{a}o.
         \end{solution}
     \end{parts}
+
+    \question[P1 de 2006] Seja a s\'{e}rie de Fourier-Bessel
+    \begin{align*}
+        f(x) &= \sum_{n = 1}^\infty c_n J_k(\lambda_{kn} x/a),
+    \end{align*}
+    onde $\lambda_{kn}$ \'{e} o $n$-\'{e}simo zero de $J_k(x)$ e $0 < x < a$.
+    \begin{parts}
+        \part Supondo a converg\^{e}ncia uniforme, mostre que a identidade de Parseval para essa s\'{e}rie \'{e}
+        \begin{align*}
+            \int_0^a \left[ f(x) \right]^2 x \id{x} &= \frac{a^2}{2} \sum_{n = 1}^\infty c_n^2 \left[ J_{k+1}\left( \lambda_{kn} \right) \right]^2.
+        \end{align*}
+        \begin{solution}
+            Temos que
+            \begin{align*}
+                \int_0^a \left[ f(x) \right]^2 x \id{x} &= \int_0^a x \left[ \sum_{n = 1}^\infty \sum_{m = 1}^\infty c_n c_m J_k\left( \frac{\lambda_{kn} x}{a} J_k\left( \frac{\lambda_{km} x}{a} \right) \right) \right] \id{x} \\
+                &= \sum_{n = 1} \sum_{m = 1} c_n c_m \int_0^a x J_k\left( \frac{\lambda_{kn} x}{a} \right) J_k\left( \frac{\lambda_{km} x}{a} \right) \id{x} \\
+                &= \sum_{n = 1}^\infty \sum_{m = 1}^\infty c_n c_m \frac{a^2}{2} \left[ J_{k + 1}\left( \lambda_{kn} \right) \right]^2 \delta_{nm} \\
+                &= \frac{a^2}{2} \sum_{n = 1}^\infty c_n^2 \left[ J_{k+1}\left( \lambda_{kn} \right) \right]^2.
+            \end{align*}
+        \end{solution}
+
+        \part Sabendo que o desenvolvimento de $f(x) = x^k$ em termos dessa s\'{e}rie \'{e} dado por
+        \begin{align*}
+            x^k = \sum{n = 1}^\infty \frac{2 a^k J_k\left( \lambda_{kn} x / a \right)}{\lambda_{kn} J_{k+1}\left( \lambda_{kn} \right)},
+        \end{align*}
+        use essa identidade para mostrar que
+        \begin{align*}
+            \sum_{n = 1}^\infty \frac{1}{\lambda_{kn}^2} = \frac{1}{4\left( k + 1 \right)}.
+        \end{align*}
+        \begin{solution}
+            Temos que
+            \begin{align*}
+                x^k = \sum_{n = 1}^\infty \frac{2 a^k J_k\left( \lambda_{kn} x / a \right)}{\lambda_{kn} J_{k+1}\left( \lambda_{kn} \right)}
+            \end{align*}
+            que implica em
+            \begin{align*}
+                \begin{cases}
+                    f(x) = x^k, \\
+                    c_n = \left( 2 a^k \right) / \left[ \lambda_{kn} J_{k+1}\left( \lambda_{kn} \right) \right].
+                \end{cases}
+            \end{align*}
+            Logo,
+            \begin{align*}
+                \int_0^a \left[ f(x) \right]^2 x \id{x} &= \int_0^a x^{2k + 1} \id{x} \\
+                &= \left. \frac{x^{2k + 2}}{2k + 2} \right|_0^a \\
+                &= \frac{a^{2k + 2}}{2k + 2}, \\
+                \frac{a^2}{2} \sum_{n = 1}^\infty c_n^2 \left[ J_{k+1}\left( \lambda_{kn} \right) \right]^2 &= \frac{a^2}{2} \sum_{n = 1}^\infty \frac{4 a^{2k} \left[ J_{k+1}\left( \lambda_{kn} \right) \right]^2}{\left( \lambda_{kn} \right)^2 \left[ J_{k+1}\left( \lambda_{kn} \right) \right]^2} \\
+                &= 2 a^{2k + 2} \sum_{n = 1}^\infty \frac{1}{\lambda_{kn}^2}.
+            \end{align*}
+            Portanto,
+            \begin{align*}
+                \frac{a^{2k + 2}}{2k + 2} &= 2 a^{2k + 2} \sum_{n = 1}^\infty \frac{1}{\lambda_{kn}^2}
+            \end{align*}
+            e
+            \begin{align*}
+                \sum_{n = 1}^\infty \frac{1}{\lambda_{kn}^2} &= \frac{1}{4 \left( k + 1 \right)}.
+            \end{align*}
+        \end{solution}
+    \end{parts}
+
+    \question[P1 de 2006] Seja $f(x) = \text{sign}(x)$,
+    \begin{align*}
+        \text{sign}(x) = \begin{cases}
+            1, & x > 0, \\
+            -1, & x < 0.
+        \end{cases}
+    \end{align*}
+    Mostre que seu desenvolvimento em uma s\'{e}rie de Fourier-Legendre \'{e} dado por
+    \begin{align*}
+        \text{sign}(x) &= \sum_{n = 0}^\infty \frac{(-1)^n (1/2)_n (2n + 3/2)}{(n + 1)!} P_{2n + 1}(x),
+    \end{align*}
+    onde $(a)_n = a (a + 1) \cdots (a + n - 1)$ \'{e} o s\'{i}mbolo de Pochhammer e $P_n(x)$ \'{e} o $n$-\'{e}simo polini\^{o}mio de Legendre.
+    \begin{solution}
+        Temos que
+        \begin{align*}
+            f(x) &= \text{sign}(x) = \sum_{n = 0}^\infty a_n P_n(x)
+        \end{align*}
+        onde
+        \begin{align*}
+            a_n = \frac{2n + 1}{2} \int_{-1}^1 \text{sign}(x) P_n(x) \id{x}.
+        \end{align*}
+
+        Ent\~{a}o
+        \begin{align*}
+            \int_{-1}^1 \text{sign}(x) P_n(x) \id{x} &= \int_{-1}^0 (-1) P_n(x) \id{x} + \int_0^1 (1) P_n(x) \id{x} \\
+            &= \int_1^0 P_n(-x) \id{X} + \int_0^1 P_n(x) \id{x} \\
+            &= -(-1)^n \int_0^1 P_n(x) \id{x} + \int_0^1 P_n(x) \id{x}
+        \end{align*}
+        e portanto
+        \begin{align*}
+            a_{2k} &= 0, \\
+            a_{2k+1} &= \frac{4k + 3}{2} 2 \int_0^1 P_{2k+1}(x) \id{x}.
+        \end{align*}
+
+        Usando $P'_{n + 1}(x) - P'_{n-1}(x) = \left( 2n + 1 \right) P_n(x)$ temos
+        \begin{align*}
+            \int_0^1 P_{2k + 1}(x) \id{x} &= \frac{1}{4k + 3} \int_0^1 \left( P'_{2k + 2}(x) - P'_{2k}(x) \right) \id{x} \\
+            &= \frac{1}{4k + 3} \left[ \left. P_{2k+2}(x) \right|_0^1 - \left. P_{2k}(x) \right|_0^1 \right] \\
+            &= \frac{1}{4k + 3} \left[ P_{2k}(0) - P_{2k + 2}(0) \right] \\
+            &= \frac{1}{4k + 3} \left[ \frac{(-1)^k \left( 1/2 \right)_k}{k!} - \frac{(-1)^k \left( 1/2 \right)_{k + 1}}{\left( k + 1 \right)!} \right] \\
+            &= \frac{1}{4k + 3} \frac{(-1)^k \left( 1/2 \right)_k}{k!} \left[ 1 - \frac{\left( 1/2 + k \right)}{k + 1} \right] \\
+            &= \frac{(-1)^k \left( 1/2 \right)_k \left( 2k + 3/2 \right)}{\left( 4k + 3 \right) \left( k + 1 \right)!}
+        \end{align*}
+        e portanto
+        \begin{align*}
+            a_{2k + 1} &= \frac{4 k + 3}{2} 2 \frac{(-1)^k \left( 1/2 \right)_k \left( 2k + 3/2 \right)}{\left( 4k + 3 \right) \left( k + 1 \right)!} \\
+            &= \frac{(-1)^k \left( 1/2 \right)_k \left( 2k + 3/2 \right)}{\left( k + 1 \right)!}.
+        \end{align*}
+        
+        Por fim,
+        \begin{align*}
+            \text{sign}(x) &= \sum_{k = 0}^\infty \frac{(-1)^k \left( 1/2 \right)_k \left( 2k + 3/2 \right)}{\left( k + 1 \right)!} P_{2k + 1}(x).
+        \end{align*}
+    \end{solution}
+
+    \question[T2 de 2011, P1 de 2011] Sejam $L_n(x)$ ($n = 0, 1, 2, \ldots$) os polinîmios de Laguerre. Mostre que o desenvolvimento da fun\c{c}\~{a}o $f(x) = \exp(-ax)$ ($a > 0$) em uma s\'{e}rie de Fourier-Laguerre pode ser escrito na forma
+    \begin{align*}
+        \exp\left( -ax \right) &= \frac{1}{1 + a} \sum_{n = 0}^\infty \left( \frac{a}{1 + a} \right)^n L_n(x),
+    \end{align*}
+    onde $0 \leq x \leq \infty$.
+    \begin{solution}
+        Sabemos que
+        \begin{align*}
+            \exp\left( -ax \right) &= \sum_{n = 0}^\infty c_n L_n(x)
+        \end{align*}
+        onde
+        \begin{align*}
+            c_n &= \frac{<\exp(-ax), L_n>}{\| L_n \|^2} = \int_0^\infty \exp(-x) \exp(-ax) L_n(x) \id{x}.
+        \end{align*}
+        Usando que
+        \begin{align*}
+            L_n(x) &= \frac{\exp(x)}{n!} \frac{\id{}^n}{\id{x^n}}\left( \exp(-x) x^n \right)
+        \end{align*}
+        temos que
+        \begin{align*}
+            c_n &= \int_0^\infty \exp(-x) \exp(-ax) \frac{\exp(x)}{n!} \frac{\id{}^n}{\id{x^n}}\left( \exp(-x) x^n \right) \id{x} \\
+            &= \frac{1}{n!} \int_0^\infty \exp\left( -ax \right) \frac{\id{}^n}{\id{x^n}}\left( \exp(-x) x^n \right) \id{x}
+        \end{align*}
+        % TODO Terminar de escrever a solu\c{c}\~{a}o.
+    \end{solution}
+
+    \question[P1 de 2011] Os polin\^{o}mios de Hermite $H_n(x)$ podem ser definidos pela f\'{o}rmula de Rodrigues,
+    \begin{align*}
+        H_n(x) &= (-1)^n \exp(x^2) \frac{\id{}^n}{\id{x^n}}\left( \exp(-x^2) \right),
+    \end{align*}
+    onde $n = 0, 1, 2, \ldots$ e satisfazem a rela\c{c}\~{a}o de ortogonalidade
+    \begin{align*}
+        \int_{-\infty}^\infty \exp(-x^2) H_n(x) H_m(x) \id{x} &= 2^n n! \sqrt{\pi} \delta_{mn}.
+    \end{align*}
+    Encontre o desenvolvimento da fun\c{c}\~{a}o
+    \begin{align*}
+        f(x) = x^4
+    \end{align*}
+    em uma s\'{e}rie de Fourier-Hermite.
+    \begin{solution}
+        % TODO Escrever a solu\c{c}\~{a}o.
+    \end{solution}
 \end{questions}
 % \bibliographystyle{plain}
 % \bibliography{bibliography}

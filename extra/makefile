@@ -1,4 +1,4 @@
-all: notas_de_aula
+pdf: notas_de_aula
 
 ereader:
 	-sed -i '20s/^/% /' paper_size.tex

@@ -1,0 +1,355 @@
+% Filename: cap02@notas_de_aula.tex
+% This code is part of 'Notas de aula n\~{a}o oficiais de MS650 e F620'
+% 
+% Description: This file correspond to part of the textbook using in the course.
+% 
+% Created: 01.09.12 10:43:56 AM
+% Last Change: 01.09.12 10:43:56 AM
+% 
+% Authors:
+% - Raniere Silva, r.gaia.cs@gmail.com
+% 
+% Copyright (c) 2012, Raniere Silva. All rights reserved.
+% 
+% This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/.
+%
+% This work is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+%
+\chapter{Série de Fourier Generalizadas}
+\section{O Problema de Sturm-Liouville (PSL)}
+Vamos recordar alguns fatos básicos sobre o PSL. Seja
+\begin{align*}
+    L[y] &= \frac{\id{}}{\id{x}}\left[ p(x) \frac{\id{y}}{\id{x}} \right] - q(x) y.
+\end{align*}
+O PSL consiste na equação diferencial
+\begin{align*}
+    L[y] + \lambda p(x) y &= 0, & a \leq x \leq b
+\end{align*}
+com condições apropriadas conforme o problema seja regular ou singular. Uma solução $y$ não-trivial é dita uma auto-função e a constante $\lambda$ correspondente um auto-valor.
+
+O PSL regular corresponde ao caso em que $p(x) > 0$, $\rho(x) > 0$, $p, p', q, \rho$ são contínuas em $x \in [a,b]$. Nesse caso as condições adequadas são:
+\begin{enumerate}
+    \item para condições de contorno homogêneas:
+        \begin{align*}
+            \begin{cases}
+                \alpha_1 y(a) + \beta_1 y'(a) = 0, \\
+                \alpha_2 y(b) + \beta_2 y'(b) = 0.
+            \end{cases}
+        \end{align*}
+    \item para condições periódicas:
+        \begin{align*}
+            \begin{cases}
+                y(a) = y'(b), \\
+                y'(a) = y'(b).
+            \end{cases}
+        \end{align*}
+    \item $y$ e $y'$ são limitadas (para $x \to a$ ou $x \to \pm \infty$ conforme o caso).
+\end{enumerate}
+
+E o PSL singular corresponde as
+\begin{enumerate}
+    \item $p(a) = 0$ ou $p(a) = 0$ e/ou $p(b) = 0$ ou $p(b) = 0$.
+    \item $-\infty < x < \infty$, $0 \leq x \leq \infty$ e $-\infty < x \leq 0$.
+\end{enumerate}
+
+\begin{teo}
+    As autofunções correspondentes a diferentes autovalores de um PSL regular com condição de contorno homoêneas ou periódicas são ortogonais com peso $\rho(x)$ em $[a,b]$, ou seja,
+    \begin{align*}
+        \int_a^b \rho(x) u(x) v(x) \id{x} = 0.
+    \end{align*}
+    O mesmo vale para as autofunções de quadrado integrável de um PSL singular com a condição que estas autofunções e suas derivadas primeiras sejam limitadas nos extremos.
+\end{teo}
+\begin{proof}
+    % TODO Escrever prova.
+    Ver curso de MS410.
+\end{proof}
+\begin{exem}
+    Considere o PSL dado por
+    \begin{align*}
+        \begin{cases}
+            y'' + \lambda y = 0, & -\pi < x < \pi, \\
+            y(-\pi) = y(\pi), \\
+            y(-\pi) = y'(\pi).
+        \end{cases}
+    \end{align*}
+
+    Esse PSL tem autovalores $\lambda = n^2$, para $n = 0, 1, 2, \ldots$ e auto-funções $\left\{ 1, \cos\left( n x \right), \sin\left( n x \right) \right\}$. Note que temos duas autofunções para o mesmo autovalor para $n = 1, 2, \ldots$. Logo, os autovalores não são simples no caso periódico.
+
+    Denotando
+    \begin{align*}
+        \phi_1(x) &= 1, & \phi_{2n}(x) &= \sin\left( n x \right), & \phi_{2n + 1}(x) &= \cos\left( n x \right)
+    \end{align*}
+    para $n = 1, 2, \ldots$ temos que o auto-valor correspondente a $\phi_k(x)$ é
+    \begin{align*}
+        \lambda_k &= \left( \left[ \frac{k}{2} \right] - 1 \right)^2
+    \end{align*}
+    onde $\left[ a \right]$ denota a parte inteira de $a$.
+
+    A relação de ortogonalidade é
+    \begin{align*}
+        \int_{-\pi}^\pi \phi_n(x) \phi_m(x) \id{x} &= 0,
+    \end{align*}
+    para $n \neq m$, ou seja, as autofunções são ortogonais com peso $\rho(x) = 1$.
+\end{exem}
+\begin{exem}
+    Considere o PSL dado por
+    \begin{align*}
+        \begin{cases}
+            \left[ \left( 1 - x^2 \right) y' \right]' + \lambda y = 0, & -1 < x < 1 \\
+            \lim_{x \to \pm 1} | y(x) | < \infty, \\
+            \lim_{x \to \pm 1} | y'(x) | < \infty.
+        \end{cases}
+    \end{align*}
+
+    Esse é um PSL singular cujos autovalores são $\lambda = n \left( n + 1 \right)$ para $n = 0, 1, 2, \ldots$ e as correspondentes autofunções são os polinômios de Legendre $P_n(x)$ definidos por
+    \begin{align*}
+        P_n(x) &= \frac{1}{2^n n!} \frac{\id{}^n}{\id{x^n}}\left( x^2 - 1 \right)^n
+    \end{align*}
+    para $n = 1, 2, \ldots$ e $P_0(x) = 1$. Logo,
+    \begin{align*}
+        P_1(x) &= x, \\
+        P_2(x) &= \left( 1/2 \right) \left( 3 x^2 - 1 \right), \\
+        P_3(x) &= \left( 1/2 \right) \left( 5 x^3 - 3 x \right), \ldots
+    \end{align*}
+\end{exem}
+
+\section{Expansão ortogonais}
+Sejam $\left\{ \phi_n(x) \right\}$ para $n = 1, 2, \ldots$ funções de quadrado integrável com peso $\rho(x)$ em $[a,b]$,
+\begin{align*}
+    \int_a^b \rho(x) \left[ \phi_n(x) \right]^2 \id{x} < \infty
+\end{align*}
+e ortogonais (com peso $\rho(x)$) para $n \neq m$,
+\begin{align*}
+    \int_a^b \rho(x) \phi_n(x) \phi_m(x) \id{x} = 0
+\end{align*}
+para $n \neq m$.
+
+Vamos denotar por $\langle \cdot, \cdot \rangle$ o produto escalar em $L_p^2(a, b)$:
+\begin{align*}
+    \langle f,g \rangle &= \int_a^b \rho(x) f(x) g(x) \id{x}.
+\end{align*}
+
+Agora vamos supor que uma função $f(x)$ pode ser escrita como o limite de uma série uniformimente convergente de múltiplos de $\phi_n(x)$, ou seja,
+\begin{align*}
+    f(x) &= \sum_{k = 1}^\infty c_n \phi_n(x).
+\end{align*}
+Com isso temos que
+\begin{align*}
+    \langle f,\phi_m \rangle &= \int_a^b \rho(x) f(x) \phi_m(x) \id{x} \\
+    &= \int_a^b \left( \sum_{n = 1}^\infty c_n \phi_n(x) \right) \phi_m(x) \rho(x) \id{x} \\
+    &= \sum_{n = 1}^\infty c_n \int_a^b \phi_n(x) \phi_m(x) \rho(x) \id{x} \\
+    &= \sum_{n = 1}^\infty c_n \delta_{nm} \int_a^b \left[ \phi_m(x) \right]^2 \rho(x) \id{x} \\
+    &= c_n \int_a^b \left[ \phi_m(x) \right]^2 \rho(x) \id{x} \\
+    &= c_m \langle \phi_m, \phi_m \rangle \\
+    &= c_m \| \phi_m \|^2,
+\end{align*}
+ou seja,
+\begin{align*}
+    c_n &= \frac{\langle f, \phi_n \rangle}{\| \phi_n \|^2}.
+\end{align*}
+
+\begin{exem}
+    Para a série de Fourier temos
+    \begin{align*}
+        \| \phi_1(x) \|^2 &= 2 \pi, & \| \phi_k \|^2 &= \pi
+    \end{align*}
+    para $k = 2, 3, \ldots$, e portanto
+    \begin{align*}
+        c_1 &= \frac{\langle f, \phi_1 \rangle}{2\pi} \\
+        &= \frac{1}{2\pi} \int_{-\pi}^\pi f(x) \id{x} \\
+        &= \frac{a_0}{2}, \\
+        c_{2n} &= \frac{\langle f, \phi_{2n} \rangle}{\pi} \\
+        &= \frac{1}{\pi} \int_{-\pi}^\pi f(x) \sin\left( n x \right) \id{x} \\
+        &= b_n, \\
+        c_{2n + 1} &= \frac{\langle f, \phi_{2n + 1} \rangle}{\pi} \\
+        &= \frac{1}{\pi} \int_{-\pi}^\pi f(x) \cos\left( n x \right) \id{x} \\
+        &= a_n.
+    \end{align*}
+\end{exem}
+
+Diremos que $c_n$ é o coeficiente de Fourier generalizado da série de Fourier generalizada $f(x) = \sum_{n = 1}^\infty c_n \phi_n(x)$.
+
+Dada uma soma
+\begin{align*}
+    s_N(x) &= \sum_{n = 1}^N \gamma_n \phi_n(x),
+\end{align*}
+o desvio total quadrático $\Delta_N$
+\begin{align*}
+    \Delta_N &= \| s_N - f \|^2 \\
+    &= \int_a^b \rho(x) \left[ s_N(x) - f(x) \right]^2 \id{x}
+\end{align*}
+é minimizado quando $\gamma_n = c_n$, ou seja, $s_N = S_N$, que é a $N$-ésima soma parcial da série de Fourier generalizada. De fato:
+\begin{align*}
+    \Delta_N &= \langle s_N - f, s_N - f \rangle \\
+    &= \langle s_N, s_N \rangle - 2 \langle s_N, f \rangle - \langle f, f \rangle, \\
+    \langle s_N, s_N \rangle &= \sum_{n = 1}^`N \sum_{m = 1}^N \gamma_n \gamma_m \langle \phi_n, \phi_m \rangle \\
+    &= \sum_{n = 1}^N \gamma_n^2 \| \phi_n \|^2, \\
+    \langle s_N, f \rangle &= \sum_{n = 1}^N \gamma_n \langle \phi_n, f \rangle.
+\end{align*}
+Portanto,
+\begin{align*}
+    \frac{\partial \Delta_N}{\partial \gamma_k} &= 2 \gamma_k \| \phi_k \|^2 - 2 \langle \phi_k, f \rangle = 0
+\end{align*}
+que implica em
+\begin{align*}
+    \gamma_k = \frac{\langle \phi_k, f \rangle}{\| \phi_k \|^2} &= c_k.
+\end{align*}
+
+Como $\Delta_N \geq 0$, para $\Delta_N^{\min{}}$ temos
+\begin{align*}
+    0 \leq \Delta_N^{\min{}} \\
+    &= \sum_{n = 1}^N c_n^2 \| \phi_n \|^2 - 2 \sum_{n = 1}^N c_n \langle \phi_n, f \rangle + \| f \|^2 \\
+    &= \sum_{n = 1}^N \frac{\langle \phi_n, f \rangle^2}{\| \phi_n \|^2} \| \phi_n \|^2 - 2 \sum_{n = 1}^\infty \frac{\langle \phi_n, f \rangle}{\| \phi_n \|^2} + \| f \|^2,
+\end{align*}
+ou seja,
+\begin{align*}
+    \sum_{n = 1}^N \frac{\langle \phi_n, f \rangle^2}{\| \phi_n \|^2} \leq \| f \|^2
+\end{align*}
+e com os argumentos conhecidos para a série de Fourier segue a desigualdade de Bessel generalizada
+\begin{align*}
+    \sum_{n = 1}^\infty \frac{\langle \phi_n, f \rangle^2}{\| \phi_n \|^2} \leq \| f \|^2.
+\end{align*}
+
+Dizemos que $S_N(x)$ converge na média para $f(x)$ se
+\begin{align*}
+    \lim_{N \to \infty} \| S_N - f \|^2 &= \lim_{N \to \infty} \left\| \sum_{n = 1}^N c_n \phi_n - f \right\|^2 = 0
+\end{align*}
+e nesse caso dizemos que $\left\{ \phi_n(x) \right\}$ é completo. Uma condição necessária e suficiente para isso é valer a identidade de Parseval generalizada,
+\begin{align*}
+    \sum_{n = 1}^\infty \frac{\langle \phi_n, f \rangle^2}{\| \phi_n \|^2} &= \| f \|^2,
+\end{align*}
+ou ainda
+\begin{align*}
+    \sum_{n = 1}^\infty c_n^2 \| \phi_n \|^2 &= \| f \|^2.
+\end{align*}
+
+\section{Polinômios ortogonais}
+seja $\left\{ P_n(x) \right\}$, $n = 0, 1, 2, \ldots$, uma sequ\^{e}ncia de polin\^{o}mios tais que $P_n(x)$ seja de graun $n$ e que sejam ortogonais em $[a,b]$ para $n \neq m$,
+\begin{align*}
+    \langle P_n, P_m \rangle &= \int_a^b \rho(x) P_n(x) P_m(x) \id{x} = 0.
+\end{align*}
+\begin{exem}
+    V\'{a}rios polin\^{o}mios ortogonais surgem como autofun\c{c}\~{o}es de PSL; alguns exemplos s\~{a}o:
+    \begin{align*}
+        \frac{\id{}}{\id{x}}\left[ p(x) \frac{\id{y}}{\id{x}} \right] - q(x) y + \lambda \rho(x) y &= 0.
+    \end{align*}
+\end{exem}
+\begin{table}[!htb]
+    \centering
+    \caption{Polin\^{o}mios otogonais que surgem como autofun\c{c}\~{o}es de PSL.}
+    \label{tab:pol_ort_PSL}
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        polin\^{o}mio $P_n(x)$ & $p(x)$ & $q(x)$ & $\rho(x)$ & $\lambda$ & $[a,b]$ \\ \hline
+        Legendre $P_n(x)$ & $\left( 1 - x^2 \right)$ & $0$ & $1$ & $n \left( n + 1 \right)$ & $-1 \leq x \leq 1$ \\ \hline
+        Chebyshev $T_n(x)$ & $\left( 1 - x^2 \right)^{1/2}$ & $0$ & $\left( 1 - x^2 \right)^{-1/2}$ & $n^2$ & $-1 \leq x \leq 1$ \\ \hline
+        Hermite $H_n(x)$ & $\exp(-x^2)$ & $0$ & $\exp(-x^2)$ & $2n$ & $-\infty < x < \infty$ \\ \hline
+        Laguerre $L_n(x)$ & $x \exp(-x)$ & $0$ & $\exp(-x)$ & $n$ & $0 \leq x < \infty$ \\ \hline
+    \end{tabular}
+\end{table}
+\begin{teo}
+    Uma sequ\^{e}ncia de polin\^{o}mios ortogonais em um intervalo finito $a \leq x \leq b$ \'{e} completa.
+\end{teo}
+\begin{proof}
+    Seja $\left\{ P_n(x) \right\}$ uma sequ\^{e}ncia de polin\^{o}mios ortogonais tais que $P_n(x)$ \'{e} de grau $n$ e seja $p_n(x)$ um polin\^{o}mio de grau $n$ arbitr\'{a}rio. Ent\~{a}o existe $c_n$ tal que $p_n(x) - c_n P_n(x)$ seja um polin\^{o}mio de grau $n - 1$. Da mesma forma, existe $c_{n - 1}$ tal que $\left( p_n(x) - c_n P_n(x) \right) - c_{n - 1} P_{n - 1}(x)$ seja um polin\^{o}mio de grau $n - 2$. Dessa forma podemos escrever
+    \begin{align*}
+        p_n(x) &= \sum_{k = 0}^n c_k P_k(x).
+    \end{align*}
+    Mas, pelo teorema da aproxima\c{c}\~{a}o de Weierstrass
+    \begin{align*}
+        | f(x) - p_n(x) | < \epsilon
+    \end{align*}
+    para $a \leq x \leq b$. Logo,
+    \begin{align*}
+        \int_a^b \left[ f(x) - p_n(x) \right]^2 \rho(x) \id{x} < \epsilon^2 \int_a^b \underbrace{\rho(x)}_{>0} \id{x} < \epsilon',
+    \end{align*}
+    ou seja,
+    \begin{align*}
+        \lim_{n \to \infty} \| f - \sum_{k = 0}^n c_k P_k \| &= 0,
+    \end{align*}
+    de modo que $\left\{ P_n(x) \right\}$, $n = 0, 1, 2, \ldots$ \'{e} completo.
+\end{proof}
+
+\section{S\'{e}rie de Fourier-Legendre}
+Uma s\'{e}rie de Fourier-Legendre \'{e} uma s\'{e}rie da forma $f(x) = \sum_{n = 0}^\infty c_n P_n(x)$, onde $P_n(x)$ s\~{a}o polin\^{o}mios de Legendre, dados por $P_0(x) = 1$ e
+\begin{align*}
+    P_n(x) &= \frac{1}{2^n n!} \frac{\id{}^n}{\id{x}^n}\left( x^2 - 1 \right)^n,
+\end{align*}
+$n = 1, 2, \ldots$, que \'{e} chamada f\'{o}rmula de Rodrigues.
+\begin{prop}
+    As seguintes rela\c{c}\~{o}es e identidades s\~{a}o v\'{a}lidas:
+    \begin{enumerate}
+        \item $P_(x) = (-1)^n P_n(-x)$ e $P_n(1) = 1$;
+        \item $P_n'(x) = x P_{n - 1}'(x) + n P_{n - 1}(x)$ para $n \geq 1$;
+        \item $n P_n(x) = n x P_{n - 1}(x) + \left( x^2 - 1 \right) P_{n - 1}'(x)$ para $n \geq 1$;
+        \item $P_{n + 1}'(x) - P_{n - 1}'(x) = \left( 2 n + 1 \right) P_n(x)$ para $n \geq 1$;
+        \item $\left[ \id{}\left[ (1 0 x^2) P_n'(x) \right] \right] / \id{x} + n (n + 1) P_n(x) = 0$;
+        \item $(n + 1) P_{n + 1}(x) = (2n + 1) x P_n(x) - n P_{n - 1}(x)$ para $n \geq 1$;
+        \item $(1 - x^2) (P_n')^2 + n^2 P_n^2 = (1 - x^2) (P_{n - 1}')^2 + n^2 P_{n - 1}^2$ para $n \geq 1$;
+        \item $\left[ (1 - x^2) / n^2 \right] (P_n')^2 + P_n^2 \leq 1$ para $n \geq 1$ e $|x| \leq 1$;
+        \item $| P_n(x) | \leq 1$ para $|x| \leq 1$;
+        \item $\int_{-1}^1 P_n(x) P_m(x) \id{x} = \left[ 2 / \left( 2 n + 1 \right) \right] \delta_{nm}$.
+    \end{enumerate}
+\end{prop}
+\begin{proof}
+    % TODO Escrever a demonstra\c{c}\~{a}o das identidades.
+\end{proof}
+\begin{exem}
+    Fourier-Legendre para $f(x) = x^2$.
+    \begin{align*}
+        x^2 &= \sum_{n = 0}^\infty c_n P_n(x) \\
+        \langle x^2, P_m \rangle &= \sum_{n = 0}^\infty c_n \langle P_n, P_m \rangle \\
+        &= c_m \frac{2}{2m + 1} \\
+        c_m &= \frac{2m + 1}{2} \langle x^2, P_m \rangle \\
+        &= \frac{2m + 1}{2} \int_{-1}^1 x^2 P_m(x) \id{x} \\
+        \langle x^2, P_m \rangle &= \langle x^2, \frac{P_{m + 1}}{m + 1} - \frac{x P_m'}{m + 1} \rangle \\
+        &= \frac{1}{m + 1} \langle x^2, P_{m + 1}' \rangle - \frac{1}{m + 1} \langle x^3, P_m' \rangle \\
+        &= \frac{1}{m + 1} \left[ \left. x^2 P_{m + 1} \right|_{-1}^1 - 2 \langle x, P_{m + 1} \rangle \right] - \frac{1}{m + 1} \left[ \left. x^3 P_m \right|_{-1}^1 - 3 \langle x^2, P_m \rangle \right] \\
+        \begin{split}
+            &= \frac{1}{m + 1} \left[ \underbrace{P_{m + 1}(1)}_{1} \underbrace{P_{m + 1}(-1)}_{(-1)^{m + 1}} - 2 \langle x, P_{m + 1} \rangle \right] \\
+            &\quad {}- \frac{1}{m + 1} \left[ \underbrace{P_{m + 1}(1)}_{1} + \underbrace{P_m(-1)}_{(-1)^m} - 3 \langle x^2, P_m \rangle \right]
+        \end{split} \\
+        &= \frac{1}{m + 1} \left[ 1 - (-1)^{m + 1} - 1 - (-1)^m \right] - \frac{2}{m + 1} \langle x, P_{m + 1} \rangle + \frac{3}{m + 1} \langle x^2, P_m \rangle.
+    \end{align*}
+    Portanto,
+    \begin{align*}
+        \left( \frac{3}{m + 1} - 1 \right) \langle x^2, P_m \rangle &= \frac{2}{m + 1} \langle x, P_{m + 1} \rangle \\
+        \left( 2 - m \right) \langle x^2, P_m \rangle &= 2 \langle x, P_{m + 1} \rangle.
+    \end{align*}
+    Mas,
+    \begin{align*}
+        P_1(x) = x \Rightarrow \left( 2 - m \right) \langle x^2, P_m \rangle = 2 \langle P_1, P_{m + 1} \rangle
+    \end{align*}
+    e portanto
+    \begin{align*}
+        m = 0 &\Rightarrow 2 \langle x^2, P_0 \rangle = 2 \langle P_1, P_1 \rangle = 4 / 3 \\
+        m \neq 0 &\Rightarrow \left( 2 - m \right) \langle x^2, P_m \rangle = 0.
+    \end{align*}
+    % TODO Terminar de escrever exemplo. Falta p\'{a}gina 83.
+\end{exem}
+
+\section{S\'{e}rie de Fourier-Bessel}
+A equa\c{c}\~{a}o de Bessel de ordem $\nu$ ($\nu > 0$) \'{e}
+\begin{align*}
+    x^2 y'' + x y' + \left( x^2 - \nu^2 \right) y &= 0.
+\end{align*}
+Sua solu\c{c}\~{a}o geral \'{e} da forma
+\begin{align*}
+    y &= c_1 J_\nu(x) + c_2 Y_\nu(x),
+\end{align*}
+onde $J_\nu(x)$ \'{e} a fun\c{c}\~{a}o de Bessel de primeira esp\'{e}cie de ordem $\nu$ e $Y_\nu(x)$ \'{e} a fun\c{c}\~{a}o de Bessel de segunda esp\'{e}cie de ordem $\nu$ ou fun\c{c}\~{a}o de Neumann de ordem $\nu$. Para $J_\nu(x)$ temos
+\begin{align*}
+    J_\nu(x) &= \sum_{k = 0}^\infty \frac{(-1)^k}{\Gamma(k + \nu + 1) \Gamma(k + 1)} \left( \frac{x}{2} \right)^{2k + \nu}
+\end{align*}
+onde $\Gamma(k)$ \'{e} a fun\c{c}\~{a}o gama ($\Gamma(k + 1) = k!$ para $k \in \mathbb{N}$).
+
+Vemos facilmente que
+\begin{align*}
+    J_0(0) &= 1, & J_\nu(0) = 0 (\nu \neq 0).
+\end{align*}
+J\'{a} para $Y_\nu(x)$ temos
+\begin{align*}
+    \lim_{x \to 0^+} Y_\nu(x) &= -\infty
+\end{align*}
+devido \'{a} converg\^{e}ncia logaritmica (termo da forma $\ln x \sum c_n x^n$).
+% TODO Terminar de digitar o arquivo M2S12-7.pdf. Interrompido na p\'{a}gina 85.

@@ -352,4 +352,62 @@ J\'{a} para $Y_\nu(x)$ temos
     \lim_{x \to 0^+} Y_\nu(x) &= -\infty
 \end{align*}
 devido \'{a} converg\^{e}ncia logaritmica (termo da forma $\ln x \sum c_n x^n$).
-% TODO Terminar de digitar o arquivo M2S12-7.pdf. Interrompido na p\'{a}gina 85.
+\begin{prop}
+    As seguintes identidades e rela\c{c}\~{o}es s\~{a}o v\'{a}lidas:
+    \begin{enumerate}
+        \item $\left[ \id{}\left( J_\nu(x) / x^\nu \right) / \id{x} \right] = - J_{\nu + 1}(x) / x^\nu$ para $\nu \geq 0$;
+        \item $\left[ \id{}\left( x^\nu J_\nu(x) \right) / \id{x} \right] = x^\nu J_{\nu- 1}(x)$ para $\nu \geq 1$;
+        \item $J_{\nu + 1}(x) - J_{\nu - 1}(x) = - 2 J_\nu'(x)$ para $\nu \geq 1$;
+        \item $J_{\nu + 1}(x) + J_{\nu + 1}(x) = \left( 2 \nu / x \right) J_\nu(x)$;
+        \item $J_n(x) / x^n = \left( -x^{-1} \id{} / \id{x} \right)^n \left( J_0(x) \right)$ para $\nu = n \in \mathbb{R}$.
+    \end{enumerate}
+\end{prop}
+\begin{proof}
+    % TODO Escrever demonstra\c{c}\~{o}es da proposi\c{c}\~{a}o da p\'{a}gina 85.
+\end{proof}
+
+Vamos agora considerar o PSL associado com a eq. de Bessel. Primeiro, vamos fazer a mudan\c{c}a de vari\'{a}vel
+\begin{align*}
+    x &= \sqrt{\lambda} t.
+\end{align*}
+Na equa\c{c}\~{a}o de Bessel,
+\begin{align*}
+    x^2 y'' + x y' + \left( x^2 - \nu^2 \right) y &= 0
+\end{align*}
+que na forma auto-adjunta \'{e}
+\begin{align*}
+    \left( x y' \right)' - \left( \nu^2 / x \right) y = x y &= 0
+\end{align*}
+temos em termos da vari\'{a}vel $t$
+\begin{align*}
+    \frac{\id{}}{\id{x}}\left( t \frac{\id{y}}{\id{t}} \right) - \frac{\nu^2}{t} y + \lambda t y &= 0,
+\end{align*}
+onde definimos $y(t) = y(\sqrt{\lambda} t)$ e usamos $\id{} / \id{t} = \sqrt{\lambda} \id{} / \id{x}$.
+
+A equa\c{c}\~{a}o acima est\'{a} na forma do PSL com
+\begin{align*}
+    p(t) &= t, & q(t) &= \nu^2 / t, & \rho(t) &= t,
+\end{align*}
+ou seja, trata-se de um PSL singular para $t \to 0$.
+
+Nesse caso, as condi\c{c}\~{o}es apropriadas s\~{a}o:
+\begin{itemize}
+    \item $y, y'$ limitadas para $t \to 0$,
+    \item $c_1 y(a) + c_2 y'(a) = 0$.
+\end{itemize}
+
+\begin{obs}
+    Se $y$ e $y'$ devem ser limitadas para $t \to 0$, devemos ter $y e y'$ limitadas para $x \to o$, o que implica que devemos descartar a fun\c{c}\~{a}o de Bessel de segunda esp\'{e}cie pois esta n\~{a}o \'{e} limitada.
+\end{obs}
+
+% TODO Incluir equa\c{c}\~{o}es da p\'{a}gina 87.
+
+\subsection{Rela\c{c}\~{a}o de ortogonalidade}
+Para $\rho(t) = t$ e $I = [0,a]$ temos que
+\begin{align*}
+    \int_0^a t J_\nu\left( \frac{\alpha_{\nu m}}{a} t \right) J_\nu\left( \frac{\alpha_{\nu n}}{a} t \right) \id{t} &= 0,
+\end{align*}
+para $m \neq n$.
+
+\subsection{Normaliza\c{c}\~{a}o}
+% TODO Terminar de digitar o arquivo M2S12-7.pdf. Interrompido na p\'{a}gina 88.

@@ -1,27 +1,33 @@
 % Filename: lista3.tex
 % 
-% This code is part of 'Solutions for MS650, M\'{e}todos de Matem\'{a}tica Aplicada II, and F620, M\'{e}todos Matem\'{a}ticos da F\'{i}sica II'
+% This code is part of 'Solutions for MS650, M\'{e}todos de Matem\'{a}tica
+% Aplicada II, and F620, M\'{e}todos Matem\'{a}ticos da F\'{i}sica II'
 % 
 % Description: This file corresponds to the solutions of homework sheet 3.
 % 
-% Created: 14.07.12 11:13:03 AM
-% Last Change: 14.07.12 11:13:03 AM
+% Created: 14.07.12 11:13:03 AM Last Change: 14.07.12 11:13:03 AM
 % 
 % Authors:
 % - Raniere Silva (2012): initial version
 % 
 % Copyright (c) 2012 Raniere Silva <r.gaia.cs@gmail.com>
 % 
-% This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/ or send a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+% This work is licensed under the Creative Commons Attribution-ShareAlike 3.0
+% Unported License. To view a copy of this license, visit
+% http://creativecommons.org/licenses/by-sa/3.0/ or send a letter to Creative
+% Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
 %
-% This work is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+% This work is distributed in the hope that it will be useful, but WITHOUT ANY
+% WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+% A PARTICULAR PURPOSE.
 %
 \documentclass[a4paper,12pt, leqno, answers]{exam}
 % Customiza\c{c}\~{a}o da classe exam
 \newcommand{\mycheader}{Lista 3 - Transformada de Fourier}
 \header{MS560, F560}{\mycheader}{\thepage/\numpages}
 \headrule
-\footer{Dispon\'{i}vel em \\\input{repository.tex}}{}{Reportar erros para \\\input{maintainer.tex}}
+\footer{Dispon\'{i}vel em \\\input{repository.tex}}{}{Reportar erros para
+\\\input{maintainer.tex}}
 \footrule 
 \pagestyle{headandfoot}
 \renewcommand{\solutiontitle}{\noindent\textbf{Solu\c{c}\~{a}o:}\enspace}
@@ -32,6 +38,7 @@
 \input{paper_size.tex}
 
 \input{packages.tex}
+\DeclareMathOperator{\sgn}{sgn}
 
 \begin{document}
 %cover
@@ -40,8 +47,111 @@
 \newpage
 \setcounter{page}{1}
 \begin{questions}
-    % TODO Escrever quest\~{o}es e respostas.
-    \question
+    \question Mostre que a transformada de Fourier das fun\c{c}\~{o}es $f(x)$
+    abaixo s\~{a}o dadas pelas correspondentes fun\c{c}\~{o}es $F(k)$ onde
+    $\sgn(x) = 2 H(x) - 1$ \'{e} a fun\c{c}\~{a}o sinal (ou seja, $\sgn(x) = 1$
+    se $x > 0$ e $\sgn(x) = -1$ se $x < 0$) e $H(x)$ \'{e} a fun\c{c}\~{a}o
+    escada (ou seja, $H(x) = 1$ se $x > 0$ e $H(x) = 0$ se $x < 0$).
+    \begin{center}
+        \begin{tabular}{|c|c|}
+            \hline
+            $f(x)$ & $F(x)$ \\ \hline
+            $(1 - x^2) H(1 - |x|)$ & $\left( -1 / \sqrt{2 \pi} \right) \left(
+            4 / k^3 \right) \left( k \cos(k) - \sin(k) \right)$ \\ \hline
+            $\sin\left( \alpha x \right)$ & $i \sqrt{\pi / 2} \left( \delta(k -
+            \alpha) - \delta(k + \alpha) \right)$ \\ \hline
+            $1 / x$ & $i \sqrt{\pi/2} \sgn(k) = i \sqrt{2 \pi} \left( H(k) - 1/2
+            \right)$ \\ \hline
+            $H(x)$ & $ \left( 1 / \sqrt{2 \pi} \right) \left( \pi \delta(k) + 1
+            / k \right)$ \\ \hline
+        \end{tabular}
+    \end{center}
+    \begin{solution}
+        % TODO Escrever solu\c{c}\~{a}o.
+    \end{solution}
+
+    \question Usando $\delta(x) = H'(x)$ e a express\~{a}o acima para a
+    transformada de Fourier de $H(x)$, mostre que $\mathcal{F}[\delta(x)] = 1 /
+    \sqrt{2 \pi}$.
+    \begin{solution}
+        % TODO Escrever solu\c{c}\~{a}o.
+    \end{solution}
+
+    \question Mostre que
+    \begin{align*}
+        \int_0^\infty \left( \frac{x \cos(x) - \sin(x)}{x^3} \right) \cos(x/2)
+        \id{x} &= \frac{3 \pi}{16}.
+    \end{align*}
+    \begin{solution}
+        % TODO Escrever solu\c{c}\~{a}o.
+    \end{solution}
+
+    \question Use a f\'{o}rmula integral de Fourier para mostrar que
+    \begin{parts}
+        \part $\int_0^\infty \left[ \left( \cos(xy) \right) / \left( 1 + y^2
+        \right) \right] \id{x} = \left( 2 / \pi \right) \exp(-|x|),$
+        \begin{solution}
+            % TODO Escrever solu\c{c}\~{a}o.
+        \end{solution}
+
+        \part $\int_0^\infty \left[ \left( y \sin(xy) \right) / \left( 1 + y^2
+        \right) \right] \id{y} = \left( 2/\pi \right) \sgn(x) \exp(-|x|)$.
+        \begin{solution}
+            % TODO Escrever solu\c{c}\~{a}o.
+        \end{solution}
+    \end{parts}
+
+    \question Use a identidade de Parseval para mostrar que
+    \begin{parts}
+        \part $\int_0^\infty \left[ 1 / \left( 1 + x^2 \right)^2 \right] \id{x}
+        = \pi / 4$,
+        \begin{solution}
+            % TODO Escrever solu\c{c}\~{a}o.
+        \end{solution}
+
+        \part $\int_0^\infty \left[ \left( x \cos(x) - \sin(x) \right)^2 / x^6
+        \right] \id{x} = \pi / 15$.
+        \begin{solution}
+            % TODO Escrever solu\c{c}\~{a}o.
+        \end{solution}
+    \end{parts}
+
+    \question Verifique a validade da convolu\c{c}\~{a}o para as fun\c{c}\~{o}es
+    \begin{align*}
+        f(x) = g(x) &= \begin{cases}
+            1, & |x| < 1, \\
+            0, & |x| > 1.
+        \end{cases}
+    \end{align*}
+    \begin{solution}
+        % TODO Escrever solu\c{c}\~{a}o.
+    \end{solution}
+
+    \question Ilustre o Princ\'{i}pio de Incerteza de Heisenberg para a
+    fun\c{c}\~{a}o
+    \begin{align*}
+        f(x) &= \frac{a}{x^2 + a^2},
+    \end{align*}
+    com $a > 0$, mostrando que nesse caso $\Delta x = a$ e $\Delta k = 1 /
+    \sqrt{2} a$.
+    \begin{solution}
+        % TODO Escrever solu\c{c}\~{a}o.
+    \end{solution}
+
+    \question Seja $\psi(x, t)$ uma fun\c{c}\~{a}o dada na forma
+    \begin{align*}
+        \psi(x, t) = \int_{-\infty}^\infty \phi(k) \exp\left( i (k x - k^2 t / 2
+        \right) \id{k}.
+    \end{align*}
+    Sabendo que
+    \begin{align*}
+        \psi(x, 0) &= \exp(-x^2 / 2),
+    \end{align*}
+    mostre que
+    \begin{align*}
+        \psi(x, t) &= \frac{1}{(1 + i t)^{1/2}} \exp\left( -x^2 / \left[ 2 (1 +
+        i t) \right] \right).
+    \end{align*}
 \end{questions}
 % \bibliographystyle{plain}
 % \bibliography{bibliography}

@@ -16,7 +16,303 @@
 % This work is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 %
 \chapter{Transformadas de Fourier}
-% TODO Incluir arquivo M2S12-9.pdf.
-% TODO Incluir arquivo M2S12-10.pdf.
+\subsection{Da s\'{e}rie para a Transformada}
+Seja a s\'{e}rie de Fourier de uma fun\c{c}\~{a}o com per\'{i}odo $T = 2L$,
+\begin{align*}
+    f(x) &= \sum_{n = -\infty}^\infty c_n \exp\left( i n \pi x / L \right), \\
+    c_n &= \frac{1}{2L} \int_{-L}^L f(x) \exp\left( -i n \pi x / L \right)
+    \id{x}.
+\end{align*}
+O que desejamos agora \'{e} considerar uma fun\c{c}\~{a}o que n\~{a}o seja
+necessariamente peri\'{o}dica, ou seja, estender o intervalo para todo o
+$\mathbb{R}$ tomando $L \to \infty$. Para isso vamos denotar
+\begin{align*}
+    K = K(n) &= n \pi / L, \\
+    \Delta K &= K(n + 1) - K(n) = \pi / L.
+\end{align*}
+Ent\~{a}o:
+\begin{align*}
+    f(x) &= \sum_{n = -\infty}^\infty c_n \exp\left( i K(n) x \right) \\
+    &= \sum_{n = -\infty}^\infty \left( \frac{c_n L}{\pi} \right) \exp\left(
+    i K(n) x \right) \Delta K
+\end{align*}
+com
+\begin{align*}
+    \frac{c_n L}{\pi} &= \frac{1}{2 \pi} \int_{-\infty}^\infty f(x) \exp\left(
+    -i K(n) x \right) \id{x}.
+\end{align*}
+
+Vamos agora pensar em $n$ como uma fun\c{c}\~{a}o de $K$, ou seja, $n = n(K) = K
+L / \pi$. Ent\~{a}o
+\begin{align*}
+    \frac{c_n L}{\pi} &= c_{K L / \pi} L / \pi = c_L(K)
+\end{align*}
+e
+\begin{align*}
+    f(x) &= \sum_{K L / \pi = -\infty}^\infty c_L(K) \exp\left( i K x \right)
+    \Delta K, \\
+    c_L(K) &= \frac{1}{2 \pi} \int_{-L}^L f(x) \exp\left( - i K x \right)
+    \id{x}.
+\end{align*}
+Agora, uma vez que $\Delta K L / \pi = 1$, para $L \to \infty$ temos $\Delta K
+\to 0$ e a soma acima torna-se uma integral de Riemann. Portanto, para $L \to
+\infty$:
+\begin{align*}
+    f(x) &= \int_{-\infty}^\infty c(K) \exp\left( i K x \right) \id{K},
+    c(K) &= \frac{1}{2 \pi} \int_{-\infty}^\infty f(x) \exp\left( - i K x
+    \right) \id{x}.
+\end{align*}
+Finalmente, para tornar essas express\~{o}es ``sim\'{e}tricas'', vamos definir
+$F(K) = \sqrt{2 \pi} c(-K)$. Assim
+\begin{align*}
+    f(x) &= \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^\infty F(K) \exp\left( -i K x
+    \right) \id{K}, \\
+    F(K) &= \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^\infty f(x) \exp\left( i K x
+    \right) \id{x},
+\end{align*}
+onde $F(K)$ \'{e} a transformada de Fourier de $f(x)$, $f(x)$ \'{e} a
+transformada de Fourier inversa de $F(K)$, $F(K) = \mathcal{F}\left\{ f(x)
+\right\}$ e $f(x) = \mathcal{F}^{-1}\left\{ F(K) \right\}$.
+\begin{exem}
+    Considere $f(x) = N \exp\left( - \alpha x^2 \right)$ para $\alpha > 0$.
+    % TODO Terminar de incluir exemplo da p\'{a}gina 115.
+\end{exem}
+\begin{exem}
+    Considere $f(x) = a / \left( x^2 + a^2 \right)$ para $a > 0$.
+    % TODO Terminar de incluir exemplo da p\'{a}gina 116.
+\end{exem}
+\begin{exem}
+    Considere
+    \begin{align*}
+        f(x) &= \begin{cases}
+            1, & |x| \leq a, \\
+            0, & |x| > a,
+        \end{cases}
+    \end{align*}
+    para $a > 0$.
+    % TODO Terminar de incluir exemplo da p\'{a}gina 117.
+\end{exem}
+\begin{exem}
+    Considere $f(x) = \delta(x)$.
+    % TODO Terminar de incluir exemplo da p\'{a}gina 117.
+\end{exem}
+
+\section{F\'{o}rmula Integral de Fourier}
+Na p\'{a}gina~\pageref{teo:fourier} estudamos o Teorema de Fourier para
+s\'{e}ries. Considerando um per\'{i}odo $T = 2L$, esse teorema garante que a
+s\'{e}rie
+\begin{align*}
+    f(x) &= \frac{1}{2L} \int_{-L}^L f(\xi) \id{\xi} + \frac{1}{L} \sum_{n =
+    1}^\infty \int_{-L}^L f(\xi) \cos\left( n \pi (\xi - x) / L \right) \id{\xi}
+    \\
+    &= \lim_{N \to \infty} \int_{-L}^L f(x) \frac{\sin\left( (N + 1 / 2) \pi
+    (\xi - x) / L \right)}{2 L \sin\left( \pi (\xi - x) / 2 L \right)}
+\end{align*}
+quando $f(x)$ \'{e} cont\'{i}nua por partes e com derivadas laterais em $(-L,
+L)$ e com per\'{i}odo $2L$.
+
+Vamos agora considerar o limite $L \to \infty$. Para isso vamos supor que exista
+a integral
+\begin{align*}
+    \int_{-\infty}^\infty |f(x)| \id{x} < \infty.
+\end{align*}
+Nesse caso, temos
+\begin{align*}
+    \lim_{L \to \infty} \frac{1}{2L} \int_{-\infty}^\infty f(\xi) \id{\xi} = 0
+\end{align*}
+e agora devemos ver o que acontece com a s\'{e}rie.
+
+Definindo, como na se\c{c}\~{a}o anterior,
+\begin{align*}
+    K &= N \pi / L, \\
+    \Delta K &= \pi / L
+\end{align*}
+temos
+\begin{align*}
+    \frac{1}{L} \sum_{n = 1}^\infty \int_{-L}^L f(\xi) \cos\left( n \pi (\xi -
+    x) / L \right) \id{\xi} &= \frac{1}{\pi} \sum_{n = 1}^\infty \Delta K
+    \int_{-L}^L f(\xi) \cos\left( K(\xi - x) \right) \id{\xi}.
+\end{align*}
+Para $L \to \infty$ temos $\Delta K \to 0$ e a soma pode ser tomada por uma
+integral de Riemann de $K = 0$ at\'{e} $K = \infty$ (pois $K = 0$ para $L \to
+\infty$ e $n$ fixo). Logo:
+\begin{align*}
+    f(x) &= \frac{1}{\pi} \int_0^\infty \int_{-\infty}^\infty f(\xi) \cos\left(
+    K(\xi - x) \right) \id{\xi} \id{K}.
+\end{align*}
+Essa \'{e} a f\'{o}rmula de Fourier. Apesar da natureza heur\'{i}stica as
+argumenta\c{c}\~{o}es acima, iremos mostrar agora que ela \'{e} de fato
+v\'{a}lida. Para isso precisamremos estender o Lema~\ref{lem:lim_int} da
+p\'{a}gina~\pageref{lem:lim_int} de modo a incluir a integral ao longo de toda a
+reta, ou seja, precisamos do seguinte:
+\begin{lem}
+    Seja $F$ uma fun\c{c}\~{a}o cont\'{i}nua por partes e com derivadas lateria
+    \`{a} esquerda e \`{a} direita para todo o intervalo real tal que exista a
+    integral $\int_{-\infty}^\infty |F(x)| \id{x} < \infty$. Ent\~{a}o
+    \begin{align*}
+        \lim_{k \to \infty} \int_{-\infty}^\infty F(x) \frac{\sin\left( K(x -
+        x_0)
+        \right)}{ x - x_0} \id{x} &= \pi \frac{F(x_0 + 0) + F(x_0 - 0)}{2}.
+    \end{align*}
+\end{lem}
+\begin{proof}
+    Vamos denotar
+    \begin{align*}
+        G(x, x_0; K) &= F(x) \frac{\sin\left( k (x - x_0) \right)}{x - x_0} \\
+        &= K F(x) \frac{\sin(K (x - x_0)}{K (x - x_0)} \\
+        &= K F(x) S\left( K(x - x_0) \right).
+    \end{align*}
+    Vimos durante a demonstra\c{c}\~{a}o do Lema~\ref{lem:cont}
+    (p\'{a}gina~\pageref{lem:cont}) que $|S(x)| \leq 1$ para $x \in \mathbb{R}$;
+    logo:
+    \begin{align*}
+        |G(x, x_0; K) \leq K|F(x)|
+    \end{align*}
+    e
+    \begin{align*}
+        \int_{-\infty}^\infty |G(x, x_0; K) \id{x} \leq K \int_{-\infty}^\infty
+        |F(x)| \id{x} < \infty
+    \end{align*}
+    de modo que existe a integral $\int_{-\infty}^\infty G(x, x_0; K) \id{x}.$
+    Seja
+    \begin{align*}
+        H(x_0; K) &= \int_{-\infty}^\infty G(x, x_0; K) \id{x} -
+        \frac{\pi}{2} \left[ F(x_0 + 0) + F(x_0 - 0) \right].
+    \end{align*}
+    % TODO Terminar a demonstra\c{c}\~{a}o a partir da p\'{a}gina 123.
+\end{proof}
+
+Agora podemos provar o seguinte:
+\begin{teo}
+    Seja $f(x)$ cont\'{i}nua por partes e com derivadas laterais \`{a} esquerda
+    e \`{a} direita em todo intervalo real tal que $\int_{-\infty}^\infty |f(x)|
+    < \infty$. Ent\~{a}o vale a chamada f\'{o}rmula integral de  Fourier:
+    \begin{align*}
+        \frac{1}{\pi} \int_0^\infty \int_{-\infty}^\infty f(\xi) \cos\left(
+        K(\xi - x) \right) \id{\xi} \id{K} &= \frac{1}{2} \left[ f(x + 0) + f(x
+        - 0) \right]
+    \end{align*}
+    para $-\infty < x < \infty$.
+\end{teo}
+\begin{proof}
+    % TODO Terminar a demonstra\c{c}\~{a}o a partir da p\'{a}gina 125.
+\end{proof}
+
+Vamos agora escrever a f\'{o}rmula integral de Fourier de uma outra forma.
+Usando $\cos(\phi) = \left( \exp(i \phi) + \exp(-i \phi) \right) / 2$,
+\begin{align*}
+    I &= \frac{1}{2} \left[ f(x + 0) + f(x - 0) \right] \\
+    &= \frac{1}{\pi} \lim_{a \to \infty} \int_0^a \int_{-\infty}^\infty f(\xi)
+    \left[ \frac{\exp\left( i K(\xi - x) \right) + \exp\left( - i K(\xi - x)
+    \right)}{2} \right]
+    % Terminar de digitar equa\c{c}\~{o}es.
+\end{align*}
+o que mostra que na transformada inversa a integral deve ser interpretada no
+sentido do valor principal de Cauchy:
+\begin{align*}
+    \mathcal{F}^{-1}\left[ F(K) \right] &= \frac{1}{\sqrt{2 \pi}} PV
+    \int_{-\infty}^\infty F(K) \exp\left( -i K x \right) \id{x} \\
+    &= \frac{1}{\sqrt{2 \pi}} \lim_{a \to \infty} \int_{-a}^a F(k) \exp\left(
+    -i K x \right) \id{K}.
+\end{align*}
+\begin{exem}
+    Considerando
+    \begin{align*}
+        f(x) &= \begin{cases}
+            0, & x < 0, \\
+            \exp\left( -x \right), & x > 0.
+        \end{cases}
+    \end{align*}
+    % TODO Terminar a demonstra\c{c}\~{a}o a partir da p\'{a}gina 127.
+\end{exem}
+
+\section{Propriedades das Transformadas de Fourier}
+Nota\c{c}\~{a}o: $F(K) = \mathcal{F}\left[ f(x) \right]$.
+
+\subsection{Transla\c{c}\~{a}o}
+Temos que
+\begin{align*}
+    \mathcal{F}\left[ f(x - a) \right] &= \exp\left( i K a \right) F(K), \\
+    \mathcal{F}\left[ \exp\left( -i \alpha x \right) f(x) \right] &= F(k -
+    \alpha),
+\end{align*}
+portanto, a transla\c{c}\~{a}o em um espa\c{c}o equivale \`{a}
+multiplica\c{c}\~{a}o por uma exponencial (complexa) no espa\c{c}o
+rec\'{i}proco.
+\begin{proof}
+    \begin{align*}
+        \mathcal{F}\left[ f(x - a) \right] &= \frac{1}{\sqrt{2 \pi}}
+        \int_{-\infty}^\infty f(x - a) \exp\left( i K x \right) \id{x} \\
+        &= \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^\infty f(x') \exp\left( i K(x'
+        + a) \right) \id{x} \\
+        &= \exp\left( i K a \right) F(K), \\ \mathcal{F}\left[ \exp\left( -i
+        \alpha x \right) f(x) \right] &= \frac{1}{\sqrt{2 \pi}}
+        \int_{-\infty}^\infty f(x) \exp\left( -i \alpha x \right) \exp\left( i K
+        x \right) \id{x} \\
+        &= \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^\infty f(x) \exp\left( i (k -
+        \alpha) x \right) \id{x} \\
+        &= F(k - \alpha).
+    \end{align*}
+\end{proof}
+
+\subsection{Deriva\c{c}\~{a}o}
+Temos que
+\begin{align*}
+    \mathcal{F}\left[ f'(x) \right] &= -i K F(K), \\
+    \mathcal{F}\left[ x f(x) \right] &= -i F'(K),
+\end{align*}
+portanto, a deriva\c{c}\~{a}o em rela\c{c}\~{a}o \`{a} uma vari\'{a}vel equivale
+\`{a} ultiplica\c{c}\~{a}o pela outra vari\'{a}vel do espa\c{c}o rec\'{i}proco.
+\begin{proof}
+    % TODO Terminar a demonstra\c{c}\~{a}o a partir da p\'{a}gina 130.
+\end{proof}
+
+A generaliza\c{c}\~{a}o dessas propriedades \'{e} \'{o}bvia:
+\begin{align*}
+    \mathcal{F}\left[ f^{(n)}(x) \right] &= (-i K)^n F(K), \\
+    \mathcal{F}\left[ x^n f(x) \right] &= (-i)^n F^{(n)}(K),
+\end{align*}
+onde em $\mathcal{F}\left[ f^{(n)}(x) \right]$ devemos upor $\lim_{x \to
+\pm\infty} f^{(k)}(x) = 0$ para $k = 0, 1, \ldots, n - 1$.
+\begin{obs}
+    \'{E} interessante notarmos que as propriedades de transla\c{c}\~{a}o e
+    deriva\c{c}\~{a}o se unem atrav\'{e}s do Teorema de Taylor; de fato,
+    escrevendo $f(x - a)$ na forma de uma s\'{e}rie de Taylor em torno de $x =
+    a$,
+    \begin{align*}
+        f(x - a) &= \sum_{n = 0}^\infty \frac{f^{(n)}(x)}{n!}(-a)^n
+    \end{align*}
+    segue, da linearidade de $\mathcal{F}$,
+    \begin{align*}
+        \mathcal{F}\left[ f(x - a) \right] &= \sum_{n = 0}^\infty
+        \frac{(-a)^n}{n!} \mathcal{F}\left [f^{(n)}(x) \right] \\
+        &= \sum_{n = 0}^\infty \frac{(-a)^n (-iK)^n}{n!} F(K) \\
+        &= \sum_{n = 0}^\infty \frac{(i K a)^n}{n!} F(K) \\
+        &= \exp\left( i K a \right) F(K).
+    \end{align*}
+\end{obs}
+
+\subsection{Identidade de Parseval}
+Temos que
+\begin{align*}
+    \int_{-\infty}^\infty f(x) g^K(x) \id{x} &= \int_{-\infty}^\infty F(K)
+    G^K(K) \id{K}.
+\end{align*}
+\begin{proof}
+    % TODO Terminar a demonstra\c{c}\~{a}o a partir da p\'{a}gina 131.
+\end{proof}
+Uma consequ\^{e}ncia muito importante desse resultado \'{e}:
+\begin{align*}
+    \int_{-\infty}^\infty |f(x)|^2 \id{x} &= \int_{-\infty}^\infty |F(K)|^2
+    \id{K}.
+\end{align*}
+sendo essa identidade tamb\'{e}m chamada identidade de Parseval. Dessa forma, em
+outras palavras:
+\begin{align*}
+    \| f \|^2 = \| F \|^2.
+\end{align*}
+
+\subsection{Teorema da Convolu\c{c}\~{a}o}
+% TODO Terminar de incluir arquivo M2S12-10.pdf. Interrompido na p\'{a}gina 132.
 % TODO Incluir arquivo M2S12-11.pdf.
 % TODO Incluir arquivo M2S12-12.pdf (opcional).

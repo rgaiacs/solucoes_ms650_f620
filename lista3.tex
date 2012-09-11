@@ -152,6 +152,124 @@
         \psi(x, t) &= \frac{1}{(1 + i t)^{1/2}} \exp\left( -x^2 / \left[ 2 (1 +
         i t) \right] \right).
     \end{align*}
+
+    \question[T3 de 2011] Seja $f(x)$ dada por
+    \begin{align*}
+        f(x) &= \begin{cases}
+            1 - \left( 1/2 \right) |x|, & |x| \leq 2, \\
+            0, & |x| > 2.
+        \end{cases}
+    \end{align*}
+    \begin{parts}
+        \part Mostre que a transformada de Fourier $F(k)$ de $f(x)$ \'{e} dada
+        por
+        \begin{align*}
+            F(k) &= \sqrt{\frac{2}{\pi}} \left( \frac{\sin(k)}{k} \right)^2.
+        \end{align*}
+        \begin{solution}
+            Temos que
+            \begin{align*}
+                F(k) &= \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^\infty f(x)
+                \exp\left( i k x \right) \id{x} \\
+                &= \frac{1}{\sqrt{2 \pi}} \int_{-2}^2 \left( 1 - |x| / 2 \right)
+                \exp\left( i k x \right) \id{x} \\
+                \begin{split}
+                    &= \frac{1}{\sqrt{2 \pi}} \left[ \int_{-2}^0 \left( 1 + x / 2
+                    \right) \exp\left( i k x \right) \id{x} \right. \\
+                    &\quad \left. {}+ \int_0^2 \left( 1 - x
+                    / 2 \right) \exp\left( i k x \right) \id{x} \right] \\
+                \end{split} \\
+                \begin{split}
+                    &= \frac{1}{\sqrt{2 \pi}} \left[ \left. \left(
+                    \frac{\exp(i k x)}{i k} + \frac{x}{2} \frac{\exp(i k x}{i k}
+                    - \frac{\exp(i k x)}{2 (i k)^2} \right) \right|_{-2}^0
+                    \right. \\
+                    &\quad \left. {}+ \left. \left( \frac{\exp(i k x}{i k} -
+                    \frac{x}{2} \frac{\exp(i k x)}{i k} + \frac{\exp(i k x}{2 (i
+                    k)^2} \right) \right|_0^2 \right]
+                \end{split} \\
+                &= \frac{1}{2 \sqrt{2 \pi}} \left[ \left( \frac{\exp(i k)}{i k}
+                \right)^2 - \frac{2}{(i k)^2} + \left( \frac{\exp(-i k)}{i k}
+                \right)^2 \right] \\
+                &= \frac{1}{2 \sqrt{2 \pi}} \left( \frac{\exp(i k) + \exp(-i
+                k)}{i k} \right)^2 \\
+                &= \sqrt{\frac{2}{\pi}} \left( \frac{\sin(k)}{k} \right)^2.
+            \end{align*}
+        \end{solution}
+
+        \part Use a identidade de Parseval para calcular a integral
+        \begin{align*}
+            \int_{-\infty}^\infty \left( \frac{\sin(k)}{k} \right)^4 \id{k}.
+        \end{align*}
+        \begin{solution}
+            Temos, pela identidade de Parseval, que
+            \begin{align*}
+                \int_{-\infty}^\infty |f(x)|^2 \id{x} &= \int_{-\infty}^\infty
+                |F(k)|^2 \id{k}.
+            \end{align*}
+            Logo,
+            \begin{align*}
+                \int_{-\infty}^\infty \left( \frac{\sin(k)}{k} \right)^4 \id{k}
+                &= \frac{\pi}{2} \int_{-\infty}^\infty \left( F(k) \right)^2
+                \id{k} \\
+                &= \frac{\pi}{2} \int_{-\infty}^\infty \left( f(x) \right)^2
+                \id{x} \\
+                &= \frac{\pi}{2} \left[ \int_{-2}^0 \left( 1 +
+                \frac{x}{2} \right)^2 \id{x} + \int_0^2 \left( 1 -
+                \frac{x}{2} \right)^2 \id{x} \right] \\
+                \begin{split}
+                    &= \frac{\pi}{2} \left[ \left. \left( x +
+                    \frac{x^2}{2} + \frac{x^3}{12} \right) \right|_{-2}^0
+                    \right. \\
+                    &\quad \left. {}+ \left. \left( x - \frac{x^2}{12} +
+                    \frac{x^3}{12} \right) \right|_0^2 \right]
+                \end{split} \\
+                &= \frac{\pi}{2} \frac{16}{12} \\
+                &= 2 \pi / 3.
+            \end{align*}
+        \end{solution}
+    \end{parts}
+
+    \question[P1 de 2011]
+    \begin{parts}
+        \part Mostre que a transformada de Fourier de $f(x) = \exp(-a x^2)$
+        \'{e} dada por
+        \begin{align*}
+            F(k) &= \frac{1}{\sqrt{2 a}} \exp\left( -k^2 / (4a) \right).
+        \end{align*}
+        \begin{solution}
+            Temos que
+            \begin{align*}
+                F(k) &= \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^\infty \exp\left(
+                -a x^2 \right) \exp\left( i k x \right) \id{x} \\
+                &= \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^\infty \exp\left[ -
+                \left( \sqrt{a}x - i k / (2 \sqrt{a}) \right)^2 \exp\left( - k^2
+                / (4 a) \right) \right] \id{x} \\
+                &= \frac{\exp\left( -k^2 / (4a) \right)}{\sqrt{2 \pi}}
+                \int_{-\infty}^\infty \exp\left[ -\left( \sqrt{a} x - i k /
+                (2\sqrt{a}) \right)^2 \right] \id{x} \\
+                &= \frac{\exp\left( -k^2 / 4a \right)}{\sqrt{2 \pi}}
+                \frac{1}{\sqrt{a}} \int_{-\infty}^\infty \exp\left( -u^2
+                \right) \id{u} \\
+                &= \frac{\exp(-k^2 / (4a)}{\sqrt{2 a}}.
+            \end{align*}
+        \end{solution}
+
+        \part Discuta o comportamente de $f(x)$ e $F(k)$ para diferentes valores
+        de $a$ e no limite em que $a \to 0$.
+        \begin{solution}
+            Temos que $\lim_{a \to 0} f(x) = \exp(0) = 1$ e
+            \begin{align*}
+                F[1] &= \frac{1}{\sqrt{2\pi}} \int_{-\infty}^\infty \exp(i k x)
+                \id{x} \\
+                &= \sqrt{2 \pi} \frac{1}{2 \pi} \int_{-\infty}^\infty \exp(i k
+                x) \id{x} \\
+                &= \sqrt{2 \pi} \delta(k).
+            \end{align*}
+            Logo, $\lim_{a \to 0}\left( \exp(-k^2 / (4a)) / \sqrt{2a} \right) =
+            \sqrt{2 \pi} \delta(k)$.
+        \end{solution}
+    \end{parts}
 \end{questions}
 % \bibliographystyle{plain}
 % \bibliography{bibliography}

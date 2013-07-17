@@ -39,6 +39,7 @@
 \usepackage{amsthm}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage{breqn}
 \allowdisplaybreaks[4]
 
 \newtheorem{defi}{Defini\c{c}\~{a}o}
@@ -48,8 +49,16 @@
 \newtheorem{exem}{Exemplo}
 \newtheorem{obs}{Observa\c{c}\~{a}o}
 
+% Deprecated
 \newcommand{\id}[1]{\, \mathrm{d}#1}
+% Variable of Integration
+\newcommand{\vi}[1]{\, \mathrm{d}#1}
+% Deprecated
 \newcommand{\devp}[2]{\frac{\partial #1}{\partial #2}}
+% Partial DERivative
+\newcommand{\pder}[2]{\frac{\partial #1}{\partial #2}}
+% Residue (complex analysis)
+\DeclareMathOperator{\Res}{Res}
 
 % Index
 \usepackage{makeidx}

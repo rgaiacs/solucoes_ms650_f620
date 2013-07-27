@@ -1,33 +1,24 @@
-% Filename: notas_de_aula.tex
-% This code is part of 'Notas de aula n\~{a}o oficiais de MS650 e F620'
-% 
-% Description: This file correspond to the textbook using in the course.
-% 
-% Created: 02.08.12 10:36:23 PM
-% Last Change: 02.08.12 10:36:23 PM
-% 
-% Authors:
-% - Raniere Silva, r.gaia.cs@gmail.com
-% 
-% Copyright (c) 2012, Raniere Silva. All rights reserved.
-% 
-% This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/.
+% 'Notas de aula não oficiais de MS650 e F620' (c) 2012, 2013 by Raniere Silva
+% <ra092767@ime.unicamp.br>
 %
-% This work is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+% 'Notas de aula não oficiais de MS650 e F620' is licensed under a
+% Creative Commons Attribution-ShareAlike 3.0 Unported License.
 %
+% You should have received a copy of the license along with this
+% work.  If not, see <http://creativecommons.org/licenses/by-sa/3.0/>.
+
+% O arquivo mestre.
+
 \documentclass[12pt,a4paper,leqno, openright,twoside]{book}
 \input{paper_size.tex}
 \input{package.tex}
 \begin{document}
-\title{Notas de aula n\~{a}o oficiais de MS650 e F620}
-\author{Raniere Silva}
+\title{Notas de aula não oficiais de MS650 e F620}
+\author{Raniere Silva \\ \url{ra092767@ime.unicamp.br}}
 \maketitle
-
+\thispagestyle{empty}  % Verso da capa.
 % Frontmatter
 \frontmatter 
-
-% TODO Arrumar arquivos
-\input{licenca@notas_de_aula.tex}
 
 \tableofcontents 
 
@@ -42,6 +33,9 @@
 \input{cap06@notas_de_aula.tex}
 
 \backmatter 
+
+\appendix
+\input{licenca@notas_de_aula.tex}
 
 % References
 \nocite*

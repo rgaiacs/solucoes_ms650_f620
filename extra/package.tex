@@ -1,20 +1,14 @@
-% Filename: package.tex
-% This code is part of 'Notas de aula n\~{a}o oficiais de MS650 e F620'
-% 
-% Description: This file correspond to the packages to be used.
-% 
-% Created: 07.06.12 11:30:10 AM
-% Last Change: 26.06.12 11:07:21 PM
-% 
-% Authors:
-% - Raniere Silva, r.gaia.cs@gmail.com
-% 
-% Copyright (c) 2012, Raniere Silva. All rights reserved.
-% 
-% This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/.
+% 'Notas de aula não oficiais de MS650 e F620' (c) 2012, 2013 by Raniere Silva
+% <ra092767@ime.unicamp.br>
 %
-% This work is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+% 'Notas de aula não oficiais de MS650 e F620' is licensed under a
+% Creative Commons Attribution-ShareAlike 3.0 Unported License.
 %
+% You should have received a copy of the license along with this
+% work.  If not, see <http://creativecommons.org/licenses/by-sa/3.0/>.
+
+% Lista de pacotes utilizados.
+
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc} 
 \usepackage[brazil]{babel}
@@ -24,7 +18,7 @@
 \usepackage{enumerate}
 \usepackage{latexsym}
 \usepackage{parcolumns}
-\usepackage[hyphens]{url}
+\usepackage{url}
 \usepackage{hyperref}
 \usepackage{breakurl}
 \usepackage[official]{eurosym}
@@ -42,12 +36,12 @@
 \usepackage{breqn}
 \allowdisplaybreaks[4]
 
-\newtheorem{defi}{Defini\c{c}\~{a}o}
-\newtheorem{prop}{Proposi\c{c}\~{a}o}
+\newtheorem{defi}{Definição}
+\newtheorem{prop}{Proposição}
 \newtheorem{lem}{Lema}
 \newtheorem{teo}{Teorema}
 \newtheorem{exem}{Exemplo}
-\newtheorem{obs}{Observa\c{c}\~{a}o}
+\newtheorem{obs}{Observação}
 
 % Deprecated
 \newcommand{\id}[1]{\, \mathrm{d}#1}
@@ -55,6 +49,7 @@
 \newcommand{\vi}[1]{\, \mathrm{d}#1}
 % Deprecated
 \newcommand{\devp}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\fder}[2]{\frac{\mathrm{d} #1}{\mathrm{d} #2}}
 % Partial DERivative
 \newcommand{\pder}[2]{\frac{\partial #1}{\partial #2}}
 % Residue (complex analysis)

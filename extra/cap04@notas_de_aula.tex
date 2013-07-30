@@ -312,9 +312,266 @@ outras palavras:
 \end{align*}
 
 \subsection{Teorema da Convolução}
-% TODO Terminar de incluir arquivo M2S12-10.pdf. Interrompido na página 132.
+\begin{defi}
+  Definimos o produto de convolução, ou simplesmente convolução, das funções
+  $f(x)$ e $g(x)$ como sendo a função $(f * g)(x)$ dada por
+  \begin{dmath*}
+    (f * g)(x) = \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{+\infty} f(\epsilon) g(x
+    - \epsilon) \vi{\epsilon}.
+  \end{dmath*}
+\end{defi}
 
-\section{Aplicações da transformada de Fourier na solução de Equações
+\begin{obs}
+  Supondo que as integrais abaixo existam e que podemos trocar a ordem de
+  integração
+  \begin{dmath}
+    (f * g)(x) = \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{+\infty} f(\epsilon) g(x
+    - \epsilon) \vi{\epsilon}
+    = \frac{1}{\sqrt{2 \pi}} \int_{+\infty}^{-\infty} f(n - \eta) g(\eta)
+    (-\vi{eta})
+    = \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{+\infty} g(\eta) f(x - \eta)
+    \vi{\eta)
+    = (g * f)(x),
+  \end{dmath}
+  ou seja, $f * g = g * f$.
+\end{obs}
+
+\begin{teo}[Convolução]
+  Se $F(k) = \mathcal{F}[f(x)]$ e $G(K) = \mathcal{F}[g(x)]$ então
+  \begin{dgroup*}
+    \begin{dmath*}
+      \mathcal{F}[f * g] = \mathcal{F}[f] \mathcal{g},
+    \end{dmath*}
+    \begin{dmath*}
+      \mathcal^{-1}[F * G] = \mathcal{F}^{-1}[F} \mathcal{F}^{-1}[G].
+    \end{dmath*}
+  \end{dgroup*}
+
+  Note que o produto usual de duas funções em um espaço equivalente ao produto
+  de convolução no espaço recíproco.
+\end{teo}
+\begin{proof}
+  Temos que
+  \begin{dmath*}
+    \mathcal{F}[(f * g)(x)] = \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{+\infty} (f
+    * g)(x) \exp(i k x) \vi{x}
+    = \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{+\infty} \frac{1}{\sqrt{2 \pi}}
+    \int_{-\infty}^{+\infty} f(\epsilon) g(x - \epsilon) \exp(i k x)
+    \vi{\epsilon} \vi{x}
+    = \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{+\infty} \frac{1}{\sqrt{2 \pi}}
+    \int_{-\infty}^{+\infty} f(\epsilon) g(\eta) \exp(i k (\eta + \epsilon))
+    \vi{\epsilon} \vi{\eta}
+    = \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{+\infty} g(\eta) \exp(i k \eta)
+    \vi{\eta} \int_{-\infty}^{+\infty} f(\epsilon) \exp(i k \epsilon)
+    \vi{\epsilon}
+    = G(K) F(K)
+  \end{dmath*}
+  e a demonstração para $\mathcal{F}^{-1}[F * G]$ é completamente análoga.
+\end{proof}
+
+\begin{obs}
+  Vamos denotar $\sigma(x - a) = \sigma_a(x)$. Então $\sigma_0$ faz o papel de
+  unidade (a menos de constante) na convolução,
+  \begin{dmath*}
+    (\sigma_0 * f)(x) = \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{+\infty}
+    \sigma_0(\epsilon) f(x - \epsilon) \vi{\epsilon}
+    = \frac{1}{\sqrt{2 \pi}} f(x)
+  \end{dmath*}
+  enquanto $\sigma_a^*$ é uma translação:
+  \begin{dmath*}
+    (\alpha_a^* f)(x) = \frac{1}{\sqrt{2 \pi}} \int_{-\infty}^{+\infty}
+    \sigma(\epsilon - a) f(x - \epsilon) \vi{\epsilon}
+    = \frac{f(x - a)}{\sqrt{2 \pi}}.
+  \end{dmath*}
+\end{obs}
+
+\subsection{Princípio de Incerteza de Heisenberg}
+Vamos usar a notação:
+\begin{dmath*}
+  \langle f, g \rangle = \int_{-\infty}^{+\infty} f^*(x) g(x) \vi{x}.
+\end{dmath*}
+Vamos definir
+\begin{dgroup*}
+  \begin{dmath*}
+    \bar{x} = \langle f, x f \rangle
+    = \int_{-\infty}^{+\infty} f^*(x) x f(x) \vi{x}
+    = \int_{-\infty}^{+\infty} x \left| f(x) \right|^2 \vi{x}
+  \end{dmath*}
+  \begin{dmath*}
+    \sigma_f^2 = \left\| (x - \bar{x}) f \right\|^2
+    = \langle (x - \bar{x}) f, (x - \bar{x} f \rangle
+    = \int_{-\infty}^{+\infty} (x - \bar{x})^2 \left| f(x) \right|^2
+  \end{dmath*}
+\end{dgroup*}
+e de modo análogo:
+\begin{dgroup*}
+  \begin{dmath*}
+    \bar{K} = \langle F, K F \rangle
+    = \int_{-\infty}^{+\infty} F^*(k) K F(K) \vi{K}
+    = \int_{-\infty}^{+\infty} K \left| F(K) \right|^2 \vi{k}
+  \end{dmath*}
+  \begin{dmath*}
+    \sigma_F^2 = \left\| (K - \bar{K}) F \right\|^2
+    = \langle (K - \bar{K}) F, (K - \bar{K}) F \rangle
+    = \int_{-\infty}^{+\infty} (K - \bar{K})^2 \left\| F(K) \right\|^2
+  \end{dmath*}
+\end{dgroup*}
+onde o uso da notação no caso da variável $K$ se justifica graças à identidade
+de Parseval, que pode ser escrita agora como $\langle f, g \rangle = \langle F,
+G \rangle$. Finalmente definimos
+\begin{dgroup*}
+  \begin{dmath*}
+    \Delta x = \frac{\sigma_f}{\left\| f \right\|}
+    = \frac{\left\| (x - \bar{x} f \right\|}{\left\| f \right\|},
+  \end{dmath*}
+  \begin{dmath*}
+    \Delta k = \frac{\sigma_F}{\left\| F \right\|}
+    = \frac{\left\| (K - \bar{K}) F \right\|}{\left\| F \right\|}.
+  \end{dmath*}
+\end{dgroup*}
+
+\begin{teo}
+  Para $\Delta x$ e $\Delta K$ acima definidos vale o chamado princípio da
+  incerteza de Heisenberg:
+  \begin{dmath*}
+    \Delta x \Delta k \geq 1 / 2
+  \end{dmath*}
+\end{teo}
+\begin{proof}
+  Primeiro vamos escrever $\sigma_f$ e $\sigma_F$ em termos de integrais no
+  mesmo espaço. Vamos escrever $\sigma_F$ em termos de $x$. Para isso vamos usar
+  o fato que
+  \begin{dmath*}
+    \sigma(K - K') = \frac{1}{2 \pi} \int_{-\infty}^{+\infty} \exp(-i (K - K') x
+    \vi{x}.
+  \end{dmath*}
+  Logo:
+  \begin{dmath*}
+    \sigma_F^2 = \int_{-\infty}^{+\infty} (K - \bar{K})^2 \left| F(K) \right|^2
+    = \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} (K - \bar{K}) (K' -
+    \bar{K}) F(K) F^*(K') \sigma(K - K') \vi{K'} \vi{K}
+    = \frac{1}{2 \pi} \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} (K -
+    \bar{K}) F(K) \exp(-i K x) \vi{K} \int_{-\infty}^{+\infty} (K' - \bar{K})
+    F^*(K') \exp(i K' x) \vi{K'} \vi{x}
+    = \int_{-\infty}^{+\infty} \left[ \frac{1}{\sqrt{2 \pi}} \left(
+    i \fder{}{x} - \bar{K} \right) \int_{-\infty}^{+\infty} F(K) \exp(-i K x)
+    \vi{K} \right] \left[ \frac{1}{\sqrt{2 \pi}} \left( i \fder{}{x} - \bar{K}
+    \right) \int_{-\infty}^{+\infty} F(K') \exp(-i K' x) \vi{K'} \right]^* \vi{x}
+    = \int_{-\infty}^{+\infty} \left[ \left( i \fder{}{x} - \bar{K} \right) f(x)
+    \right] \left[ \left( i \fder{}{x} - \bar{K} \right) f(x) \right]^{*}
+    = \langle i f' - \bar{K} f, i f' - \bar{K} f \rangle.
+  \end{dmath*}
+  Vamos agora tomar o produto $\sigma_f^2 \sigma_F^2$:
+  \begin{dmath*}
+    \sigma_f^2 \sigma_F^2 = \langle (x - \bar{x}) f, (x - \bar{x}) f \rangle
+    \langle i f' - \bar{K} f, i f' - \bar{K} f \rangle.
+  \end{dmath*}
+
+  Lembrando a desigualdade de Schwarz,
+  \begin{dmath*}
+    \langle \phi, \phi \rangle \langle \psi, \psi \rangle \geq \left| \langle
+    \phi, \psi \rangle \right|^2
+  \end{dmath*}
+  e
+  \begin{dmath*}
+    \left| z \right^2 = (\Re(z))^2 + (\Im(z))^2
+    \geq (\Im(z))^2
+    = \left[ \frac{1}{2 i} (z - z^* \right]^2
+  \end{dmath*}
+  podemos escrever
+  \begin{dmath*}
+    \langle \phi, \phi \rangle \langle \psi, \psi \rangle \geq \left[
+    \frac{1}{2 i} \left( \langle \phi, \psi \rangle - \langle \phi, \psi \rangle
+    \right) \right]^2
+  \end{dmath*}
+  onde usamos $\langle \phi, \psi \rangle^* = \langle \psi, \phi \rangle$. Vamos
+  agora usar essa desigualdade para estimar $\sigma_f^2 \sigma_F^2$. Temos:
+  \begin{dmath*}
+    \sigma_f^2 \sigma_F^2 \geq \left( \frac{1}{2 i} \sigma \right)^2,
+  \end{dmath*}
+  onde $\phi = (x - \bar{x}) f$, $\psi = i f' - \bar{K} f$ e
+  \begin{dmath*}
+    \sigma = \langle x f - \bar{x} f, i f' - \bar{K} f \rangle - \langle i f' -
+    \bar{K} f, x f - \bar{x} f \rangle
+    = \langle x f, i f' \rangle - \langle x f, \bar{x} f \rangle - \langle
+    \bar{x} f, i f' \rangle + \langle \bar{x} f, \bar{K} f \rangle - \langle i
+    f', x f \rangle + \langle \bar{K} f, x f \rangle + \langle i f', \bar{x} f
+    \rangle - \langle \bar{K} f, \bar{x} f \rangle
+  \end{dmath*}
+  uma vez que $\bar{x}$ e $\bar{K}$ são constantes,
+  \begin{dmath*}
+    \langle \bar{x} f, \bar{K} f \rangle - \langle \bar{K} f, \bar{x} f \rangle
+    = \bar{x} \bar{K} \langle f, f \rangle - \bar{K} \bar{x} \langle f, f
+    \rangle = 0
+  \end{dmath*}
+  e como $x \in \mathbb{R}$,
+  \begin{dmath*}
+    \langle \bar{K} f, x f \rangle - \langle x f, \bar{K} f \rangle = \bar{K}
+    \langle f, x f \rangle - \bar{K} \langle f, x f \rangle = 0.
+  \end{dmath*}
+  Além disso:
+  \begin{dmath*}
+    \langle i f', \bar{x} f \rangle - \langle \bar{x} f, i f' \rangle = \bar{x}
+    \langle i f', f \rangle - \bar{x} \langle f, i f' \rangle
+    = \bar{x} \int_{-\infty}^{+\infty} \left[ i f'(x) \right]^* f(x) \vi{x} -
+    \bar{x} \int_{-\infty}^{+\infty} f^*(x) i f'(x) \vi{x}
+    = -i \bar{x} \left[ \int_{-\infty}^{+\infty} f^{\prime *}(x) f(x) \vi{x} +
+    \int_{-\infty}^{+\infty} f*(x) f'(x) \vi{x} \right]
+    = -i \bar{x} \int_{-\infty}^{+\infty} \left[ f^*(x) f(x) \right]' \vi{x}
+    = -i \bar{x} \int_{-\infty}^{+\infty} \left( \left| f(x) \right|^2 \right)'
+    = -i \bar{x} \left[ \lim_{x \to \infty} \left| f(x) \right|^2 - \lim_{x \to
+    -\infty} \left| f(x) \right|^2\right]
+    = 0
+  \end{dmath*}
+  se supormos que
+  \begin{dmath*}
+    \lim_{x \to \pm \infty} \left| f(x) \right\|^2 = 0.
+  \end{dmath*}
+
+  Desse modo,
+  \begin{dmath*}
+    \sigma = \langle x f, i f' \rangle - \langle i f', x f \rangle
+    = \int_{-\infty}^{+\infty} x f^*(x) i f'(x) \vi{x} -
+    \int_{-\infty}^{+\infty} \left( i f'(x) \right)^* x f(x) \vi{x}
+    = i \int_{-\infty}^{+\infty} x f^*(x) f'(x) \vi{x} + i
+    \int_{-\infty}^{+\infty} f^{\prime *}(x) x f(x) \vi{x}
+    = i \int_{-\infty}^{+\infty} x \left[ f^*(x) f'(x) + f^{*\prime}(x) f(x) \right]
+    \vi{x}
+    = i \int_{-\infty}^{+\infty} x \left( \left| f(x) \right| \right)' \vi{x}
+    = \left. i x \left| f(x) \right|^2 \right|_{-\infty}^{+\infty} - i
+i   \int_{-\infty}^{+\infty} \left| f(x) \right|^2 \vi{x}
+  \end{dmath*}
+  e supondo que $\lim_{x \to \pm \infty} \left| f(x) \right|^2 = 0$, segue
+  \begin{dmath*}
+    \sigma = -i \int_{-\infty}^{+\infty} \left| f(x) \right|^2 \vi{x}
+    = -i \left\| f \right|^2.
+  \end{dmath*}
+  Portanto
+  \begin{dgroup*}
+    \begin{dmath*}
+      \sigma_f^2 \sigma_F^2 \geq \left( \frac{1}{2 i} (-i) \left\| f \right\|^2
+      \right)^2
+      = \frac{\left\| f \right\|^4}{4}
+    \end{dmath*}
+    \begin{dmath*}
+      \frac{\sigma_f^2}{\left\| f \right\|^2} \frac{\sigma_F^2}{\left\| f
+      \right\|^2} \geq \frac{1}{4}
+    \end{dmath*}
+  \end{dgroup*}
+  e da identidade de Parseval ($\| f \|^2 = \| F \|^2$):
+  \begin{dmath*}
+    \frac{\sigma_f^2}{\left\| f \right\|^2} \frac{\sigma_F^2}{\left\| F
+    \right\|^2} \geq \frac{1}{4}
+  \end{dmath*}
+  ou, em termos de $\Delta x$ e $\Delta K$,
+  \begin{dmath*}
+    (\Delta x)^2 (\Delta K)^2 \geq 1 / 4
+  \end{dmath*}
+  que é o resultado procurado.
+\end{proof}
+% TODO Terminar de incluir aquivo M2S12-10.pdf. Interrompido na página 140.
+
+\section[Aplicações na Solução de Equações Diferenciais]{Aplicações da Transformada de Fourier na Solução de Equações
 Diferenciais}
 \begin{exem}
   Considere a equação do oscilador harmônico amortecido
@@ -510,7 +767,7 @@ Portanto, a transformada inversa em seno de Fourier é
   \end{dmath*}
 \end{exem}
 
-\section{Amostragem e Transformadas de Fourier Discreta no tempo}
+\section{Amostragem e Transformadas de Fourier Discreta no Tempo}
 Vamos nessa seção trabalhar com as variáveis $(t, w)$ ao invés de $(x, k)$ pois
 a própria nomenclatura do que segue vem da análise de funções $f(t)$ do tempo
 $t$ (que nesse caso é chamado sinal). O par de transformadas de Fourier

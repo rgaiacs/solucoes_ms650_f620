@@ -539,7 +539,7 @@ G \rangle$. Finalmente definimos
     \vi{x}
     = i \int_{-\infty}^{+\infty} x \left( \left| f(x) \right| \right)' \vi{x}
     = \left. i x \left| f(x) \right|^2 \right|_{-\infty}^{+\infty} - i
-i   \int_{-\infty}^{+\infty} \left| f(x) \right|^2 \vi{x}
+    \int_{-\infty}^{+\infty} \left| f(x) \right|^2 \vi{x}
   \end{dmath*}
   e supondo que $\lim_{x \to \pm \infty} \left| f(x) \right|^2 = 0$, segue
   \begin{dmath*}
@@ -569,7 +569,73 @@ i   \int_{-\infty}^{+\infty} \left| f(x) \right|^2 \vi{x}
   \end{dmath*}
   que é o resultado procurado.
 \end{proof}
-% TODO Terminar de incluir aquivo M2S12-10.pdf. Interrompido na página 140.
+
+A interpretação do teorema anterior é que
+\begin{enumerate}
+  \item $x$ corresponde a posição:
+    \begin{dmath*}
+      K = \frac{p}{\hbar}
+      = \frac{\text{momentum}}{\text{constante de Planck}}.
+    \end{dmath*}
+    Logo, $\Delta x \Delta p \geq \hbar / 2$.
+  \item $x$ é o tempo ($t$) e $K$ é a frequência ($w = 2 \pi \nu$). Logo, $\Delta t
+    \Delta \nu \geq 1 / (4 \pi)$.
+\end{enumerate}
+Assim sendo, quanto mais localizada a função em um espaço, menos localizada a
+função transformada no espaço recíproco. Vamos tomar como exemplo a gaussiana
+\begin{dgroup*}
+  \begin{dmath*}
+    f(x) = N \exp(-\alpha x^2) \condition{$\alpha > 0$,}
+  \end{dmath*}
+  \begin{dmath*}
+    F(K) = \frac{N}{\sqrt{2 \alpha}} \exp(-K^2 / 4 \alpha).
+  \end{dmath*}
+\end{dgroup*}
+Notemos que
+\begin{dgroup*}
+  \begin{dmath*}
+    \bar{x} = \int_{-\infty}^{+\infty} x \left| f(x) \right|^2 \vi{x}
+    = N^2 \int_{-\infty}^{+\infty} x \exp(-2 \alpha x^2) \vi{x}
+    = 0,
+  \end{dmath*}
+  \begin{dmath*}
+    \sigma_f^2 = \left\| (x - \bar{x}) f \left\|^2
+    = \left\| x f \left\|^2
+    = N^2 \int_{-\infty}^{+\infty} x^2 \exp(-2 \alpha x^2) \vi{x}
+    = N^2 \left( -\frac{1}{2} \right) \fder{}{\alpha} \int_{-\infty}^{+\infty}
+    \exp(-2 \alpha x^2) \vi{x}
+    = \left( -\frac{1}{2} \right) \fder{}{\alpha} \left\| f \right\|^2
+  \end{dmath*}
+\end{dgroup*}
+mas
+\begin{dmath*}
+  \left\| f \right\|^2 = N^2 \int_{-\infty}^{+\infty} \exp(-2 \alpha x^2) \vi{x}
+  = \frac{N^2}{\sqrt{2 \alpha}} \int_{-\infty}^{+\infty} \exp(-y^2) \vi{y}
+  = N^2 \sqrt{\pi / 2 \alpha}
+\end{dmath*}
+e portanto
+\begin{dmath*}
+  \sigma_f^2 = \frac{-N^2}{2} \fder{}{\alpha} \left( \sqrt{\frac{\pi}{2}}
+  \alpha^{-1/2} \right)
+  = \frac{-N^2}{2} \sqrt{\frac{\pi}{2}} \left( \frac{-1}{2} \alpha^{-3/2} \right)
+  = \frac{N^2}{4} \sqrt{\frac{\pi}{2}} \frac{1}{\alpha^{3/2}}.
+\end{dmath*}
+Escolhendo $N$ de modo que $\| f \|^2 = 1$, ou seja, $N = \left( 2 \alpha / \pi
+\right)^{1/4}$ temos $\sigma_f^2 = 1 / 4 \alpha$ que implica em $\Delta x = 1 /
+\sqrt{4 \alpha}$ com isso podemos escrever
+\begin{dmath*}
+  f(x) = \frac{1}{(2 \pi \sigma_f^2)^{1/4}} \exp(-x^2 / (4 \sigma_f^2)).
+\end{dmath*}
+De modo análogo, $\bar{K} = 0$ e
+\begin{dmath*}
+  \sigma_F^2 = \frac{1}{4 \left( 1 / (4 \alpha) \right)}
+  = \alpha
+\end{dmath*}
+que implica em $\Delta K = \sqrt{\alpha}$ e portanto
+\begin{dmath*}
+  \Delta x \Delta K = \frac{1}{2 \sqrt{\alpha}} \sqrt{\alpha}
+  = 1 / 2.
+\end{dmath*}
 
 \section[Aplicações na Solução de Equações Diferenciais]{Aplicações da Transformada de Fourier na Solução de Equações
 Diferenciais}

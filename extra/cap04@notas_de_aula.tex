@@ -599,8 +599,8 @@ Notemos que
     = 0,
   \end{dmath*}
   \begin{dmath*}
-    \sigma_f^2 = \left\| (x - \bar{x}) f \left\|^2
-    = \left\| x f \left\|^2
+    \sigma_f^2 = \left\| (x - \bar{x}) f \right\|^2
+    = \left\| x f \right\|^2
     = N^2 \int_{-\infty}^{+\infty} x^2 \exp(-2 \alpha x^2) \vi{x}
     = N^2 \left( -\frac{1}{2} \right) \fder{}{\alpha} \int_{-\infty}^{+\infty}
     \exp(-2 \alpha x^2) \vi{x}
@@ -1181,5 +1181,210 @@ matriz de Fourier para $N_1$, ou seja,
     f(t_{N - 1}) + f(t_{2 N_1})
   \end{bmatrix}
 \end{dmath*}
-
-% TODO Terminar M2S12-12.pdf. Interrompido na página 15.
+Notando que
+\begin{dmath*}
+  \begin{bmatrix}
+    f(t_0) + f(t_{N_1}) \\
+    \vdots
+    f(t_{N{1} - 1}) + f(t_{2N_{1}}) \\
+    0 \\
+    \vdots \\
+    0
+  \end{bmatrix} = \begin{bmatrix}
+    I_{N_{1}} & I_{N_{1}} \\
+    0 & 0
+    \end{bmatrix} \begin{bmatrix}
+    f(t_0) \\
+    \vdots \\
+    f(t_{N_{1} - 1}) \\
+    f(t_{N_{1}}) \\
+    \vdots \\
+    f(t_{2N_{1}})
+  \end{bmatrix}
+\end{dmath*}
+onde $I_{N_1}$ é a matriz identidade de ordem $N_1$, podemos escrever
+\begin{dmath*}
+  \begin{bmatrix}
+    F_{+} \\
+    0
+    \end{bmatrix} = \begin{bmatrix}
+    Q_{N_1} & 0 \\
+    0 & 0
+    \end{bmatrix} \begin{bmatrix}
+    I_{N_1} & I_{N_1} \\
+    0 & 0
+  \end{bmatrix} f.
+\end{dmath*}
+Por outro lado, para os termos ímpares
+\begin{dmath*}
+  \begin{bmatrix}
+    F(w_1) \\
+    F(w_3) \\
+    \vdots \\
+    F_{w_{2 N_1 - 1}})
+    \end{bmatrix} = \begin{bmatrix}
+    1 q^0 & 1 q^1 & \ldots & 1 q^{N_1 - 1} \\
+    1 q^0 & q^2 q^1 & \ldots & (q^2)^{N_1 - 1} q^{N_1 - 1} \\
+    \vdots & \vdots & \ddots & \vdots \\
+    1 q^0 & (q^2)^{(N_1 - 1)} q^1 & \ldots & (q^2)^{(N_1 - 1) (N_1 - 1)} q^{N_1 - 1}
+    \end{bmatrix} \begin{bmatrix}
+    f(t_0) - f(t_{N_1}) \\
+    f(t_1) - f(t_{N_1 + 1}) \\
+    \vdots \\
+    f(t_{N_1 - 1}) - f(t_{2 N_1})
+  \end{bmatrix}
+\end{dmath*}
+onde
+\begin{dmath*}
+    \begin{bmatrix}
+    1 q^0 & 1 q^1 & \ldots & 1 q^{N_1 - 1} \\
+    1 q^0 & q^2 q^1 & \ldots & (q^2)^{N_1 - 1} q^{N_1 - 1} \\
+    \vdots & \vdots & \ddots & \vdots \\
+    1 q^0 & (q^2)^{(N_1 - 1)} q^1 & \ldots & (q^2)^{(N_1 - 1) (N_1 - 1)} q^{N_1 - 1}
+    \end{bmatrix} = \begin{bmatrix}
+    1 & 1 & \ldots & 1 \\
+    1 & q^2 & \ldots & (q^2)^{N_1 - 1} \\
+    \vdots & \vdots & \ddots & \vdots \\
+    1 & (q^2)^{N_1 - 1} & \ldots & (q^2)^{(N_1 - 1) (N_1 - 1)}
+    \end{bmatrix} \begin{bmatrix}
+    1 & 0 & \ldots & 0 \\
+    0 & q & \ldots & 0 \\
+    \vdots & \vdots & \ddots & \vdots \\
+    0 & 0 & \ldots & q^{N_1 - 1}
+  \end{bmatrix}
+  = Q_{N_1} D_{N_1}.
+\end{dmath*}
+Notando ainda que
+\begin{dmath*}
+  \begin{bmatrix}
+    0 \\
+    \vdots \\
+    0 \\
+    f(b_0) - f(t_{N_1}) \\
+    \vdots \\
+    f(t_{N_1 - 1}) - f(t_{2 N_1})
+    \end{bmatrix} = \begin{bmatrix}
+    0 & 0 \\
+    I_{N_1} & -I_{N_1}
+    \end{bmatrix} \begin{bmatrix}
+    f(t_0) \\
+    \vdots \\
+    f(t_{N_1 - 1}) \\
+    f(t_{N_1}) \\
+    \vdots \\
+    f(t_{2 N_1})
+  \end{bmatrix}
+\end{dmath*}
+podemos escrever
+\begin{dmath*}
+  \begin{bmatrix}
+    0 \\
+    F
+  \end{bmatrix} = \begin{bmatrix}
+    0 & 0 \\
+    0 & Q_{N_1} D_{N_1}
+  \end{bmatrix} \begin{bmatrix}
+    0 & 0 \\
+    I_{N_1} & -I_{N_1}
+  \end{bmatrix} f.
+\end{dmath*}
+Podemos enstão escrever
+\begin{dmath*}
+  \begin{bmatrix}
+    F_{+} \\
+    F_{-}
+    \end{bmatrix} = \begin{bmatrix}
+    Q_{N_1} & 0 \\
+    0 & Q_{N_1} D_{N_1}
+    \end{bmatrix} \begin{bmatrix}
+    I_{N_1} & I_{N_1} \\
+    I_{N_1} & -I_{N_1}
+  \end{bmatrix} f.
+\end{dmath*}
+Definindo
+\begin{dgroup*}
+  \begin{dmath*}
+    p_0 = \begin{bmatrix}
+      1 & 0 & \ldots & 0
+    \end{bmatrix},
+  \end{dmath*}
+  \begin{dmath*}
+    p_1 = \begin{bmatrix}
+      0 & 1 & 0 & \ldots & 0
+    \end{bmatrix}
+  \end{dmath*}
+  \begin{dmath*}
+    \vdots
+  \end{dmath*}
+  \begin{dmath*}
+    p_{N - 1} = \begin{bmatrix}
+      0 & 0 & \ldots & 1
+    \end{bmatrix}
+  \end{dmath*}
+\end{dgroup*}
+e a matriz $P_N$ como
+\begin{dmath*}
+  P_N = \begin{bmatrix}
+    p_0 \\
+    p_2 \\
+    \vdots \\
+    p_{N - 2} \\
+    p_1 \\
+    p_3 \\
+    \vdots \\
+    p_{N - 1}
+  \end{bmatrix}
+  = \begin{bmatrix}
+    1 & 0 & 0 & \ldots & 0 & 0 \\
+    0 & 0 & 1 & \ldots & 0 & 0 \\
+    \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+    0 & 0 & 0 & \ldots & 1 & 0 \\
+    0 & 1 & 0 & \ldots & 0 & 0 \\
+    \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+    0 & 0 & 0 & \ldots & 0 & 1
+  \end{bmatrix}
+\end{dmath*}
+vemos que
+\begin{dgroup*}
+  \begin{dmath*}
+    \begin{bmatrix}
+      F_{+} \\
+      F_{-}
+    \end{bmatrix} = P_N F,
+  \end{dmath*}
+  \begin{dmath*}
+    F = P_N \begin{bmatrix}
+      F_{+} \\
+      F_{-}
+    \end{bmatrix}
+  \end{dmath*}
+\end{dgroup*}
+e como $P_N = P_N^{-1}$,
+\begin{dmath*}
+  F = P_N \begin{bmatrix}
+    Q_{N / 2} & 0 \\
+    0 & Q_{N / 2} D_{N / 2}
+    \end{bmatrix} \begin{bmatrix}
+    I_{N / 2} & I_{N / 2} \\
+    I_{N / 2} & -I_{N / 2}
+  \end{bmatrix} f
+  = P_N \begin{bmatrix}
+    Q_{N / 2} & Q_{N / 2} \\
+    Q_{N / 2} D_{N / 2} & -Q_{N / 2} D_{N / 2}
+  \end{bmatrix} f,
+\end{dmath*}
+ou seja, a matriz de Fourier $Q_N$ pode ser escrita como
+\begin{dmath*}
+  Q_N = P_N \begin{bmatrix}
+    Q_{N / 2} & Q_{N / 2} \\
+    Q_{N / 2} D_{N / 2} & -Q_{N / 2} D_{N / 2}
+  \end{bmatrix}
+\end{dmath*}
+ou ainda, lembrando que $Q_N = (Q_N)^T$, onde $T$ denota transposição, e que $(A
+B)^T = B^T A^T$, temos
+\begin{dmath*}
+  Q_N = \begin{bmatrix}
+    Q_{N / 2} & D_{N / 2} Q_{N / 2} \\
+    Q_{N / 2} & -D_{N / 2} Q_{N / 2}
+  \end{bmatrix} P_N^T
+\end{dmath*}

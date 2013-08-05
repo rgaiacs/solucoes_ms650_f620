@@ -67,7 +67,7 @@ Algumas questões:
       n > 0$ tal que $| \delta_m(x) - \delta_n(x)| < \epsilon$ sempre que $m, n
       > N, \forall x \in I$ (onde $\delta_n(x) = \sum_{k = 1}^\nu \mu_k(x)$).
     \end{exem}
-  \item quais funções $f(x)$ são respresentáveis por essa série? Condições sobre
+  \item quais funções $f(x)$ são representáveis por essa série? Condições sobre
     $f(x)$?
 \end{enumerate}
 
@@ -207,7 +207,7 @@ e
 \end{dmath*}
 
 \begin{obs}
-  $\bar{f}(0) \neq f(0)$, o que é caractyeristico do comportamento da série de
+  $\bar{f}(0) \neq f(0)$, o que é característico do comportamento da série de
   Fourier em uma descontinuidade. Note que
   \begin{dmath*}
     \bar{f}(0) = \frac{1}{2} \left[ \lim_{x \to 0^+} f(x) + \lim_{x \to 0^-}
@@ -239,7 +239,7 @@ e
     \left( f + g \right)^2 = f^2 + g^2 + 2 f g \leq 2 \left( f^2 + g^2 \right),
   \end{dmath*}
   o que garante que $f + g \in \mathcal{L}^2[a, b]$. Como $\mathcal{L}^2[a, b]$
-  é um espaço vetorial, podemos pesnar nessa integral como o produto escalar
+  é um espaço vetorial, podemos pensar nessa integral como o produto escalar
   $<f, g>$ de $f, g \in \mathcal{L}^2[a, b]$:
   \begin{dmath*}
     \langle f, g \rangle = \int_a^b f(x) g(x) \vi{x}.
@@ -302,7 +302,7 @@ e
     f(x) = \frac{A_0}{2} + \sum_{n = 1}^\infty \left( A_n \cos\left( n x \right)
     + B_n \sin\left( n x \right) \right)
   \end{dmath*}
-  converge uniformentente, o mesmo acontecerá com a série multiplicada por
+  converge uniformemente, o mesmo acontecerá com a série multiplicada por
   $\cos\left( m x \right)$ ou $\sin\left( m x \right)$. Como uma série
   uniformemente convergente pode ser integrada termo a termo, temos, por exemplo
   \begin{dmath*}
@@ -319,7 +319,7 @@ e
     \cos^2\left( m x \right) \vi{x} = \pi A_m,
   \end{dmath*}
   ou seja, $A_m$ é um coeficiente de Fourier. Procedendo de forma análogo,
-  veremos que o mesmo acontece com $A_0$ e $B_m$, de modo que se trat a de uma
+  veremos que o mesmo acontece com $A_0$ e $B_m$, de modo que se trata de uma
   série de Fourier.
 \end{proof}
 
@@ -722,12 +722,12 @@ Seja
 \end{dgroup*}
 
 \begin{defi}
-  Derivada \`{a} direita, $f_+'(x_0)$:
+  Derivada à direita, $f_+'(x_0)$:
   \begin{dmath*}
     f_+'(x_0) = \lim_{h \to 0} \frac{f(x_0 + h) - f(x_0 + 0)}{h} \condition{$h >
     0$.}
   \end{dmath*}
-  Derivada \`{a} esquerda, $f_-'(x_0)$:
+  Derivada à esquerda, $f_-'(x_0)$:
   \begin{dmath*}
     f_-'(x_0) = \lim_{h \to 0} \frac{f(x_0 - 0) - f(x_0 - h)}{h} \condition{$h >
     0$.}
@@ -869,7 +869,7 @@ são as mesmas que os correspondentes limites laterais de $f'$.
 \end{proof}
 
 \begin{lem} \label{lem:F_+'(x)}
-  Se $F$ é contínua por partes em $[0,b]$ e tem derivada \`{a} direita
+  Se $F$ é contínua por partes em $[0,b]$ e tem derivada à direita
   $F_+'(0)$, então
   \begin{dmath*}
     \lim_{k \to \infty} \int_0^b F(x) \frac{\sin\left( k x \right)}{x} \vi{x} =
@@ -890,7 +890,7 @@ são as mesmas que os correspondentes limites laterais de $f'$.
 
 \begin{lem} \label{lem:lim_int}
   Seja $F$ uma função contínua por partes em $(a,b)$ e que tem derivadas
-  laterias \`{a} esquerda e \`{a} direita em um ponto $x_0$ tal que $a < x_0 <
+  laterias à esquerda e à direita em um ponto $x_0$ tal que $a < x_0 <
   b$. Então
   \begin{dmath*}
     \lim_{k \to \infty} \int_a^ F(x) \frac{\sin\left( k \left( x - x_0 \right)
@@ -1252,13 +1252,13 @@ Outra notação para a identidade de Parseval é:
   na média em $\mathcal{L}^2(-\pi, \pi)$.
 \end{obs}
 
-\subsection{Covergência na Média \textit{versus} Convergência Pontual e
+\subsection{Convergência na Média \textit{versus} Convergência Pontual e
 Convergência Uniforme}
 Dizemos que uma sequência $\left\{ f_n(x) \right\}$ converge pontualmente (ponto
 a ponto) para $f(x)$ se para cada $x \in I$ e $\forall \epsilon > 0$, $\exists N
 = N(x, \epsilon) > 0$ tal que $| f_n(x) - f(x) | < \epsilon$ para $n > N$.
 
-Dizemos que uma sequência $\left\{ f_n(x) \right\}$ converge uniformente para
+Dizemos que uma sequência $\left\{ f_n(x) \right\}$ converge uniformante para
 $f(x)$ se $\forall \epsilon$, $\exists N = N(\epsilon) > 0$ tal que $| f_n(x) -
 f(x) | < \epsilon$ para $n < N$ e $\forall x \in I$.
 
@@ -1361,7 +1361,7 @@ o próximo exemplo.
     \frac{a_0}{2} + \sum_{n = 1}^\infty \left( a_n \cos\left( n x \right) + b_n
     \sin\left( n x \right) \right)
   \end{dmath*}
-  converge absolutamente e uniformente para $f(x)$ com $x \in [-\pi,\pi]$.
+  converge absolutamente e uniformante para $f(x)$ com $x \in [-\pi,\pi]$.
 \end{teo}
 \begin{proof}
   Temos
@@ -1463,7 +1463,7 @@ o próximo exemplo.
     \sum_{n = 1}^N \sqrt{a_n^2 + b_n^2} \leq M = \text{constante}.
   \end{dmath*}
 
-  Sendo limitada e moótona, segue que essa sequência é convergente.
+  Sendo limitada e monótona, segue que essa sequência é convergente.
 \end{proof}
 
 \begin{obs}
@@ -1473,8 +1473,8 @@ o próximo exemplo.
     \sum_{n = 1}^N A_n B_n + \sum_{n = 1} B_n^2 = 0
   \end{dmath*}
   é uma equação que não pode ter duas raízes reais distintas. De fato, se $x_0$
-  é raíz, temos que $A_n x_0 + B_n = 0$, ou seja, $x_0 = - B_n / A_n$ para todo
-  $n$ e $ x_0 \neq x_1$. Logo, só pode haver uma raíz real ou nenhuma, o que
+  é raiz, temos que $A_n x_0 + B_n = 0$, ou seja, $x_0 = - B_n / A_n$ para todo
+  $n$ e $ x_0 \neq x_1$. Logo, só pode haver uma raiz real ou nenhuma, o que
   acontece se e somente se $\Delta \leq 0$. Sendo assim:
   \begin{dmath*}
     \Delta = 4 \left( \sum_{n = 1}^N A_n B_n \right)^2 - 4 \left( \sum_{n =
@@ -1517,7 +1517,7 @@ Resumindo os tipos de convergência e suas condições suficientes, temos:
 \section{Método de Fejér}
 \begin{defi}
   Dadas as somas parciais $S_k(x) = \sum_{i = 0}^k \mu_i(x)$ para $k = 0, 1,
-  \ldots, N - 1$, a soma de Ces\`{a}ro (ou média C-1) é definida como a meia
+  \ldots, N - 1$, a soma de Cesàro (ou média C-1) é definida como a meia
   aritmética dessas somas parciais:
   \begin{dmath*}
     \sigma_N(x) = \frac{1}{N} \sum_{k = 0}^{N - 1} S_k(x).
@@ -1527,7 +1527,7 @@ Resumindo os tipos de convergência e suas condições suficientes, temos:
 \end{defi}
 \begin{obs}
   Podemos definir a média C-2, etc, como a média aritmética das somas de
-  Ces\`{a}ro, ou seja,
+  Cesàro, ou seja,
   \begin{dmath*}
     \sigma_N^{(2)}(x) = \frac{1}{N} \sum_{k = 0}^{N - 1} \sigma_N(x),
   \end{dmath*}
@@ -1599,7 +1599,7 @@ Resumindo os tipos de convergência e suas condições suficientes, temos:
   $1/2$.
 \end{exem}
 \begin{obs}
-  Usar a soma de Ces\`{a}ro da série de Fourier.
+  Usar a soma de Cesàro da série de Fourier.
   \begin{dgroup*}
     \begin{dmath*}
       \sigma_1 = \frac{a_0}{2},
@@ -1724,7 +1724,7 @@ Antes de prosseguir, é importante notermos que:
 \end{proof}
 \begin{teo}[Fejér] \label{teo:fejer}
   Seja $f(x)$ uma função contínua e periódica (de período $2\pi$) e seja
-  $\sigma_N(x)$ a soma de Ces\`{a}ro da série de Fourier de $f(x)$, ou seja,
+  $\sigma_N(x)$ a soma de Cesàro da série de Fourier de $f(x)$, ou seja,
   \begin{dmath*}
     \sigma_N(x) = \frac{a_0}{2} + \sum_{k = 1}^{N - 1} \left( \alpha_k^N
     \cos\left( k x \right) + \beta_k^N \sin\left( k x \right) \right),
@@ -1798,7 +1798,7 @@ Antes de prosseguir, é importante notermos que:
       \lim_{N \to \infty} | \sigma_N(x) - f(x) | \leq \epsilon
     \end{dmath*}
   \end{dgroup*}
-  de onde conluímos que
+  de onde concluímos que
   \begin{dmath*}
     \lim_{N \to \infty} \sigma_N(x) = f(x) \qedhere
   \end{dmath*}
@@ -1808,7 +1808,7 @@ Antes de prosseguir, é importante notermos que:
 \begin{teo}
   Seja $f(x)$ uma função contínua em $[-\pi,\pi]$ tal que $f(-\pi) = f(\pi)$ e
   seja $f'(x)$ contínua por partes e com derivadas laterais nesse intervalo.
-  Então a série de Fourier de $f(x)$ é diferenciaável e
+  Então a série de Fourier de $f(x)$ é diferenciável e
   \begin{dmath*}
     f'(x) = \sum_{n = 1}^\infty n \left( -a_n \sin\left( n x \right) + b_n
     \cos\left( n x \right) \right)

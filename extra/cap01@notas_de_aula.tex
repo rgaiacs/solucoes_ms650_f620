@@ -133,8 +133,24 @@ Fourier são menos restritivas do que para séries de potências.
 
 \begin{figure}[!htb]
   \centering
-  \includegraphics[width=0.8\textwidth]{figuras/01-0}
-  \caption{Gráfico da série de Fourier para $f(x) = x^2$.}
+  \begin{tikzpicture}[scale=.3]
+    % Eixos
+    \draw[->] (-5 * 3.14,0) -- (5 * 3.14, 0) node[below right] {$x$};
+    \draw[->] (0,-.5) -- (0, 3.5 * 3.14) node[above right] {$y$};
+    \foreach \x in {-4,...,4}{
+      \draw (\x * 3.14,0) node[below] {$\x \pi$};
+    }
+
+    % Gráfico de $x^2$
+    \draw[color=red, domain=-3.14:3.14] plot (\x,\x * \x) node[right] {$f(x) =
+    x^2$};
+    \draw[color=blue, domain=-3.14:3.14] plot (\x + 2 * 3.14,\x * \x);
+    \draw[color=blue, domain=-3.14:3.14] plot (\x + 4 * 3.14,\x * \x);
+    \draw[color=blue, domain=-3.14:3.14] plot (\x - 2 * 3.14,\x * \x);
+    \draw[color=blue, domain=-3.14:3.14] plot (\x - 4 * 3.14,\x * \x);
+  \end{tikzpicture}
+  \caption{Gráfico de $f(x) = x^2$, em vermelho, no intervalo $[-\pi,+\pi]$ e da
+  extensão periórica de $f(x)$, em azul.}
   \label{fig:serie_fourier_grafico01}
 \end{figure}
 

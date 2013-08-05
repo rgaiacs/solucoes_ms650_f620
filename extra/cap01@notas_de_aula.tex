@@ -154,7 +154,7 @@ Fourier são menos restritivas do que para séries de potências.
   \label{fig:serie_fourier_grafico01}
 \end{figure}
 
-\begin{exem}
+\begin{exem} \label{exem:fourier2}
   Para
   \begin{dmath*}
     f(x) = \begin{cases}
@@ -199,9 +199,29 @@ Fourier são menos restritivas do que para séries de potências.
 
 \begin{figure}[!htb]
   \centering
-  \includegraphics[width=0.8\textwidth]{figuras/01-1}
-    % TODO Arrumar o comando \caption abaixo.
-  \caption{Gráfico da série de Fourier para }
+  \begin{tikzpicture}[xscale=.5]
+    % Eixos
+    \draw[->] (-3 * 3.14,0) -- (3 * 3.14, 0) node[below right] {$x$};
+    \draw[->] (0,-1.5) -- (0, 1.5) node[above right] {$y$};
+    \foreach \x in {-2,...,2}{
+      \draw (\x * 3.14,0) node[below] {$\x \pi$};
+    }
+
+    % Gráfico
+    \draw[color=red] (0,1) circle (.1) -- +(3.14,0) circle(.1);
+    \draw[color=red] (0,-1) circle (.1) -- +(-3.14,0) circle(.1);
+    \draw[color=red, fill] (0,0) circle (.1);
+    \draw[color=blue] (2 * 3.14,1) circle (.1) -- +(3.14,0) circle(.1);
+    \draw[color=blue] (2 * 3.14,-1) circle (.1) -- +(-3.14,0) circle(.1);
+    \draw[color=blue, fill] (1 * 3.14,0) circle (.1);
+    \draw[color=blue, fill] (2 * 3.14,0) circle (.1);
+    \draw[color=blue] (-2 * 3.14,1) circle (.1) -- +(3.14,0) circle(.1);
+    \draw[color=blue] (-2 * 3.14,-1) circle (.1) -- +(-3.14,0) circle(.1);
+    \draw[color=blue, fill] (-1 * 3.14,0) circle (.1);
+    \draw[color=blue, fill] (-2 * 3.14,0) circle (.1);
+  \end{tikzpicture}
+  \caption{Gráfico da série de Fourier para $f(x)$ do
+  Exemplo~\ref{exem:fourier2}}
   \label{fig:serie_fourier_grafico02}
 \end{figure}
 

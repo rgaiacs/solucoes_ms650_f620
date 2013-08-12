@@ -478,11 +478,25 @@ Logo,
   Seja $f(x)$ dado por
   \begin{dmath*}
     f(x) = \begin{cases}
-      1 / 2a, & |x| \leq a, \\
+      1 / (2a), & |x| \leq a, \\
       0, & |x| > a,
     \end{cases}
   \end{dmath*}
-  onde $a < L$. Logo, temos
+  onde $a < L$.
+  O gŕafico de $f(x)$ é ilustrado abaixo.
+  \begin{figure}[htb]
+    \centering
+    \begin{tikzpicture}
+      \draw[->] (-3,0) -- (3,0) node[below right] {$x$};
+      \draw[->] (0,-1) -- (0,1) node[above right] {$f(x)$};
+      \draw (-2,0) node[below] {$-a$};
+      \draw (2,0) node[below] {$a$};
+      \draw (0,1/4) node[above right] {$1/(2a)$};
+
+      \draw[blue] (-3,0) -- (-2,0) -- (-2,1/4) -- (2,1/4) -- (2,0) -- (3,0);
+    \end{tikzpicture}
+  \end{figure}
+  Logo, temos
   \begin{dmath*}
     c_n = \frac{1}{2L} \int_{-L}^L f(x) \exp\left( -i n \pi x / L \right) \vi{x}
     = \frac{1}{2L} \int_{-a}^a \frac{1}{2a} \exp\left( -i n \pi x / L \right)
@@ -677,7 +691,30 @@ Logo:
         F_-(x) = \sum_{n = 1}^\infty \left( \frac{1 - 2 (-1)^n}{n \pi} \right)
         \sin\left( n \pi x / L \right).
       \end{dmath*}
-            % TODO Incluir gráfico.
+      \begin{figure}[htb]
+        \centering
+        \begin{tikzpicture}
+          \draw[->] (-4.2,0) -- (4.2,0) node[below right] {$x$};
+          \draw[->] (0,-2.2) -- (0,2.2) node[above right] {$f(x)$};
+          \draw (0,-2) node[right] {$-1$};
+          \draw (0,-2/2) node[right] {$-1/2$};
+          \draw (0,2) node[left] {$1$};
+          \draw (0,2/2) node[left] {$1/2$};
+          \foreach \x in {-4,-3,...,4}{
+            \draw (\x,0) node[below left] {$\x L$};
+          }
+
+          \foreach \x in {-4,-3,...,4}{
+            \fill[blue] (\x,0) circle (.1);
+          }
+          \foreach \x in {-4,-2,...,3}{
+            \draw[blue] (\x,2/2) circle (.1) -- +(1,2/2) circle (.1);
+          }
+          \foreach \x in {-3,-1,...,4}{
+            \draw[blue] (\x,-2) circle (.1) -- +(1,2/2) circle (.1);
+          }
+        \end{tikzpicture}
+      \end{figure}
 
     \item Série de Fourier em cossenos:
       \begin{dgroup*}
@@ -705,7 +742,27 @@ Logo:
         F_+(x) = \frac{3}{4} + \sum_{n = 1}^\infty \frac{\left[ (-1)^n - 1
         \right]}{n^2 \pi^2} \cos\left( n \pi x / L \right).
       \end{dmath*}
-            % TODO Incluir gráfico.
+      \begin{figure}[htb]
+        \centering
+        \begin{tikzpicture}
+          \draw[->] (-4.2,0) -- (4.2,0) node[below right] {$x$};
+          \draw[->] (0,-2.2) -- (0,2.2) node[above right] {$f(x)$};
+          \draw (0,-2) node[right] {$-1$};
+          \draw (0,-2/2) node[right] {$-1/2$};
+          \draw (0,2) node[left] {$1$};
+          \draw (0,2/2) node[left] {$1/2$};
+          \foreach \x in {-4,-3,...,4}{
+            \draw (\x,0) node[below left] {$\x L$};
+          }
+
+          \foreach \x in {-4,-2,...,3}{
+            \draw[blue] (\x,2/2) -- +(1,2/2);
+          }
+          \foreach \x in {-3,-1,...,4}{
+            \draw[blue] (\x,2) -- +(1,-2/2);
+          }
+        \end{tikzpicture}
+      \end{figure}
   \end{enumerate}
 \end{exem}
 
@@ -882,7 +939,7 @@ são as mesmas que os correspondentes limites laterais de $f'$.
   \begin{dmath*}
     I = \lim_{k \to \infty} \int_p^q F(x) \sin\left( k x \right) \vi{x} = 0.
   \end{dmath*}
-    % TODO Terminar a demonstração do Lema.
+    % TODO Terminar a demonstração do Lema. Página 23 de M2S12-3.pdf.
 \end{proof}
 
 \begin{lem} \label{lem:sin(x)/x}
@@ -897,7 +954,7 @@ são as mesmas que os correspondentes limites laterais de $f'$.
   \vi{x}$ para $t \geq 0$.
 
   Seja $S(x) = \sin\left( x \right) / x$.
-    % TODO Terminar a demonstração do Lema.
+    % TODO Terminar a demonstração do Lema. Página 25 de M2S12-3.pdf.
 \end{proof}
 
 \begin{lem} \label{lem:F_+'(x)}
@@ -917,7 +974,7 @@ são as mesmas que os correspondentes limites laterais de $f'$.
     \intertext{e pelo Lema~\ref{lem:sin(x)/x}}
     = \pi / 2.
   \end{dmath*}
-    % TODO Terminar a demonstração do Lema.
+    % TODO Terminar a demonstração do Lema. Página 28 de M2S12-3.pdf.
 \end{proof}
 
 \begin{lem} \label{lem:lim_int}
@@ -936,7 +993,7 @@ são as mesmas que os correspondentes limites laterais de $f'$.
     I(k) = \int_a^b F(x) \frac{\sin\left( k \left( x - x_0 \right) \right)}{x -
     x_0} \vi{x}
   \end{dmath*}
-    % TODO Terminar a demonstração do Lema.
+    % TODO Terminar a demonstração do Lema. Página 29 de M2S12-3.pdf.
 \end{proof}
 
 \subsection{Demonstração do Teorema de Fourier}
@@ -1269,7 +1326,7 @@ suficiente.
   \end{dmath*}
 \end{teo}
 \begin{proof}
-    % TODO Corrigir essa demonstração.
+    % TODO Corrigir essa demonstração. Página 41 de M2S12-4.pdf.
   Ver página anterior.
 \end{proof}
 
@@ -2036,7 +2093,101 @@ e ilustrada na Figura
   \caption{Ilustração do Fenômeno de Gibbs para onda quadrada.}
   \label{fig:fenom_gibbs}
 \end{figure}
-% TODO Terminar de digitar a seção sobre o Fenômeno de Gibbs do arquivo M2S12-5.
+
+Então
+\begin{dmath*}
+  S_N(x) = \int_{-\pi}^{+\pi} f(\epsilon) D_N(\epsilon - x) \vi{\epsilon}
+  = \int_{-\pi}^{+\pi} f(\epsilon) \frac{\sin(N + 1 / 2) (\epsilon - x)}{2 \pi
+  \sin\left( (\epsilon - x) / 2 \right)}
+  = -\frac{h}{4 \pi} \int_{-\pi}^0 \frac{\sin(N + 1 / 2) (\epsilon -
+  x)}{\sin\left( \epsilon - x) / 2 \right)} \vi{\epsilon} + \frac{h}{4 \pi}
+  \int_0^{+\pi} \frac{\sin(N + 1 / 2) (\epsilon - x)}{\sin\left( (\epsilon - x)
+  / 2 \right) \vi{\epsilon}}
+  = -\frac{h}{4 \pi} \int_0^{+\pi} \frac{\sin(N + 1 / 2) (\epsilon +
+  x)}{\sin\left( (\epsilon + x) / 2 \right)} + \frac{h}{4 \pi} \int_0^{+\pi}
+  \frac{\sin(N + 1 / 2) (\epsilon - x)}{\sin\left( (\epsilon - x) / 2 \right)
+  \vi{\epsilon}}
+  = \frac{h}{4 \pi} \int_0^{+\pi} \frac{\sin(N + 1 / 2) (\epsilon -
+  x)}{\sin\left( (\epsilon - x) / 2 \right)} \vi{\epsilon} - \frac{h}{4 \pi}
+  \int_0^{+\pi} \frac{\sin(N + 1 / 2) (\epsilon + x)}{\sin\left( (\epsilon + x)
+  / 2 \right)} \vi{\epsilon}
+  = \frac{h}{4 \pi} \int_{-x}^{\pi - x} \frac{\sin(N + 1 / 2) u}{\sin(u / 2)}
+  \vi{u} - \frac{h}{4 \pi} \int_{x}^{\pi + x} \frac{\sin(N + 1 / 2) u}{\sin(u /
+  2)}
+  = \frac{h}{4 \pi} \int_{-x}^{x} \frac{\sin(N + 1 / 2) u}{\sin(u / 2)} \vi{u} -
+  \frac{h}{4 \pi} \int_{\pi - x}^{\pi + x} \frac{\sin(N + 1 / 2) u}{\sin(u / 2)}
+  \vi{u}
+  = S_1(x) + S_2(x).
+\end{dmath*}
+Na vizinhança da descontinuidade ($x = 0$)
+\begin{figure}[htb]
+  \centering
+  \begin{tikzpicture}
+    \draw[->] (-1.2,0) -- (4.2,0);
+    \draw[->] (0,-1.5) -- (0,1.5);
+
+    \fill[blue] (-1,0) rectangle (2,1);
+    \fill[red] (1,0) rectangle (4,-1);
+
+    \draw (-1,0) node [below] {$-x$};
+    \draw (1,0) node [below] {$x$};
+    \draw (2,0) node [below] {$\pi - x$};
+    \draw (3,0) node [below] {$\pi$};
+    \draw (4,0) node [below] {$\pi + x$};
+  \end{tikzpicture}
+  \begin{tikzpicture}
+    \draw[->] (-1.2,0) -- (4.2,0);
+    \draw[->] (0,-1.5) -- (0,1.5);
+
+    \fill[blue] (-1,0) rectangle (1,1);
+    \fill[red] (2,0) rectangle (4,-1);
+
+    \draw (-1,0) node [below] {$-x$};
+    \draw (1,0) node [below] {$x$};
+    \draw (2,0) node [below] {$\pi - x$};
+    \draw (3,0) node [below] {$\pi$};
+    \draw (4,0) node [below] {$\pi + x$};
+  \end{tikzpicture}
+\end{figure}
+\begin{dmath*}
+  \lim_{x \to 0} S_2(x) = \lim_{x \to 0} \int_{-\pi - x}^{\pi + x} \left( \ldots
+  \right)
+  \sim \int_{\pi}^{\pi} \left( \ldots \right)
+  \sim \frac{\sin\left( N + 1 / 2) \pi \right)}{\sin(\pi / 2)} (\pi - \pi)
+  = \frac{\sin\left( N + 1 / 2) \pi \right)}{\sin(\pi / 2)} 0
+  = 0.
+\end{dmath*}
+Porém, o mesmo não vale para $S_1(x)$ devido à descontinuidade do integrando
+($\sin(0) = 0$).
+\begin{dmath*}
+  S_N(x) \sim \frac{h}{4 \pi} \int_{-x}^{x} \frac{\sin\left( (N + 1 / 2) u
+  \right)}{\sin(u / 2)} \vi{u}
+  = \frac{h}{2 \pi} \int_0^x \frac{\sin\left( N + 1 / 2) u \right)}{\sin(u / 2)}
+  \vi{u}
+  \sim \frac{h}{2 \pi} \int_0^{(N + 1 / 2) x} \frac{\sin(t)}{(N + 1 / 2)
+  \sin\left( t / \left( 2 (N + 1/2) \right) \right)}.
+\end{dmath*}
+O integrando é positivo até $t = (N + 1 / 2) x = \pi$, depois desse valor o
+integrando é negativo. Logo, o maior valor de $S_N(x)$ é para $t_{\max} = (N +
+1/2) x_{\max} = \pi$ e portanto $x_{\max} = \pi / (N + 1/2) \sim \pi / N$. Então
+\begin{dmath*}
+  S_N^{\max} = \frac{h}{2 \pi} \int_0^{\pi} \frac{\sin(t)}{(N + 1/2) \sin\left(
+  t / 2 (N + 1 / 2) \right)} \vi{t}
+  = \frac{h}{2 \pi} \int_0^{\pi} \frac{\sin(t)}{t / 2} \frac{t}{2 (N + 1 / 2)}
+  \frac{1}{\sin\left( t / \left( 2 (N + 1 / 2) \right) \right)}\vi{t}
+\end{dmath*}
+E para $N \to \infty$, então:
+\begin{dmath*}
+  S^{\max} \sim \frac{h}{\pi} \int_0^{\pi} \frac{\sin(t)}{t} \vi{t}
+  \sim \frac{h}{2} \left[ \frac{2}{h} \int_0^{\pi} \frac{\sin(t)}{t} \vi{t} \right]
+  \sim \frac{h}{2} 1.1789797.
+\end{dmath*}
+Logo, $S^{\max}$ é maior do que $h / 2$ por cerca de 18\%.
+
+\begin{obs}
+  O número de termos na soma parcial não muda $\Delta$ mas apenas desloca o
+  ponto de máximo (ou mínimo)!
+\end{obs}
 
 \section{Teorema da Aproximação de Weierstrass}
 \begin{teo}

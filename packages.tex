@@ -1,6 +1,6 @@
 % Filename: packages.tex
 % 
-% This code is part of 'Solutions for MS650, M\'{e}todos de Matem\'{a}tica Aplicada II, and F620, M\'{e}todos Matem\'{a}ticos da F\'{i}sica II'
+% This code is part of 'Solutions for MS650, Métodos de Matemática Aplicada II, and F620, Métodos Matemáticos da F\'{i}sica II'
 % 
 % Description: This file corresponds to the packages used.
 % 
@@ -22,11 +22,12 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage{breqn}
 \usepackage{hyperref}
 \usepackage{graphicx}
 \usepackage{tikz}
 
-% Customiza\c{c}\~{a}o do pacote amsmath
+% Customização do pacote amsmath
 \allowdisplaybreaks[4]
 
 % Novos comandos
@@ -38,4 +39,5 @@
 \newcommand{\diver}{\mbox{div }}
 \newcommand{\rot}{\mbox{rot }}
 
-\newcommand{\id}[1]{\, \mathrm{d}#1}
+\newcommand{\id}[1]{\, \mathrm{d}#1}  % Deprecado
+\newcommand{\vi}[1]{\, \mathrm{d}#1}  % Variávei de Integração

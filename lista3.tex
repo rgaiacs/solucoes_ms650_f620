@@ -1,7 +1,7 @@
 % Filename: lista3.tex
 % 
-% This code is part of 'Solutions for MS650, M\'{e}todos de Matem\'{a}tica
-% Aplicada II, and F620, M\'{e}todos Matem\'{a}ticos da F\'{i}sica II'
+% This code is part of 'Solutions for MS650, Métodos de Matemática
+% Aplicada II, and F620, Métodos Matemáticos da F\'{i}sica II'
 % 
 % Description: This file corresponds to the solutions of homework sheet 3.
 % 
@@ -22,7 +22,7 @@
 % A PARTICULAR PURPOSE.
 %
 \documentclass[a4paper,12pt, leqno, answers]{exam}
-% Customiza\c{c}\~{a}o da classe exam
+% Customização da classe exam
 \newcommand{\mycheader}{Lista 3 - Transformada de Fourier}
 \header{MS560, F560}{\mycheader}{\thepage/\numpages}
 \headrule
@@ -30,7 +30,7 @@
 \\\input{maintainer.tex}}
 \footrule 
 \pagestyle{headandfoot}
-\renewcommand{\solutiontitle}{\noindent\textbf{Solu\c{c}\~{a}o:}\enspace}
+\renewcommand{\solutiontitle}{\noindent\textbf{Solução:}\enspace}
 \SolutionEmphasis{\slshape}
 \unframedsolutions
 \pointname{}
@@ -47,10 +47,10 @@
 \newpage
 \setcounter{page}{1}
 \begin{questions}
-    \question Mostre que a transformada de Fourier das fun\c{c}\~{o}es $f(x)$
-    abaixo s\~{a}o dadas pelas correspondentes fun\c{c}\~{o}es $F(k)$ onde
-    $\sgn(x) = 2 H(x) - 1$ \'{e} a fun\c{c}\~{a}o sinal (ou seja, $\sgn(x) = 1$
-    se $x > 0$ e $\sgn(x) = -1$ se $x < 0$) e $H(x)$ \'{e} a fun\c{c}\~{a}o
+    \question Mostre que a transformada de Fourier das funções $f(x)$
+    abaixo são dadas pelas correspondentes funções $F(k)$ onde
+    $\sgn(x) = 2 H(x) - 1$ é a função sinal (ou seja, $\sgn(x) = 1$
+    se $x > 0$ e $\sgn(x) = -1$ se $x < 0$) e $H(x)$ é a função
     escada (ou seja, $H(x) = 1$ se $x > 0$ e $H(x) = 0$ se $x < 0$).
     \begin{center}
         \begin{tabular}{|c|c|}
@@ -67,14 +67,14 @@
         \end{tabular}
     \end{center}
     \begin{solution}
-        % TODO Escrever solu\c{c}\~{a}o.
+        % TODO Escrever solução.
     \end{solution}
 
-    \question Usando $\delta(x) = H'(x)$ e a express\~{a}o acima para a
+    \question Usando $\delta(x) = H'(x)$ e a expressão acima para a
     transformada de Fourier de $H(x)$, mostre que $\mathcal{F}[\delta(x)] = 1 /
     \sqrt{2 \pi}$.
     \begin{solution}
-        % TODO Escrever solu\c{c}\~{a}o.
+        % TODO Escrever solução.
     \end{solution}
 
     \question Mostre que
@@ -83,7 +83,7 @@
         \id{x} &= \frac{3 \pi}{16}.
     \end{align*}
     \begin{solution}
-        % TODO Escrever solu\c{c}\~{a}o.
+        % TODO Escrever solução.
     \end{solution}
 
     \question Use a f\'{o}rmula integral de Fourier para mostrar que
@@ -91,13 +91,13 @@
         \part $\int_0^\infty \left[ \left( \cos(xy) \right) / \left( 1 + y^2
         \right) \right] \id{x} = \left( 2 / \pi \right) \exp(-|x|),$
         \begin{solution}
-            % TODO Escrever solu\c{c}\~{a}o.
+            % TODO Escrever solução.
         \end{solution}
 
         \part $\int_0^\infty \left[ \left( y \sin(xy) \right) / \left( 1 + y^2
         \right) \right] \id{y} = \left( 2/\pi \right) \sgn(x) \exp(-|x|)$.
         \begin{solution}
-            % TODO Escrever solu\c{c}\~{a}o.
+            % TODO Escrever solução.
         \end{solution}
     \end{parts}
 
@@ -106,17 +106,17 @@
         \part $\int_0^\infty \left[ 1 / \left( 1 + x^2 \right)^2 \right] \id{x}
         = \pi / 4$,
         \begin{solution}
-            % TODO Escrever solu\c{c}\~{a}o.
+            % TODO Escrever solução.
         \end{solution}
 
         \part $\int_0^\infty \left[ \left( x \cos(x) - \sin(x) \right)^2 / x^6
         \right] \id{x} = \pi / 15$.
         \begin{solution}
-            % TODO Escrever solu\c{c}\~{a}o.
+            % TODO Escrever solução.
         \end{solution}
     \end{parts}
 
-    \question Verifique a validade da convolu\c{c}\~{a}o para as fun\c{c}\~{o}es
+    \question Verifique a validade da convolução para as funções
     \begin{align*}
         f(x) = g(x) &= \begin{cases}
             1, & |x| < 1, \\
@@ -124,21 +124,21 @@
         \end{cases}
     \end{align*}
     \begin{solution}
-        % TODO Escrever solu\c{c}\~{a}o.
+        % TODO Escrever solução.
     \end{solution}
 
     \question Ilustre o Princ\'{i}pio de Incerteza de Heisenberg para a
-    fun\c{c}\~{a}o
+    função
     \begin{align*}
         f(x) &= \frac{a}{x^2 + a^2},
     \end{align*}
     com $a > 0$, mostrando que nesse caso $\Delta x = a$ e $\Delta k = 1 /
     \sqrt{2} a$.
     \begin{solution}
-        % TODO Escrever solu\c{c}\~{a}o.
+        % TODO Escrever solução.
     \end{solution}
 
-    \question Seja $\psi(x, t)$ uma fun\c{c}\~{a}o dada na forma
+    \question Seja $\psi(x, t)$ uma função dada na forma
     \begin{align*}
         \psi(x, t) = \int_{-\infty}^\infty \phi(k) \exp\left( i (k x - k^2 t / 2
         \right) \id{k}.
@@ -161,7 +161,7 @@
         \end{cases}
     \end{align*}
     \begin{parts}
-        \part Mostre que a transformada de Fourier $F(k)$ de $f(x)$ \'{e} dada
+        \part Mostre que a transformada de Fourier $F(k)$ de $f(x)$ é dada
         por
         \begin{align*}
             F(k) &= \sqrt{\frac{2}{\pi}} \left( \frac{\sin(k)}{k} \right)^2.
@@ -233,7 +233,7 @@
     \question[P1 de 2011]
     \begin{parts}
         \part Mostre que a transformada de Fourier de $f(x) = \exp(-a x^2)$
-        \'{e} dada por
+        é dada por
         \begin{align*}
             F(k) &= \frac{1}{\sqrt{2 a}} \exp\left( -k^2 / (4a) \right).
         \end{align*}

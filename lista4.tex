@@ -1,7 +1,7 @@
 % Filename: lista4.tex
 % 
-% This code is part of 'Solutions for MS650, M\'{e}todos de Matem\'{a}tica
-% Aplicada II, and F620, M\'{e}todos Matem\'{a}ticos da F\'{i}sica II'
+% This code is part of 'Solutions for MS650, Métodos de Matemática
+% Aplicada II, and F620, Métodos Matemáticos da F\'{i}sica II'
 % 
 % Description: This file corresponds to the solutions of homework sheet 4.
 % 
@@ -22,15 +22,15 @@
 % A PARTICULAR PURPOSE.
 %
 \documentclass[a4paper,12pt, leqno, answers]{exam}
-% Customiza\c{c}\~{a}o da classe exam
-\newcommand{\mycheader}{Lista 4 - S\'{e}rie de Fourier (2)}
+% Customização da classe exam
+\newcommand{\mycheader}{Lista 4 - Série de Fourier (2)}
 \header{MS560, F560}{\mycheader}{\thepage/\numpages}
 \headrule
 \footer{Dispon\'{i}vel em \\\input{repository.tex}}{}{Reportar erros para
 \\\input{maintainer.tex}}
 \footrule 
 \pagestyle{headandfoot}
-\renewcommand{\solutiontitle}{\noindent\textbf{Solu\c{c}\~{a}o:}\enspace}
+\renewcommand{\solutiontitle}{\noindent\textbf{Solução:}\enspace}
 \SolutionEmphasis{\slshape}
 \unframedsolutions
 \pointname{}
@@ -47,12 +47,12 @@
 \newpage
 \setcounter{page}{1}
 \begin{questions}
-    \question Seja a equa\c{c}\~{a}o
+    \question Seja a equação
     \begin{align*}
         \devp{^2 G(x, \epsilon)}{x^2} - \omega^2 G(x, \epsilon) &= \delta(x -
         \epsilon),
     \end{align*}
-    onde $-\infty < x$, $\epsilon < \infty$ e $\omega > 0$. Use o m\'{e}todo da
+    onde $-\infty < x$, $\epsilon < \infty$ e $\omega > 0$. Use o método da
     transformada de Fourier para mostrar que $G(x, \epsilon)$ pode ser escrita
     na forma
     \begin{align*}
@@ -61,16 +61,16 @@
         \frac{-1}{2 \omega} \exp\left( -\omega |x - \epsilon| \right).
     \end{align*}
     \begin{solution}
-        % TODO Escrever solu\c{c}\~{a}o.
+        % TODO Escrever solução.
     \end{solution}
 
-    \question Usando a transformada de Fourier, mostre que a solu\c{c}\~{a}o da
-    equa\c{c}\~{a}o
+    \question Usando a transformada de Fourier, mostre que a solução da
+    equação
     \begin{align*}
         \kappa^2 \devd{^4 y}{x^4} + y &= \delta(x),
     \end{align*}
-    onde $-\infty < x < \infty$, satisfazendo as condi\c{c}\~{o}es $\lim_{x \to
-    \pm\infty} y^{(k)} = 0$ ($k = 0, 1, 2, 3, 4$) \'{e} dado por
+    onde $-\infty < x < \infty$, satisfazendo as condições $\lim_{x \to
+    \pm\infty} y^{(k)} = 0$ ($k = 0, 1, 2, 3, 4$) é dado por
     \begin{align*}
         y(x) &= \frac{1}{2 \sqrt{2\kappa}} \left( \cos\left(
         \frac{|x|}{\sqrt{2\kappa}} \right) + \sin\left(
@@ -78,42 +78,42 @@
         \sqrt{2\kappa} \right).
     \end{align*}
     \begin{solution}
-        % TODO Escrever solu\c{c}\~{a}o.
+        % TODO Escrever solução.
     \end{solution}
 
-    \question Usando a transformada de Fourier, mostre que a solu\c{c}\~{a}o da
-    equa\c{c}\~{a}o
+    \question Usando a transformada de Fourier, mostre que a solução da
+    equação
     \begin{align*}
         \devp{\omega}{t} &= -\kappa \devp{\omega}{x} + D \devp{^2 \omega}{x^2},
     \end{align*}
-    onde $t > 0$, $-\infty < x < \infty$, satisfazendo as condi\c{c}\~{o}es que
+    onde $t > 0$, $-\infty < x < \infty$, satisfazendo as condições que
     $\omega(x, t)$, $\left[ partial \omega(x, t) \right] / \partial x$ e $\left[
     \partial^2 \omega(x, t) \right] / \partial x^2$ se anulem para $x \to \pm
-    \infty$ e a condi\c{c}\~{a}o inicial
+    \infty$ e a condição inicial
     \begin{align*}
         \omega(x, 0) &= \delta(x - x_0)
     \end{align*}
-    \'{e} dada por
+    é dada por
     \begin{align*}
         \omega(x, t) &= \frac{1}{\sqrt{4 \pi D t}} \exp\left( -
         \frac{(x - x_0 - \kappa t)^2}{4 D t} \right).
     \end{align*}
     \begin{solution}
-        % TODO Escrever solu\c{c}\~{a}o.
+        % TODO Escrever solução.
     \end{solution}
 
-    \question Usando o m\'{e}todo da transformada de Fourier, mostre que a
-    solu\c{c}\~{a}o da equa\c{c}\~{a}o integral
+    \question Usando o método da transformada de Fourier, mostre que a
+    solução da equação integral
     \begin{align*}
         \int_{-\infty}^\infty \frac{y(u)}{(x - u)^2 + a^2} \id{u} &=
         \frac{1}{x^2 + b^2},
     \end{align*}
-    onde $0 < a < b$, \'{e} dada por
+    onde $0 < a < b$, é dada por
     \begin{align*}
         y(x) &= \frac{a}{b \pi} \frac{(b - a}{x^2 + (b - a)^2}.
     \end{align*}
     \begin{solution}
-        % TODO Escrever solu\c{c}\~{a}o.
+        % TODO Escrever solução.
     \end{solution}
 
     \question Com $\mathcal{F}_s$ e $\mathcal{F}_c$ denotando, respectivamente,
@@ -122,25 +122,25 @@
         \part $\mathcal{F}_s\left[ \exp(-x) \cos(x) \right] = \sqrt{2 / \pi} k^3
         / \left( k^4 + 4 \right)$,
         \begin{solution}
-            % TODO Escrever solu\c{c}\~{a}o.
+            % TODO Escrever solução.
         \end{solution}
 
         \part $\mathcal{F}_s\left[ \left( H(x) - H(x - \pi) \right) \sin(x)
         \right] = \sqrt{2 / \pi} \sin(k \pi) / \left( 1 - k^2 \right)$,
         \begin{solution}
-            % TODO Escrever solu\c{c}\~{a}o.
+            % TODO Escrever solução.
         \end{solution}
 
         \part $\mathcal{F}_c\left[ x \exp(- a x) \right] = \sqrt{2 / \pi} \left(
         a^2 - k^2 \right) / \left( a^2 + k^2 \right)^2$,
         \begin{solution}
-            % TODO Escrever solu\c{c}\~{a}o.
+            % TODO Escrever solução.
         \end{solution}
 
         \part $\mathcal{F}_c\left[ \exp(-a x^2) \right] = \left( 2 a
         \right)^{-1/2} \exp\left( -k^2 / (4 a) \right)$.
         \begin{solution}
-            % TODO Escrever solu\c{c}\~{a}o.
+            % TODO Escrever solução.
         \end{solution}
     \end{parts}
 
@@ -149,18 +149,18 @@
         \part $\mathcal{F}_s\left[ f'(x) \right] = -k \mathcal{F}_c\left[ f(x)
         \right]$,
         \begin{solution}
-            % TODO Escrever solu\c{c}\~{a}o.
+            % TODO Escrever solução.
         \end{solution}
 
         \part $\mathcal{F}_c\left[ f'(x) \right] = - \sqrt{2 / \pi} f(0) + k
         \mathcal{F}_s\left[ f(x) \right]$.
         \begin{solution}
-            % TODO Escrever solu\c{c}\~{a}o.
+            % TODO Escrever solução.
         \end{solution}
     \end{parts}
 
     \question Seja $\erfc(x) = \left( 2 / \sqrt{\pi} \right) \int_\pi^\infty
-    \exp(-t^2) \id{t}$. Usando a rela\c{c}\~{a}o acima entre
+    \exp(-t^2) \id{t}$. Usando a relação acima entre
     $\mathcal{F}_x\left[ |f'(x)| \right]$ e $\mathcal{F}_s\left[ f(x)
     \right]$ mais o resultado para $\mathcal{F}_c\left[ \exp\left( -a x^2
     \right) \right]$, mostre que
@@ -169,44 +169,44 @@
         \frac{1 - \exp\left( -k^2 / \left( 4 \lambda^2 \right) \right)}{k}.
     \end{align*}
     \begin{solution}
-        % TODO Escrever solu\c{c}\~{a}o.
+        % TODO Escrever solução.
     \end{solution}
     
-    \question Seja a equa\c{c}\~{a}o
+    \question Seja a equação
     \begin{align*}
         y''(x) - k^2 y(x) &= f(x),
     \end{align*}
-    onde $x \geq 0$, com as condi\c{c}\~{o}es
+    onde $x \geq 0$, com as condições
     \begin{align*}
         y'(0) &= a, & \lim_{x \to \infty} y(x) &< \infty.
     \end{align*}
-    Use o m\'{e}todo da transformada de Fourier em cossenos para mostrar que
+    Use o método da transformada de Fourier em cossenos para mostrar que
     \begin{align*}
         y(x) &= \frac{-a}{k} \exp(-k x) - \frac{1}{2k} \int_0^\infty f(\xi)
         (\exp(-k |x - \xi|) + \exp(-k | x + \xi|) \id{\xi}.
     \end{align*}
     \begin{solution}
-        % TODO Escrever solu\c{c}\~{a}o.
+        % TODO Escrever solução.
     \end{solution}
 
     \question Usando a transformada em seno de Fourier, mostre que a
-    solu\c{c}\~{a}o da equa\c{c}\~{a}o do calor ,
+    solução da equação do calor ,
     \begin{align*}
         \devp{u}{t} & D \devp{^2 u}{x^2},
     \end{align*}
-    onde $t > 0$, $0 < x < \infty$, com as condi\c{c}\~{o}es que $u(x, t)$,
+    onde $t > 0$, $0 < x < \infty$, com as condições que $u(x, t)$,
     $\partial u(x, t) / \partial x$, e $\partial^2 u(x, t) / \partial x^2$ se
-    anulem para $x \to 0$ e $x \to \infty$ e a condi\c{c}\~{a}o inicial
+    anulem para $x \to 0$ e $x \to \infty$ e a condição inicial
     \begin{align*}
         u(x, 0) &= f(x)
     \end{align*}
-    \'{e} dada por
+    é dada por
     \begin{align*}
         u(x,t) &= \frac{2}{\pi} \int_0^\infty \int_0^\infty f(\xi) \exp(-D
         k^2 t) \sin(k \xi) \sin(k x) \id{\xi} \id{k}.
     \end{align*}
     \begin{solution}
-        % TODO Escrever solu\c{c}\~{a}o.
+        % TODO Escrever solução.
     \end{solution}
 \end{questions}
 % \bibliographystyle{plain}

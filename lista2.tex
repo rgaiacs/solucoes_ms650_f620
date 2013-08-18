@@ -1,6 +1,6 @@
 % Filename: lista2.tex
 % 
-% This code is part of 'Solutions for MS650, M\'{e}todos de Matem\'{a}tica Aplicada II, and F620, M\'{e}todos Matem\'{a}ticos da F\'{i}sica II'
+% This code is part of 'Solutions for MS650, Métodos de Matemática Aplicada II, and F620, Métodos Matemáticos da F\'{i}sica II'
 % 
 % Description: This file corresponds to the solutions of homework sheet 2.
 % 
@@ -17,14 +17,14 @@
 % This work is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 %
 \documentclass[a4paper,12pt, leqno, answers]{exam}
-% Customiza\c{c}\~{a}o da classe exam
-\newcommand{\mycheader}{Lista 2 - S\'{e}rie de Fourier-Legendre}
+% Customização da classe exam
+\newcommand{\mycheader}{Lista 2 - Série de Fourier-Legendre}
 \header{MS560, F560}{\mycheader}{\thepage/\numpages}
 \headrule
 \footer{Dispon\'{i}vel em \\\input{repository.tex}}{}{Reportar erros para \\\input{maintainer.tex}}
 \footrule 
 \pagestyle{headandfoot}
-\renewcommand{\solutiontitle}{\noindent\textbf{Solu\c{c}\~{a}o:}\enspace}
+\renewcommand{\solutiontitle}{\noindent\textbf{Solução:}\enspace}
 \SolutionEmphasis{\slshape}
 \unframedsolutions
 \pointname{}
@@ -40,23 +40,23 @@
 \newpage
 \setcounter{page}{1}
 \begin{questions}
-    \question Desenvolva a fun\c{c}\~{a}o
+    \question Desenvolva a função
     \begin{align*}
         f(x) &= \begin{cases}
             1, & 0 < x < 1, \\
             0, & -1 < x < 0,
         \end{cases}
     \end{align*}
-    em uma s\'{e}rie de Fourier-Legendre.
+    em uma série de Fourier-Legendre.
     \begin{solution}
-        % TODO Escrever solu\c{c}\~{a}o.
+        % TODO Escrever solução.
     \end{solution}
 
-    \question Mostre que os coeficientes das expans\~{a}o da fun\c{c}\~{a}o
+    \question Mostre que os coeficientes das expansão da função
     \begin{align*}
         f(x) &= x^4 - 3 x^2 + x
     \end{align*}
-    em uma s\'{e}rie de Fourier-Legendre s\~{a}o dadas por
+    em uma série de Fourier-Legendre são dadas por
     \begin{align*}
         a_0 &= -4/5, \\
         a_1 &= 1, \\
@@ -66,30 +66,30 @@
         a_n &= 0 && n = 5, 6, 7 \ldots
     \end{align*}
     \begin{solution}
-        % TODO Escrever solu\c{c}\~{a}o.
+        % TODO Escrever solução.
     \end{solution}
 
-    \question Seja a s\'{e}rie de Fourier-Legendre de $f(x)$,
+    \question Seja a série de Fourier-Legendre de $f(x)$,
     \begin{align*}
         f(x) &= \sum_{n = 0}^\infty a_n P_n(x).
     \end{align*}
-    Supondo que essa s\'{e}rie converge uniformemente, mostre que
+    Supondo que essa série converge uniformemente, mostre que
     \begin{align*}
         \int_{-1}^1 \left[ f(x) \right]^ 2 \,\mathrm{d}x &= \sum_{n = 0}^\infty \frac{2 a_n^2}{2 n + 1}.
     \end{align*}
     \begin{solution}
-        % TODO Escrever solu\c{c}\~{a}o.
+        % TODO Escrever solução.
     \end{solution}
 
     \question Os polin\^{o}mios de Hermite $H_n(x)$ podem ser definidos pela f\'{o}rmula de Rodrigues,
     \begin{align*}
         H_n(x) &= (-1)^n \exp(x^2) \left[ \frac{\mathrm{d}^n}{\mathrm{d}x^n} \exp(-x^2) \right],
     \end{align*}
-    onde $n = 0, 1, 2, \ldots$ e satisfazem a rela\c{c}\~{a}o de ortogonalidade
+    onde $n = 0, 1, 2, \ldots$ e satisfazem a relação de ortogonalidade
     \begin{align*}
         \int_{-\infty}^{+\infty} \exp(-x^2) H_n(x) H_m(x) \,\mathrm{d}x &= 2^n n! \sqrt{\pi} \delta_{mn}.
     \end{align*}
-    Mostre que os coeficientes do desenvolvimento da fun\c{c}\~{a}o $f(x) = x^3$ em uma s\'{e}rie de Fourier-Hermite s\~{a}o dadas por
+    Mostre que os coeficientes do desenvolvimento da função $f(x) = x^3$ em uma série de Fourier-Hermite são dadas por
     \begin{align*}
         a_0 &= 0, \\
         a_1 &= 3/4, \\
@@ -98,16 +98,16 @@
         a_n &= 0 && n = 4, 5, 6, \ldots
     \end{align*}
     \begin{solution}
-        % TODO Escrever solu\c{c}\~{a}o.
+        % TODO Escrever solução.
     \end{solution}
 
-    \question Mostre que os coeficientes da expans\~{a}o da fun\c{c}\~{a}o $f(x) = x^2$ em uma s\'{e}rie de Fourier-Bessel de ordem zero s\~{a}o dados por
+    \question Mostre que os coeficientes da expansão da função $f(x) = x^2$ em uma série de Fourier-Bessel de ordem zero são dados por
     \begin{align*}
         c_n &= \frac{2 \left( \alpha_n^2 - 4 \right)}{\alpha_n^3 J_1(\alpha_n)}, && n = 1, 2, 3, \ldots
     \end{align*}
-    onde $\alpha_n$ \'{e} o $n$-\'{e}simo zero de $J_0(x)$.
+    onde $\alpha_n$ é o $n$-ésimo zero de $J_0(x)$.
     \begin{solution}
-        % TODO Escrever solu\c{c}\~{a}o.
+        % TODO Escrever solução.
     \end{solution}
 
     \question
@@ -120,31 +120,31 @@
                 y(4) = 0,
             \end{cases}
         \end{align*}
-        tem autovalores e autofun\c{c}\~{o}es
+        tem autovalores e autofunções
         \begin{align*}
             \lambda_n &= \left( \frac{3 \alpha_n}{16} \right)^2, & y_n(x) & J_0\left( \frac{\alpha_n x^{3/2}}{8} \right),
         \end{align*}
-        onde $n = 1, 2, 3, \ldots$ e $\alpha_n$ \'{e} o $n$-\'{e}simo zero da fun\c{c}\~{a}o de Bessel de primeira esp\'{e}cie e ordem zero.
+        onde $n = 1, 2, 3, \ldots$ e $\alpha_n$ é o $n$-ésimo zero da função de Bessel de primeira espécie e ordem zero.
         \begin{solution}
-            % TODO Escrever solu\c{c}\~{a}o.
+            % TODO Escrever solução.
         \end{solution}
 
-        \part Mostre que a expans\~{a}o da fun\c{c}\~{a}o $f(x) = 1$ em termo dessa autofun\c{c}\~{a}o \'{e} dada por
+        \part Mostre que a expansão da função $f(x) = 1$ em termo dessa autofunção é dada por
         \begin{align*}
             1 &= \sum_{n = 1}^\infty \frac{2}{\alpha_n J_1(\alpha_n)} y_n(x).
         \end{align*}
         \begin{solution}
-            % TODO EScrever solu\c{c}\~{a}o.
+            % TODO EScrever solução.
         \end{solution}
     \end{parts}
 
-    \question[P1 de 2006] Seja a s\'{e}rie de Fourier-Bessel
+    \question[P1 de 2006] Seja a série de Fourier-Bessel
     \begin{align*}
         f(x) &= \sum_{n = 1}^\infty c_n J_k(\lambda_{kn} x/a),
     \end{align*}
-    onde $\lambda_{kn}$ \'{e} o $n$-\'{e}simo zero de $J_k(x)$ e $0 < x < a$.
+    onde $\lambda_{kn}$ é o $n$-ésimo zero de $J_k(x)$ e $0 < x < a$.
     \begin{parts}
-        \part Supondo a converg\^{e}ncia uniforme, mostre que a identidade de Parseval para essa s\'{e}rie \'{e}
+        \part Supondo a converg\^{e}ncia uniforme, mostre que a identidade de Parseval para essa série é
         \begin{align*}
             \int_0^a \left[ f(x) \right]^2 x \id{x} &= \frac{a^2}{2} \sum_{n = 1}^\infty c_n^2 \left[ J_{k+1}\left( \lambda_{kn} \right) \right]^2.
         \end{align*}
@@ -158,7 +158,7 @@
             \end{align*}
         \end{solution}
 
-        \part Sabendo que o desenvolvimento de $f(x) = x^k$ em termos dessa s\'{e}rie \'{e} dado por
+        \part Sabendo que o desenvolvimento de $f(x) = x^k$ em termos dessa série é dado por
         \begin{align*}
             x^k = \sum{n = 1}^\infty \frac{2 a^k J_k\left( \lambda_{kn} x / a \right)}{\lambda_{kn} J_{k+1}\left( \lambda_{kn} \right)},
         \end{align*}
@@ -204,11 +204,11 @@
             -1, & x < 0.
         \end{cases}
     \end{align*}
-    Mostre que seu desenvolvimento em uma s\'{e}rie de Fourier-Legendre \'{e} dado por
+    Mostre que seu desenvolvimento em uma série de Fourier-Legendre é dado por
     \begin{align*}
         \text{sign}(x) &= \sum_{n = 0}^\infty \frac{(-1)^n (1/2)_n (2n + 3/2)}{(n + 1)!} P_{2n + 1}(x),
     \end{align*}
-    onde $(a)_n = a (a + 1) \cdots (a + n - 1)$ \'{e} o s\'{i}mbolo de Pochhammer e $P_n(x)$ \'{e} o $n$-\'{e}simo polini\^{o}mio de Legendre.
+    onde $(a)_n = a (a + 1) \cdots (a + n - 1)$ é o s\'{i}mbolo de Pochhammer e $P_n(x)$ é o $n$-ésimo polini\^{o}mio de Legendre.
     \begin{solution}
         Temos que
         \begin{align*}
@@ -219,7 +219,7 @@
             a_n = \frac{2n + 1}{2} \int_{-1}^1 \text{sign}(x) P_n(x) \id{x}.
         \end{align*}
 
-        Ent\~{a}o
+        Então
         \begin{align*}
             \int_{-1}^1 \text{sign}(x) P_n(x) \id{x} &= \int_{-1}^0 (-1) P_n(x) \id{x} + \int_0^1 (1) P_n(x) \id{x} \\
             &= \int_1^0 P_n(-x) \id{X} + \int_0^1 P_n(x) \id{x} \\
@@ -252,7 +252,7 @@
         \end{align*}
     \end{solution}
 
-    \question[T2 de 2011, P1 de 2011] Sejam $L_n(x)$ ($n = 0, 1, 2, \ldots$) os polinîmios de Laguerre. Mostre que o desenvolvimento da fun\c{c}\~{a}o $f(x) = \exp(-ax)$ ($a > 0$) em uma s\'{e}rie de Fourier-Laguerre pode ser escrito na forma
+    \question[T2 de 2011, P1 de 2011] Sejam $L_n(x)$ ($n = 0, 1, 2, \ldots$) os polinîmios de Laguerre. Mostre que o desenvolvimento da função $f(x) = \exp(-ax)$ ($a > 0$) em uma série de Fourier-Laguerre pode ser escrito na forma
     \begin{align*}
         \exp\left( -ax \right) &= \frac{1}{1 + a} \sum_{n = 0}^\infty \left( \frac{a}{1 + a} \right)^n L_n(x),
     \end{align*}
@@ -275,24 +275,24 @@
             c_n &= \int_0^\infty \exp(-x) \exp(-ax) \frac{\exp(x)}{n!} \frac{\id{}^n}{\id{x^n}}\left( \exp(-x) x^n \right) \id{x} \\
             &= \frac{1}{n!} \int_0^\infty \exp\left( -ax \right) \frac{\id{}^n}{\id{x^n}}\left( \exp(-x) x^n \right) \id{x}
         \end{align*}
-        % TODO Terminar de escrever a solu\c{c}\~{a}o.
+        % TODO Terminar de escrever a solução.
     \end{solution}
 
     \question[P1 de 2011] Os polin\^{o}mios de Hermite $H_n(x)$ podem ser definidos pela f\'{o}rmula de Rodrigues,
     \begin{align*}
         H_n(x) &= (-1)^n \exp(x^2) \frac{\id{}^n}{\id{x^n}}\left( \exp(-x^2) \right),
     \end{align*}
-    onde $n = 0, 1, 2, \ldots$ e satisfazem a rela\c{c}\~{a}o de ortogonalidade
+    onde $n = 0, 1, 2, \ldots$ e satisfazem a relação de ortogonalidade
     \begin{align*}
         \int_{-\infty}^\infty \exp(-x^2) H_n(x) H_m(x) \id{x} &= 2^n n! \sqrt{\pi} \delta_{mn}.
     \end{align*}
-    Encontre o desenvolvimento da fun\c{c}\~{a}o
+    Encontre o desenvolvimento da função
     \begin{align*}
         f(x) = x^4
     \end{align*}
-    em uma s\'{e}rie de Fourier-Hermite.
+    em uma série de Fourier-Hermite.
     \begin{solution}
-        % TODO Escrever a solu\c{c}\~{a}o.
+        % TODO Escrever a solução.
     \end{solution}
 \end{questions}
 % \bibliographystyle{plain}

@@ -366,7 +366,7 @@ vamos fazer a mudança de variável
 \begin{dmath*}
   x' = \frac{\pi}{L} x.
 \end{dmath*}
-Assim, para $f(x') = f(\pi x / L) = f(x)$, temos
+Assim, para $f(x') = f(\pi x / L) = F(x)$, temos
 \begin{dmath*}
   F(x) = \frac{a_0}{2} + \sum_{n = 1}^\infty \left( a_n \cos\left( \frac{n \pi
   x}{L} \right) + b_n \sin\left( \frac{n \pi x}{L} \right) \right),
@@ -535,7 +535,7 @@ Temos, por definição que
     -f(x) \Rightarrow f \text{ é ímpar}.
   \end{cases}
 \end{dmath*}
-Debotando uma função par por $f_+(x)$ e uma função ímpar por $f_-(x)$ temos
+Denotando uma função par por $f_+(x)$ e uma função ímpar por $f_-(x)$ temos
 \begin{dmath*}
   f_\pm(-x) = \pm f_\pm(x).
 \end{dmath*}
@@ -609,6 +609,11 @@ Logo:
     que é a Série de Fourier em senos.
 \end{enumerate}
 
+\begin{obs}
+  Ambas as relações anteriores também são verificadas ao considerar $f(x)$ como
+  a extensão periódica de uma função $g(x)$.
+\end{obs}
+
 \begin{exem}
   Considere $f(x) = x / \left( 2 L \right) + 1 / 2$ cujo gráfico é ilustrado
   abaixo.
@@ -623,6 +628,7 @@ Logo:
       \draw[dotted] (0,1) rectangle (1,0);
     \end{tikzpicture}
   \end{center}
+  Calcule:
   \begin{enumerate}
     \item Série de Fourier:
       \begin{dgroup*}
@@ -764,6 +770,9 @@ Logo:
         \end{tikzpicture}
       \end{figure}
   \end{enumerate}
+
+  Assim verificamos que para uma função $f(x)$ a série de Fourier, de Fourier em
+  senos e de Fourier em cossenos podem ser totalmente diferentes.
 \end{exem}
 
 \section{Teorema de Fourier}
@@ -1141,7 +1150,7 @@ total quadrático dessas funções como
     \frac{A_0}{2} \vi{x} - 2 \int_{-\pi}^\pi f(x) \sum_{n = 1}^N \cos\left( n
     x \right) \vi{x} - 2 \int_{-\pi}^\pi f(x) \sum_{n = 1}^N B_n \sin\left( n
     x \right) \vi{x} + 2 \int_{-\pi}^\pi \frac{A_0}{2} \cos\left( n x \right)
-    \vi{x} + 2 \int_{-\pi}^\pi \frac{A_0}{2} \sum){n = 1}^N B_n \sin\left( n x
+    \vi{x} + 2 \int_{-\pi}^\pi \frac{A_0}{2} \sum_{n = 1}^N B_n \sin\left( n x
     \right) \vi{x} + 2 \int_{-\pi}^\pi \sum_{n = 1}^N \sum_{m = 1}^N A_n B_n
     \cos\left( n x \right) \sin\left( m x \right) \vi{x}
     = \int_{-\pi}^\pi \left[ f(x) \right]^2 \vi{x} + \frac{A_0^2}{4} 2 \pi +
@@ -1173,18 +1182,27 @@ total quadrático dessas funções como
   para $n = 1, \ldots, N$ temos que
   \begin{dgroup*}
     \begin{dmath*}
-      \devp{\Delta_N}{A_0} = \pi A_0 - \int_{-\pi}^\pi f(x) \vi{x} = 0
-      \Rightarrow A_0 = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \vi{x} = a_0,
+      \devp{\Delta_N}{A_0} = \pi A_0 - \int_{-\pi}^\pi f(x) \vi{x} = 0,
+    \end{dmath*}
+    \begin{dmath*}
+      A_0 = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \vi{x} = a_0,
     \end{dmath*}
     \begin{dmath*}
       \devp{\Delta_N}{A_n} = 2 \pi A_n - 2 \int_{-\pi}^\pi f(x) \cos\left( n x
-      \right) \vi{x} = 0 \Rightarrow A_n = \frac{1}{\pi} \int_{-\pi}^\pi f(x)
+      \right) \vi{x} = 0,
       \cos\left( n x \right) \vi{x} = a_n,
     \end{dmath*}
     \begin{dmath*}
+      A_n = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \cos\left( n x \right) \vi{x} =
+      a_n,
+    \end{dmath*}
+    \begin{dmath*}
       \devp{\Delta_N}{B_n} = 2 \pi B_n - 2 \int_{-\pi} \pi f(x) \sin\left( n x
-      \right) \vi{x} = 0 \Rightarrow B_n = \frac{1}{\pi} \int_{-\pi}^\pi f(x)
-      \sin\left( n x \right) \vi{x} = b_n.
+      \right) \vi{x} = 0,
+    \end{dmath*}
+    \begin{dmath*}
+      B_n = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \sin\left( n x \right) \vi{x} =
+      b_n.
     \end{dmath*}
   \end{dgroup*}
   Além disso, é fácil ver que o extremo em questão é um mínimo.
